@@ -1,7 +1,7 @@
 
 # sata.technology
 
-This is the React project hosting the SATA airdrop, and will host the future Identity Marketplace.
+This is the React project hosting website of the SATA airdrop, and will host the future Identity Marketplace.
 
 This site is deployed and available at [sata.technology](https://sata.technology).
 
