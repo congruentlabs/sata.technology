@@ -9,6 +9,8 @@ import {
   ListItem,
 } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import WebIcon from '@material-ui/icons/Web';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import GithubIcon from '@material-ui/icons/GitHub';
 
@@ -128,6 +130,22 @@ const Footer = props => {
                   alt="Congruent Labs Github"
                 >
                   <GithubIcon className={classes.icon} />
+                </IconButton>
+                <IconButton
+                  className={classes.socialIcon}
+                  href="https://blog.congruentlabs.co/"
+                  target="_blank"
+                  alt="Congruent Labs Blog"
+                >
+                  <WebIcon className={classes.icon} />
+                </IconButton>
+                <IconButton
+                  className={classes.socialIcon}
+                  href="https://www.linkedin.com/company/congruent-labs-pty-ltd/ "
+                  target="_blank"
+                  alt="Congruent Labs Github"
+                >
+                  <LinkedInIcon className={classes.icon} />
                 </IconButton>
               </ListItem>
             </List>

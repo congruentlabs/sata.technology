@@ -94,7 +94,7 @@ const ICO = ({ className, ...rest }) => {
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
-  const title = "SATA Token Airdrop";
+  const title = "SATA Token";
   const subtitle = 'Blockchains have laid the foundations. Be a part of the true decentralized future.';
 
   React.useEffect(() => {
@@ -102,11 +102,12 @@ const ICO = ({ className, ...rest }) => {
       const cid = await window.ethereum.request({ method: 'eth_chainId' });
       if (cid === '0x3') {
         setChainId("Ropsten");
-        setContractAddress("0xB74b3235Aefb677E0d227f206acdE41810166729");
-        setAirdropAddress("0xA3B3704e7660335A572E55d503dD7D7ED327dF7E");
+        setContractAddress("0x9879914b08E28D465Eb87DAF8412E7c334823845");
+        setAirdropAddress("0x46da373D7676248805b56392DF4E92F7Ac64b2f6");
       } else if (cid === '0x1') {
         setChainId("Mainnet");
-        setShowMainnetWarning(true);
+        setContractAddress("0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1");
+        setAirdropAddress("0x0BaFDe3aDAd83b679FAE5E9793Cd44ab247c6096");
       } else {
         setChainId("Unknown");
       }
@@ -309,7 +310,12 @@ const ICO = ({ className, ...rest }) => {
                       </List>
                     </Grid>
                     <Grid item xs={12} style={{ textAlign: 'center' }}>
-                      <Button
+                      <Grid item xs={12}>
+                        <Alert severity="success">
+                          Airdrop depleted - follow us on Telegram for future project updates.
+                        </Alert>
+                      </Grid>
+                      {/* <Button
                         type="submit"
                         color="secondary"
                         size="large"
@@ -318,16 +324,16 @@ const ICO = ({ className, ...rest }) => {
                         onClick={handleClickClaimAirdrop}
                       >
                         Claim Airdrop
-                      </Button>
+                      </Button> */}
                     </Grid>
-                    {showSuccess && (
+                    {/* {showSuccess && (
                       <Grid item xs={12}>
                         <Alert severity="info">
                           Airdrop claim submitted - check your wallet to view the transaction
                           status.
                         </Alert>
                       </Grid>
-                    )}
+                    )} */}
                   </>
                 )}
                 
@@ -361,20 +367,11 @@ const ICO = ({ className, ...rest }) => {
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     10,000,000 tokens will be airdropped to any ETH account holding
-                    at least 0.1 ETH, with each account receiving 1,000 SATA tokens
+                    at least 0.1 ETH, with each account receiving 10,000 SATA tokens
                     until the supply is depleted.
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     The remaining 40,000,000 tokens will be supplied as liquidity to exchanges.
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography color="primary" variant="h5" gutterBottom>
-                    Airdrop Schedule
-                  </Typography>
-                  <Typography color="textPrimary" variant="body1" gutterBottom>
-                    The Airdrop will announced soon - check this site again for more
-                    details, or join our Telegram group for notifications of announcements.
                   </Typography>
                 </Grid>
               </Grid>
