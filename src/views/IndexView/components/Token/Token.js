@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import {
   Button,
   Grid,
+  Box,
   Typography,
   List,
   ListItem,
@@ -18,6 +19,7 @@ import {
 import { Alert } from "@material-ui/lab";
 import { SectionHeader, IconAlternate } from 'components/molecules';
 import { CardBase } from 'components/organisms';
+import { Image } from 'components/atoms';
 // import { ethers, Contract } from 'ethers';
 
 if (window.ethereum) {
@@ -438,6 +440,67 @@ const Token = ({ className, ...rest }) => {
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     10,000,000 tokens are reserved by Congruent Labs for enabling integration with partners, and for allocation to beta service users.
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography color="primary" variant="h4" gutterBottom>
+                    Token Locking Schedule
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Tokens reserved by Congruent Labs are locked for gradual availability for use. The following rules will be in place for the release of tokens to the market:
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Reserve Tokens
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Each quarter will unlock 2,500,000 SATA tokens for use by Congruent Labs in marketing, development &amp; additional business activities where required. This supply is expected to be completely unlocked by Q1 2025.
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Integration Tokens
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    10,000,000 tokens will be locked. In Q3 2021 5,000,000 tokens will be released for initial proof of concept work. In Q4 2021 the remaining 5,000,000 tokens will be released for further proof of concept work.  
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Image src="token-sched.png" />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography color="primary" variant="h4" gutterBottom>
+                    Uniswap V2 Liquidity Pooling Rewards
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    To further increase market liquidity, liquidity pooling rewards will be released for Liquidity Pool providers on Uniswap V2. These airdropped tokens will be capped at a maximum of 5,000,000 SATA tokens.
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    The following algorithm will be used to determine pool allocations across all addresses and the minimum value pooled between each snapshot:
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    (Algorithm)
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Initial Snapshot
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    On the DD/MM/YYYY HH:MM:SS UTC a snapshot will be captured of all Liquidity Pool provider addresses.
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Second Snapshot
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    On the DD/MM/YYYY HH:MM:SS UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and a pool of 500,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial snapshot date and the 2nd snapshot date.
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Third Snapshot
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    On the DD/MM/YYYY HH:MM:SS UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and a pool of 1,500,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial snapshot date and the 3nd snapshot date.
+                  </Typography>
+                  <Typography color="primary" variant="h5" gutterBottom>
+                    Fourth Snapshot
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    On the DD/MM/YYYY HH:MM:SS UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and a pool of 3,000,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial snapshot date and the 4rd snapshot date.
                   </Typography>
                 </Grid>
               </Grid>
