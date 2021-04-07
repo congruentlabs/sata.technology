@@ -141,9 +141,9 @@ const Footer = props => {
                 </IconButton>
                 <IconButton
                   className={classes.socialIcon}
-                  href="https://www.linkedin.com/company/congruent-labs-pty-ltd/ "
+                  href="https://www.linkedin.com/company/congruent-labs-pty-ltd/"
                   target="_blank"
-                  alt="Congruent Labs Github"
+                  alt="Congruent Labs LinkedIn"
                 >
                   <LinkedInIcon className={classes.icon} />
                 </IconButton>
