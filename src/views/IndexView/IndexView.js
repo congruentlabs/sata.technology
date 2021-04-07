@@ -5,7 +5,7 @@ import {
   Vision,
   Services,
   Hero,
-  ICO,
+  Token,
   Features,
   Roadmap,
   Team,
@@ -38,7 +38,7 @@ const IndexView = ({ themeMode }) => (
       </SectionAlternate>
       <Divider />
       <Section narrow>
-        <ICO />
+        <Token />
       </Section>
       <Section>
         <Roadmap />
