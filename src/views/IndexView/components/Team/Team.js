@@ -120,14 +120,7 @@ const Team = props => {
 };
 
 Team.propTypes = {
-  /**
-   * External classes
-   */
   className: PropTypes.string,
-  /**
-   * Data to be rendered
-   */
-  data: PropTypes.array.isRequired,
 };
 
 export default Team;
