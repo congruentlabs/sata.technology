@@ -9,7 +9,7 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
-  Typography,
+  // Typography,
 } from '@material-ui/core';
 import { SectionHeader } from 'components/molecules';
 
