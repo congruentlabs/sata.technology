@@ -19,6 +19,7 @@ import {
 import { SectionHeader, IconAlternate } from 'components/molecules';
 import { CardBase } from 'components/organisms';
 import { Image } from 'components/atoms';
+import {Theaters} from '@material-ui/icons';
 // import { ethers, Contract } from 'ethers';
 
 if (window.ethereum) {
@@ -456,6 +457,10 @@ const Token = ({ className, ...rest }) => {
                     Each quarter will unlock 2,500,000 SATA tokens for use by Congruent Labs in marketing, development &amp; additional
                     business activities where required. This supply is expected to be completely unlocked by Q1 2025.
                   </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    If Congruent Labs determines that the unlocked tokens are not yet required they will re-locked again for reassessment
+                    at a later date.
+                  </Typography>
                   <Typography color="primary" variant="h5" gutterBottom>
                     Integration Tokens
                   </Typography>
@@ -467,8 +472,12 @@ const Token = ({ className, ...rest }) => {
                     Undistributed Tokens
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
-                    35,000,000 tokens will remain unlocked and will be moved into market liquidity by Q4 2021, in the form of
-                    exchange listings, airdrops, and OTC investments.
+                    35,000,000 tokens will remain unlocked and are intented to be moved
+                    into market liquidity by Q4 2021, in the form of
+                    exchange listings, airdrops, and OTC investments. As third parties are
+                    unpredictable with their integration timelines, the actual amount
+                    to be added as circulating supply will may be delayed, and may only enter
+                    the market at a later point in the schedule.
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -507,6 +516,10 @@ const Token = ({ className, ...rest }) => {
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     Liquidity providers must stake a minimum of 0.5 ETH into the liquidity pool.
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Liquidity providers that provided liquidity before the first snapshot date and have removed liquidity must still be
+                    holding an equivalent of 1 ETH of liquidity to be included.
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     The <b>maximum</b> number of SATA airdropped to addresses at each stage is 5000 SATA per address. This amount is not
@@ -563,6 +576,78 @@ const Token = ({ className, ...rest }) => {
                     On the 2021-06-12 13:00:00 UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and
                     a pool of 3,000,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial
                     snapshot date and the fourth snapshot date, in accordance with the distribution rules above.
+                  </Typography>
+                  <Typography color="primary" variant="h4" gutterBottom>
+                    Frequently Asked Questions
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    These standard deviation rules are confusing, what do they actually mean?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    In a nutshell - if you're providing an above average amount of liquidity, you will
+                    recieve more airdropped tokens. If you provide a below average amount of liquidity, you
+                    will receive less airdropped tokens.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    Why is there a limit of 5,000 SATA in each snapshot stage?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    We want to give the best opportunity for smaller providers to still
+                    receive tokens, and to discourage large poolers from taking the
+                    majority of the pool rewards. We're also trying to discourage manipulation
+                    of liquidity pooling with addresses attempting to pull out most of their
+                    liquidity just before the first snapshot date.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    What happens if I remove some or all liquidity after the first snapshot date?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    You will be excluded from all liquidity pooling rewards, no exceptions.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    What happens if I add liquidity after the first snapshot date?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Any liquidity added after the first snapshot date will be taken into account in the following airdrop stage.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    I converted my ETH to wETH and now it's slightly less than 0.5 ETH when I added to the liquidity pool, am I still eligible for rewards?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    You are still eligible to be included in the reward pools.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    What happens if there are left over tokens unclaimed?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    We will assess what we will do with the tokens at a later stage, as we can estimate how many unclaimed
+                    tokens there will be by the final stage.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    I added liquidity before the first snapshot date and due to impermanent loss I have less than 0.5 ETH now in the pool, am I still eligible?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Yes we will factor in the initial liquidity values you provided.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    I added liquidity before the first snapshot date and then removed some, am I still eligible?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    You must be still holding at least 1 ETH worth of liquidity at the time of the first snapshot to be included in the liquidity pooling rewards.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    Congruent Labs is providing the largest share of the liquidity pool, will they be included in the airdrop?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    Any liquidity provided by Congruent Labs will be excluded from any airdrops.
+                  </Typography>
+                  <Typography color="primary" variant="body1" gutterBottom>
+                    Why aren't you using a standard liquidity pooling service/contract to let people transfer pool tokens in and claim rewards whenever they withdraw?
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    To follow local laws/regulations we cannot provide any form of "crowd-sourced funding" mechanism. The airdrop for Uniswap pooling
+                    provides us the means to reward liquidity pool providers without actually hosting pool tokens within a contract that
+                    Congruent Labs controls, the pool contract is still controlled by Uniswap.
                   </Typography>
                 </Grid>
               </Grid>
