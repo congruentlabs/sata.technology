@@ -9,6 +9,7 @@ import {
   Features,
   Roadmap,
   Team,
+  Partners,
 } from './components';
 
 // const useStyles = makeStyles(() => ({
@@ -46,6 +47,9 @@ const IndexView = ({ themeMode }) => (
       <Divider />
       <SectionAlternate>
         <Team />
+      </SectionAlternate>
+      <SectionAlternate>
+        <Partners />
       </SectionAlternate>
       <Divider />
     </div>
