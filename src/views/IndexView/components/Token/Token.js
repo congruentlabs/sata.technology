@@ -17,9 +17,9 @@ import {
 } from '@material-ui/core';
 // import { Alert } from "@material-ui/lab";
 import { SectionHeader, IconAlternate } from 'components/molecules';
-import { CardBase } from 'components/organisms';
+import { CardBase, DescriptionListIcon, CardJobMinimal } from 'components/organisms';
 import { Image } from 'components/atoms';
-import {Theaters} from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 // import { ethers, Contract } from 'ethers';
 
 if (window.ethereum) {
@@ -100,6 +100,14 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(6),
     },
   },
+  descriptionListIcon: {
+    marginBottom: theme.spacing(2),
+  },
+  marginTop: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(5),
+    },
+  },
 }));
 
 const Token = ({ className, ...rest }) => {
@@ -118,6 +126,7 @@ const Token = ({ className, ...rest }) => {
 
   const classes = useStyles();
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
@@ -238,8 +247,107 @@ const Token = ({ className, ...rest }) => {
               <Grid container alignItems="center" spacing={2}>
                 <Grid item xs={12}>
                   <Typography color="primary" variant="h4" gutterBottom>
-                    Contract Address
+                    Token Information
                   </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <DescriptionListIcon
+                    icon={
+                      <IconAlternate
+                        fontIconClass={'fas fa-exchange-alt'}
+                        size="medium"
+                        color={colors.green}
+                        shape="circle"
+                      />
+                    }
+                    title="Exchange Listings"
+                    align="left"
+                    className={classes.descriptionListIcon}
+                    data-aos="fade-up"
+                  />
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} data-aos="fade-up">
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
+                      >
+                        <CardJobMinimal
+                          title="Uniswap v2"
+                          subtitle="DEX (SATA/ETH)"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://coinsbit.io"
+                      >
+                        <CardJobMinimal
+                          title="Coinsbit"
+                          subtitle="CEX (SATA/USDT)"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://p2pb2b.io"
+                      >
+                        <CardJobMinimal
+                          title="P2PB2B"
+                          subtitle="CEX (SATA/USDT)"
+                        />
+                      </a>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <DescriptionListIcon
+                    icon={
+                      <IconAlternate
+                        fontIconClass="fas fa-info"
+                        size="medium"
+                        color={colors.green}
+                        shape="circle"
+                      />
+                    }
+                    title="Token Information"
+                    align="left"
+                    className={classes.descriptionListIcon}
+                    data-aos="fade-up"
+                  />
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} data-aos="fade-up">
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1"
+                      >
+                        <CardJobMinimal
+                          title="Etherscan"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://coinmarketcap.com/currencies/signata/"
+                      >
+                        <CardJobMinimal
+                          title="CoinMarketCap"
+                        />
+                      </a>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://www.coingecko.com/en/coins/signata"
+                      >
+                        <CardJobMinimal
+                          title="CoinGecko"
+                        />
+                      </a>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item xs={12}>
                   <List disablePadding>
                     <ListItem disableGutters data-aos="fade-up">
                       <ListItemAvatar className={classes.listItemAvatar}>
@@ -252,7 +360,7 @@ const Token = ({ className, ...rest }) => {
                       </ListItemAvatar>
                       <ListItemText
                         primary={contractAddress ? (<code>{contractAddress}</code>) : "No Contract On This Network"}
-                        secondary="Token Contract Address"
+                        secondary="SATA Token Contract Address"
                       />
                     </ListItem>
                     {/* <ListItem disableGutters data-aos="fade-up">
@@ -270,70 +378,7 @@ const Token = ({ className, ...rest }) => {
                     </ListItem> */}
                   </List>
                 </Grid>
-                <Grid item xs={12}>
-                  <Grid container spacing={isMd ? 4 : 2}>
-                    <Grid item xs={12} sm={4} data-aos="fade-up">
-                      <CardBase withShadow liftUp className={classes.cardBase}>
-                        <div>
-                          <NoSsr>
-                            <i
-                              className={clsx(classes.icon, 'fas fa-exchange-alt', 'card-icon')}
-                            />
-                          </NoSsr>
-                        </div>
-                        <Button
-                          size="large"
-                          className={clsx(classes.title, 'card-title')}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
-                        >
-                          Uniswap V2
-                        </Button>
-                      </CardBase>
-                    </Grid>
-                    <Grid item xs={12} sm={4} data-aos="fade-up">
-                      <CardBase withShadow liftUp className={classes.cardBase}>
-                        <div>
-                          <NoSsr><i className={clsx(classes.icon, 'fas fa-info', 'card-icon')} /></NoSsr>
-                        </div>
-                        <Button
-                          size="large"
-                          className={clsx(classes.title, 'card-title')}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1"
-                        >
-                          Etherscan
-                        </Button>
-                      </CardBase>
-                    </Grid>
-                    <Grid item xs={12} sm={4} data-aos="fade-up">
-                      <CardBase
-                        withShadow
-                        liftUp
-                        className={classes.cardBase}
-                      >
-                        <div>
-                          <NoSsr>
-                            <i
-                              className={clsx(classes.icon, 'fas fa-chart-line', 'card-icon')}
-                            />
-                          </NoSsr>
-                        </div>
-                        <Button
-                          size="large"
-                          className={clsx(classes.title, 'card-title')}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://www.dextools.io/app/uniswap/pair-explorer/0xbc00e708c407d7633f7504434e74c13e171de7f1"
-                        >
-                          Dextools
-                        </Button>
-                      </CardBase>
-                    </Grid>
-                  </Grid>
-                </Grid>
+                
                 {/* {address && contractAddress && (
                   <>
                     <Grid item xs={12}>
@@ -430,16 +475,16 @@ const Token = ({ className, ...rest }) => {
                 )} */}
                 <Grid item xs={12}>
                   <Typography color="primary" variant="h4" gutterBottom>
-                    Tokenomics
+                    {t('Tokenomics')}
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
-                    The SATA token is an Ethereum ERC-20 token, with a fixed supply of 100,000,000 tokens.
+                    {t('The SATA token is an Ethereum ERC-20 token, with a fixed supply of 100,000,000 tokens.')}
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
-                    40,000,000 SATA tokens are reserved by Congruent Labs for development &amp; distribution to the market as needed to support project milestones.
+                    {t('40,000,000 SATA tokens are reserved by Congruent Labs for development & distribution to the market as needed to support project milestones.')}
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
-                    10,000,000 tokens are reserved by Congruent Labs for enabling integration with partners, and for allocation to beta service users.
+                    {t('10,000,000 tokens are reserved by Congruent Labs for enabling integration with partners, and for allocation to beta service users.')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>

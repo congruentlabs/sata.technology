@@ -7,6 +7,7 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Routes from './Routes';
+import './i18n';
 
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import 'leaflet/dist/leaflet.css';

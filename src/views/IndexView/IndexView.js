@@ -48,9 +48,9 @@ const IndexView = ({ themeMode }) => (
       <SectionAlternate>
         <Team />
       </SectionAlternate>
-      <SectionAlternate>
+      {/* <SectionAlternate>
         <Partners />
-      </SectionAlternate>
+      </SectionAlternate> */}
       <Divider />
     </div>
 );

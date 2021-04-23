@@ -4,6 +4,7 @@ import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { useMediaQuery, Grid, Typography, colors } from '@material-ui/core';
 import { IconAlternate, SectionHeader } from 'components/molecules';
 import { DescriptionListIcon, Section } from 'components/organisms';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(() => ({
   fontWeight900: {
@@ -17,48 +18,27 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const data = [
-  {
-    icon: 'fas fa-key',
-    title: 'Hardware Key Protection',
-    subtitle:
-      'Use Signata to store and manage cryptocurrency keys within affordable hardware devices.',
-    },
-  {
-    icon: 'fas fa-id-badge',
-    title: 'Decentralized Identity',
-    subtitle:
-      'Authenticate and Authorize access to services privately and securely.',
-  },
-  {
-    icon: 'fas fa-shopping-cart',
-    title: 'Anonymous Payments',
-    subtitle:
-      "Authenticate and pay for services, without giving up your personal information.",
-  },
-];
 const Services = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
    
   const title = (
     <Typography variant="h2" component="span" className={classes.fontWeight900}>
-      Access and Authorization on the&nbsp;
-      <Typography component="span" variant="inherit" color="primary">Blockchain</Typography>
+      {t('Access and Authorization on the')}&nbsp;
+      <Typography component="span" variant="inherit" color="primary">{t('Blockchain')}</Typography>
     </Typography>
   );
-
-  const subtitle = '';
 
   return (
     <div className={className} {...rest}>
       <Section narrow className={classes.noPaddingBottom}>
         <SectionHeader
           title={title}
-          subtitle={subtitle}
+          subtitle={''}
           align="center"
           titleProps={{
             variant: 'h2',
@@ -69,7 +49,23 @@ const Services = ({ className, ...rest }) => {
       </Section>
       <Section className={classes.noPaddingTop}>
         <Grid container spacing={isMd ? 4 : 2}>
-          {data.map((item, index) => (
+          {[
+            {
+              icon: 'fas fa-key',
+              title: t('Hardware Key Protection'),
+              subtitle: t('Use Signata to store'),
+            },
+            {
+              icon: 'fas fa-id-badge',
+              title: t('Decentralized Identity'),
+              subtitle: t('Authenticate and Authorize access'),
+            },
+            {
+              icon: 'fas fa-shopping-cart',
+              title: t('Anonymous Payments'),
+              subtitle: t('Authenticate and pay for services'),
+            },
+          ].map((item, index) => (
             <Grid key={index} item xs={12} sm={4} data-aos={'fade-up'}>
               <DescriptionListIcon
                 title={item.title}

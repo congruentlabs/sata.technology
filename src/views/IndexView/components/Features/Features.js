@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, colors, makeStyles } from '@material-ui/core';
 import { SectionHeader, IconAlternate } from 'components/molecules';
 import { CardBase, DescriptionListIcon } from 'components/organisms';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(() => ({
   fontWeight900: {
@@ -10,45 +11,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const data = [{
-  icon: 'fas fa-sign-in-alt',
-  color: colors.green,
-  title: 'Simplified Access Control',
-  subtitle: 'No more usernames, and no more passwords.',
-}, {
-  icon: 'fas fa-exchange-alt',
-  color: colors.green,
-  title: 'DeREx',
-  subtitle: 'Use our Decentralized Rights Exchange for trusted identity brokerage.',
-}, {
-  icon: 'fas fa-certificate',
-  color: colors.green,
-  title: 'DeX509',
-  subtitle: 'Get the power of Public Key Infrastructure without the expense.',
-}, {
-  icon: 'fas fa-code-branch',
-  color: colors.green,
-  title: 'Trusted Validation Oracles',
-  subtitle: 'Prove your identity and still maintain your privacy.',
-}, {
-  icon: 'fas fa-rocket',
-  color: colors.green,
-  title: 'Free and Open',
-  subtitle: 'Open source smart contracts and off-chain services.',
-}, {
-  icon: 'fas fa-code',
-  color: colors.green,
-  title: 'Anonymous First',
-  subtitle: 'All systems will be default Anonymous. Only share what you want.',
-}];
-
 const Features = ({ className, ...rest }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={className} {...rest}>
       <SectionHeader
-        title="The Future Identity and Access Marketplace"
+        title={t('The Future Identity and Access Marketplace')}
         fadeUp
         titleProps={{
           variant: 'h3',
@@ -57,7 +27,37 @@ const Features = ({ className, ...rest }) => {
         }}
       />
       <Grid container spacing={2}>
-        {data.map((adv, index) => (
+        {[{
+          icon: 'fas fa-sign-in-alt',
+          color: colors.green,
+          title: t('Simplified Access Control'),
+          subtitle: t('No more usernames, and no more passwords.'),
+        }, {
+          icon: 'fas fa-exchange-alt',
+          color: colors.green,
+          title: t('DeREx'),
+          subtitle: t('Use our Decentralized Rights Exchange for trusted identity brokerage.'),
+        }, {
+          icon: 'fas fa-certificate',
+          color: colors.green,
+          title: t('DeX509'),
+          subtitle: t('Get the power of Public Key Infrastructure without the expense.'),
+        }, {
+          icon: 'fas fa-code-branch',
+          color: colors.green,
+          title: t('Trusted Validation Oracles'),
+          subtitle: t('Prove your identity and still maintain your privacy.'),
+        }, {
+          icon: 'fas fa-rocket',
+          color: colors.green,
+          title: t('Free and Open'),
+          subtitle: t('Open source smart contracts and off-chain services.'),
+        }, {
+          icon: 'fas fa-code',
+          color: colors.green,
+          title: t('Anonymous First'),
+          subtitle: t('All systems will be default Anonymous. Only share what you want.'),
+        }].map((adv, index) => (
           <Grid
             key={index}
             item

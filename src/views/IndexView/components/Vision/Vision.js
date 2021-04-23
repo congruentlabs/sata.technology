@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme, Grid, useMediaQuery, Typography } from '@material-ui/core';
 import { SectionHeader } from 'components/molecules';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   quickStartSection: {
@@ -38,6 +39,8 @@ const useStyles = makeStyles(theme => ({
 const Vision = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const { t } = useTranslation();
+
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
@@ -51,59 +54,40 @@ const Vision = ({ className, ...rest }) => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                  Our personal information is collected by the online services
-                  we interact with on a daily basis, bundled up and sold for marketing
-                  and advertising purposes, edging us closer to an Orwellian future.
+                  {t('Our personal information is collected by')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                    Governments try to combat this with legislation, and
-                    privacy-focused products try to limit what information is shared
-                    to 3rd parties, but it still hasn't stymied the flow of continued
-                    collection, sale, and distribution of our Privacy.
+                    {t('Governments try to combat this with legislation')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                    As for service providers, the legislative, administrative, and
-                    financial burden added from collecting personal and payment
-                    information and ensures that the build and release of systems
-                    takes longer, costs more, requires more engineering effort, and
-                    are exposed to more vectors of attack.
+                    {t('As for service providers')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                    Congruent Labs is developing the Identity Guard & Anonymity
-                    Framework (IdGAF) in conjunction with the release of the SATA
-                    token as a means to wrestle back control of our identities from
-                    big tech.
+                    {t('Congruent Labs is developing the Identity')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                    The IdGAF is a decentralized, jurisdiction-free, and
-                    privacy-preserving solution to online identities, leveraging existing
-                    identity management protocols and bleeding-edge blockchain smart
-                    contract technology.
+                    {t('The IdGAF is a decentralized')}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                    IdGAF will provide a zero-trust payment, authentication, and
-                    authorization solution to allow online platforms to greatly reduce
-                    the cost of compliance and payments management. These systems will
-                    operate as a common standard, implemented through a series of smart
-                    contracts and public off-chain systems.
+                    {t('IdGAF will provide a zero-trust')}
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={12} md={6} data-aos={'fade-left'}>
               <SectionHeader
-                title="Our Vision"
-                subtitle="Identity and Access without the control of Big Tech."
+                title={t('Our Vision')}
+                subtitle={t('Identity and Access without')}
                 align="left"
                 disableGutter
                 titleVariant="h3"

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 import {
   useMediaQuery,
   colors,
@@ -43,6 +44,7 @@ const ICO = ({ className, ...rest }) => {
   const classes = useStyles();
 
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
@@ -50,7 +52,7 @@ const ICO = ({ className, ...rest }) => {
   return (
     <div className={className} {...rest}>
       <SectionHeader
-        title="Product Roadmap"
+        title={t('Product Roadmap')}
         align="center"
         titleProps={{
           variant: 'h2',
@@ -66,9 +68,9 @@ const ICO = ({ className, ...rest }) => {
             color: colors.lightBlue,
             headerColor: "secondary",
             items: [
-              { text: 'Token Launch' },
-              { text: 'Whitepaper Release' },
-              { text: 'Liquidity Distributed' },
+              { text: t('Token Launch') },
+              { text: t('Whitepaper Release') },
+              { text: t('Liquidity Distributed') },
             ],
           },
           {
@@ -77,9 +79,9 @@ const ICO = ({ className, ...rest }) => {
             color: colors.lightBlue,
             headerColor: "secondary",
             items: [
-              { text: 'First Marketplace Release' },
-              { text: 'Proof of Concept Launch' },
-              { text: 'DeX509 & DeREx First Releases' },
+              { text: t('First Marketplace Release') },
+              { text: t('Proof of Concept Launch') },
+              { text: t('DeX509 & DeREx First Releases') },
             ],
           },
           {
@@ -88,9 +90,9 @@ const ICO = ({ className, ...rest }) => {
             color: colors.lightBlue,
             headerColor: "secondary",
             items: [
-              { text: 'Marketplace Adoption' },
-              { text: 'Alternative Chain Integration' },
-              { text: 'Enterprise Integration' },
+              { text: t('Marketplace Adoption') },
+              { text: t('Alternative Chain Integration') },
+              { text: t('Enterprise Integration') },
             ],
           },
           {
@@ -99,9 +101,9 @@ const ICO = ({ className, ...rest }) => {
             color: colors.lightBlue,
             headerColor: "secondary",
             items: [
-              { text: 'Scaling Up' },
-              { text: 'More Integrations' },
-              { text: 'Greater Product Adoption' },
+              { text: t('Scaling Up') },
+              { text: t('More Integrations') },
+              { text: t('Greater Product Adoption') },
             ],
           }
         ].map((i) => (

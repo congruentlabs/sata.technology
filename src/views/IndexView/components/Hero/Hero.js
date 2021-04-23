@@ -6,6 +6,7 @@ import { Button, Typography, IconButton } from '@material-ui/core';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import { SectionHeader, TypedText } from 'components/molecules';
 import { HeroShaped } from 'components/organisms';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   fontWeight900: {
@@ -72,10 +73,11 @@ const useStyles = makeStyles(theme => ({
 
 const Hero = ({ themeMode = 'light', className, ...rest }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const title = (
     <Typography variant="h2" component="span" className={classes.fontWeight900}>
-      The Future of
+      {t('The future of')}
       <br />
       <TypedText
         component="span"
@@ -84,20 +86,18 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
         className={classes.fontWeight900}
         typedProps={{
           strings: [
-            'Authentication',
-            'Authorization',
-            'Payments',
-            'Privacy',
-            'Identity',
+            t('Authentication'),
+            t('Authorization'),
+            t('Payments'),
+            t('Privacy'),
+            t('Identity'),
           ],
-          typeSpeed: 50,
+          typeSpeed: 80,
           loop: true,
         }}
       />
     </Typography>
   );
-
-  const subtitle = 'Signata, SATA, and the Identity Guard & Anonymity Framework';
 
   const docsButton = (
     <Button
@@ -105,18 +105,18 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
       variant="contained"
       color="primary"
       component="a"
-      href="sata-whitepaper-2021-03-24.pdf"
+      href={t('whitepaper url')}
       target="_blank"
       rel="noopener noreferrer"
     >
-      Read the Whitepaper
+      {t('read the whitepaper')}
     </Button>
   );
 
   const telegramButton = (
     <IconButton
       className={classes.socialIcon}
-      href="https://t.me/satatoken"
+      href={t('telegram url')}
       target="_blank"
       alt="SATA Telegram"
       color="primary"
@@ -128,7 +128,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
   const leftSideContent = (
     <SectionHeader
       title={title}
-      subtitle={subtitle}
+      subtitle={t('subtitle')}
       align="left"
       titleProps={{
         variant: 'h2',
