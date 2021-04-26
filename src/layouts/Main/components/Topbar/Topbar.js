@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,8 +7,11 @@ import {
   Hidden,
   List,
   ListItem,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
-import { Image, DarkModeToggler } from 'components/atoms';
+import { Image, DarkModeToggler } from 'components/atoms'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   flexGrow: {
@@ -109,6 +112,21 @@ const useStyles = makeStyles(theme => ({
 
 const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...rest }) => {
   const classes = useStyles();
+  const { i18n } = useTranslation();
+  const [lang, setLang] = useState(localStorage.getItem('language') || 'en');
+
+  const onChangeLang = (e) => {
+    setLang(e.target.value);
+    i18n.changeLanguage(e.target.value);
+    localStorage.setItem('language', e.target.value);
+  }
+
+  useEffect(() => {
+    const l = localStorage.getItem('language');
+    if (l) {
+      i18n.changeLanguage(l);
+    }
+  }, []);
 
   return (
     <Toolbar disableGutters className={classes.toolbar} {...rest}>
@@ -126,11 +144,29 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       <Hidden smDown>
         <List disablePadding className={classes.navigationContainer}>
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
+            <Select
+              value={lang}
+              onChange={onChangeLang}
+              variant="outlined"
+            >
+              <MenuItem value='en'>english</MenuItem>
+              <MenuItem value='es'>español</MenuItem>
+            </Select>
+          </ListItem>
+          <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
           </ListItem>
         </List>
       </Hidden>
       <Hidden mdUp>
+        <Select
+          value={lang}
+          onChange={onChangeLang}
+          variant="outlined"
+        >
+          <MenuItem id="english" value='en'>english</MenuItem>
+          <MenuItem id="español" value='es'>español</MenuItem>
+        </Select>
         <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
       </Hidden>
     </Toolbar>

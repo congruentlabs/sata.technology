@@ -130,8 +130,8 @@ const Token = ({ className, ...rest }) => {
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
-  const title = "SATA Token";
-  const subtitle = 'Blockchains have laid the foundations. Be a part of the true decentralized future.';
+  const title = t('SATA Token');
+  const subtitle = t('Blockchains have laid the foundations. Be a part of the true decentralized future.');
 
   // React.useEffect(() => {
   //   async function setup() {
