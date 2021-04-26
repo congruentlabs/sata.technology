@@ -9,7 +9,7 @@ import {
   Features,
   Roadmap,
   Team,
-  Partners,
+  // Partners,
 } from './components';
 
 // const useStyles = makeStyles(() => ({

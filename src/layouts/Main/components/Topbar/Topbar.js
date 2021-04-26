@@ -126,7 +126,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
     if (l) {
       i18n.changeLanguage(l);
     }
-  }, []);
+  }, [i18n]);
 
   return (
     <Toolbar disableGutters className={classes.toolbar} {...rest}>

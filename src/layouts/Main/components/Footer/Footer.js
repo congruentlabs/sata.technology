@@ -13,6 +13,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import WebIcon from '@material-ui/icons/Web';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import GithubIcon from '@material-ui/icons/GitHub';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -94,7 +95,7 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = props => {
   const { className, ...rest } = props;
-
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -109,7 +110,7 @@ const Footer = props => {
               <ListItem disableGutters>
                 <IconButton
                   className={classes.socialIcon}
-                  href="https://t.me/satatoken"
+                  href={t('whitepaper url')}
                   target="_blank"
                   alt="SATA Telegram"
                 >

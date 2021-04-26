@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import {
-  Button,
+  // Button,
   Grid,
   Typography,
   List,
@@ -13,11 +13,11 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
-  NoSsr,
+  // NoSsr,
 } from '@material-ui/core';
 // import { Alert } from "@material-ui/lab";
 import { SectionHeader, IconAlternate } from 'components/molecules';
-import { CardBase, DescriptionListIcon, CardJobMinimal } from 'components/organisms';
+import { DescriptionListIcon, CardJobMinimal } from 'components/organisms';
 import { Image } from 'components/atoms';
 import { useTranslation } from 'react-i18next';
 // import { ethers, Contract } from 'ethers';

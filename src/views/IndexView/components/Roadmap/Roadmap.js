@@ -63,7 +63,7 @@ const ICO = ({ className, ...rest }) => {
       <Grid container spacing={isMd ? 4 : 2}>
         {[
           {
-            title: 'Q2 2021',
+            title: t('Q2 2021'),
             img: 'logo.png',
             color: colors.lightBlue,
             headerColor: "secondary",
@@ -74,7 +74,7 @@ const ICO = ({ className, ...rest }) => {
             ],
           },
           {
-            title: 'Q4 2021',
+            title: t('Q4 2021'),
             img: 'logo.png',
             color: colors.lightBlue,
             headerColor: "secondary",
@@ -85,7 +85,7 @@ const ICO = ({ className, ...rest }) => {
             ],
           },
           {
-            title: '2022',
+            title: t('2022'),
             img: 'logo.png',
             color: colors.lightBlue,
             headerColor: "secondary",
@@ -96,7 +96,7 @@ const ICO = ({ className, ...rest }) => {
             ],
           },
           {
-            title: '2023 +',
+            title: t('2023 +'),
             img: 'logo.png',
             color: colors.lightBlue,
             headerColor: "secondary",
