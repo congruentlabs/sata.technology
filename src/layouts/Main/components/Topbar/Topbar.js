@@ -164,7 +164,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
           onChange={onChangeLang}
           variant="outlined"
         >
-          <MenuItem id="english" value='en'>english</MenuItem>
+          <MenuItem id="english" value='en'>English</MenuItem>
           <MenuItem id="español" value='es'>español</MenuItem>
         </Select>
         <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
