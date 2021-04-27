@@ -149,7 +149,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
               onChange={onChangeLang}
               variant="outlined"
             >
-              <MenuItem value='en'>english</MenuItem>
+              <MenuItem value='en'>English</MenuItem>
               <MenuItem value='es'>español</MenuItem>
             </Select>
           </ListItem>
