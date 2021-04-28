@@ -15,7 +15,7 @@ import {
   useTheme,
   // NoSsr,
 } from '@material-ui/core';
-// import { Alert } from "@material-ui/lab";
+import { Alert } from "@material-ui/lab";
 import { SectionHeader, IconAlternate } from 'components/molecules';
 import { DescriptionListIcon, CardJobMinimal } from 'components/organisms';
 import { Image } from 'components/atoms';
@@ -524,6 +524,10 @@ const Token = ({ className, ...rest }) => {
                     <Typography color="primary" variant="h4" gutterBottom>
                       Uniswap V2 Liquidity Pooling Rewards
                     </Typography>
+                    <Alert severity="error">
+                      No more airdrops will be made for SATA tokens. The following information has been left here as a reference for current
+                      liquidity providers. Adding liquidity now will not make you eligible for any future airdrops.  
+                    </Alert>
                     <Typography color="primary" variant="h6" gutterBottom>
                       Disclaimer
                     </Typography>
