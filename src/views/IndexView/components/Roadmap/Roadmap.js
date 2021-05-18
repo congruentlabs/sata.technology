@@ -34,6 +34,10 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 0,
     },
   },
+  listAvatar: {
+    width: 120,
+    height: 120,
+  },
   fontWeight900: {
     fontWeight: 900,
   },
@@ -121,7 +125,7 @@ const ICO = ({ className, ...rest }) => {
                 <Image
                   src={i.img}
                   alt="..."
-                  className={classes.coverImage}
+                  className={classes.listAvatar}
                   lazy={false}
                 />
               </Grid>
@@ -133,7 +137,7 @@ const ICO = ({ className, ...rest }) => {
                     </Typography>
                   }
                   // subtitle="Token Launch"
-                  align="left"
+                  align={isMd ? 'left' : 'center'}
                   disableGutter
                 />
                 <List disablePadding>

@@ -6,13 +6,10 @@ import {
   IconButton,
   Grid,
   List,
+  colors,
   ListItem,
 } from '@material-ui/core';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import WebIcon from '@material-ui/icons/Web';
-import TelegramIcon from '@material-ui/icons/Telegram';
-import GithubIcon from '@material-ui/icons/GitHub';
+import { Icon } from 'components/atoms';
 import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({
@@ -109,52 +106,60 @@ const Footer = props => {
               </ListItem>
               <ListItem disableGutters>
                 <IconButton
-                  className={classes.socialIcon}
-                  href={t('whitepaper url')}
+                  href={t('telegram url')}
                   target="_blank"
                   alt="SATA Telegram"
-                >
-                  <TelegramIcon className={classes.icon} />
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fab fa-telegram" color={colors.blue} />
                 </IconButton>
                 <IconButton
-                  className={classes.socialIcon}
-                  href="https://twitter.com/congruentlabs"
+                  href="https://discord.gg/pEJu4ZjnfX"
                   target="_blank"
-                  alt="Congruent Labs Twitter"
-                >
-                  <TwitterIcon className={classes.icon} />
+                  alt="SATA Discord"
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fab fa-discord" color={colors.blue} />
                 </IconButton>
                 <IconButton
-                  className={classes.socialIcon}
+                  href="https://twitter.com/satatoken"
+                  target="_blank"
+                  alt="SATA Twitter"
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fab fa-twitter" color={colors.blue} />
+                </IconButton>
+                <IconButton
                   href="https://github.com/congruentlabs"
                   target="_blank"
                   alt="Congruent Labs Github"
-                >
-                  <GithubIcon className={classes.icon} />
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fab fa-github" color={colors.blue} />
                 </IconButton>
                 <IconButton
-                  className={classes.socialIcon}
                   href="https://blog.congruentlabs.co/"
                   target="_blank"
-                  alt="Congruent Labs Blog"
-                >
-                  <WebIcon className={classes.icon} />
+                  alt="Company Blog"
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fas fa-rss" color={colors.blue} />
                 </IconButton>
                 <IconButton
-                  className={classes.socialIcon}
                   href="https://www.linkedin.com/company/congruent-labs-pty-ltd/"
                   target="_blank"
-                  alt="Congruent Labs LinkedIn"
-                >
-                  <LinkedInIcon className={classes.icon} />
+                  alt="Company LinkedIn"
+                  color="primary"
+                > 
+                  <Icon size="small" fontIconClass="fab fa-linkedin" color={colors.blue} />
                 </IconButton>
               </ListItem>
             </List>
           </Grid>
-          <Grid item xs={12} md={10} className={classes.menuListContainer}>
+          {/* <Grid item xs={12} md={10} className={classes.menuListContainer}>
             <Grid container spacing={0}>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
     </div>

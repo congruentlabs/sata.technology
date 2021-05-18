@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
-  useMediaQuery,
   Grid,
-  colors,
-  NoSsr,
-  Avatar,
   Typography,
 } from '@material-ui/core';
 import { Image, LearnMoreLink } from 'components/atoms';
 import { SectionHeader } from 'components/molecules';
-import { CardProduct } from 'components/organisms';
+import { CardBase } from 'components/organisms';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: theme.spacing(1),
   },
   listItemAvatar: {
@@ -71,108 +66,43 @@ const Partners = props => {
   const { data, className, ...rest } = props;
   const classes = useStyles();
 
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
-
   return (
     <div className={className} {...rest}>
       <SectionHeader
-        title="Partners"
+        title="Partnerships/Integrations"
         subtitleColor="textPrimary"
         data-aos="fade-up"
       />
       <Grid container spacing={4}>
         <Grid item xs={12} md={6} className={classes.gridItem}>
-          <CardProduct
-            className={classes.cardProduct}
-            withShadow
-            liftUp
-            mediaContent={
-              <>
+          <CardBase className={classes.cardBase}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
                 <Image
-                  
-                  alt={'title'}
-                  lazyProps={{ width: '100%', height: '100%' }}
+                  src="chainlink.png"
+                  alt="Chainlink Logo"
                   className={classes.image}
                 />
-                <div className={classes.courseCardPrice}>
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    className={classes.fontWeight700}
-                  >
-                    {'price'}
-                  </Typography>
-                </div>
-              </>
-            }
-            cardContent={
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
-                  <Typography
-                    variant="h6"
-                    color="textPrimary"
-                    align="left"
-                    className={classes.fontWeight700}
-                  >
-                    {'title'}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography
-                    variant="body1"
-                    color="textSecondary"
-                    align="left"
-                  >
-                    {'address'}
-                  </Typography>
-                </Grid>
-                <Grid item container justify="space-between" xs={12}>
-                  <Grid
-                    item
-                    container
-                    alignItems="center"
-                    justify="flex-end"
-                    xs={6}
-                  >
-                    <NoSsr>
-                      <i
-                        className={clsx(
-                          'fas fa-star',
-                          classes.courseCardReviewStar,
-                        )}
-                      />
-                    </NoSsr>
-                    <Typography
-                      component="span"
-                      variant="body1"
-                      className={classes.fontWeight700}
-                    >
-                      {'score'}
-                    </Typography>
-                    <Typography
-                      noWrap
-                      component="span"
-                      variant="body2"
-                      color="textSecondary"
-                      className={classes.reviewCount}
-                    >
-                      ({'reviewCount'} reviews)
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <LearnMoreLink
-                    title="Learn more"
-                    variant="body1"
-                    color="primary"
-                  />
-                </Grid>
               </Grid>
-            }
-          />
+              <Grid item xs={12}>
+                <Typography
+                  variant="h5"
+                  color="textSecondary"
+                  align="left"
+                >
+                  Integration
+                </Typography>
+              </Grid>
+              <Grid item xs={12} style={{ textAlign: 'left' }}>
+                <LearnMoreLink
+                  title="Learn more"
+                  href="https://blog.congruentlabs.co/signata-will-leverage-chainlink-oracles-to-power-its-on-chain-identity-management-system/"
+                  variant="body1"
+                  color="primary"
+                />
+              </Grid>
+            </Grid>
+          </CardBase>
         </Grid>
       </Grid>
     </div>

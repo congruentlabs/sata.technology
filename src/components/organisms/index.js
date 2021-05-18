@@ -11,7 +11,7 @@ export { default as CardJobCompany } from './CardJobCompany';
 export { default as Accordion } from './Accordion';
 export { default as HeroShaped } from './HeroShaped';
 export { default as CardProduct } from './CardProduct';
-export { default as Map } from './Map';
+// export { default as Map } from './Map';
 export { default as HeroBackground } from './HeroBackground';
 export { default as HeroSideImage } from './HeroSideImage';
 export { default as CardPromo } from './CardPromo';

@@ -13,11 +13,12 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
+  Button,
+  ButtonGroup,
   // NoSsr,
 } from '@material-ui/core';
-import { Alert } from "@material-ui/lab";
 import { SectionHeader, IconAlternate } from 'components/molecules';
-import { DescriptionListIcon, CardJobMinimal } from 'components/organisms';
+import { DescriptionListIcon } from 'components/organisms';
 import { Image } from 'components/atoms';
 import { useTranslation } from 'react-i18next';
 // import { ethers, Contract } from 'ethers';
@@ -261,42 +262,35 @@ const Token = ({ className, ...rest }) => {
                       />
                     }
                     title="Exchange Listings"
-                    align="left"
+                    align="center"
                     className={classes.descriptionListIcon}
                     data-aos="fade-up"
                   />
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
-                      >
-                        <CardJobMinimal
-                          title="Uniswap v2"
-                          subtitle="DEX (SATA/ETH)"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://coinsbit.io"
-                      >
-                        <CardJobMinimal
-                          title="Coinsbit"
-                          subtitle="CEX (SATA/USDT)"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://p2pb2b.io"
-                      >
-                        <CardJobMinimal
-                          title="P2PB2B"
-                          subtitle="CEX (SATA/USDT)"
-                        />
-                      </a>
+                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="outlined">
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
+                        >
+                          Uniswap v2
+                        </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://coinsbit.io/referral/1be5f6ca-f462-4e0f-ac5d-a4a7ab00c80e"
+                        >
+                          Coinsbit
+                        </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://p2pb2b.io?referral=d8b84618"
+                        >
+                          P2PB2B
+                        </Button>
+                      </ButtonGroup>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -311,39 +305,35 @@ const Token = ({ className, ...rest }) => {
                       />
                     }
                     title="Token Information"
-                    align="left"
+                    align="center"
                     className={classes.descriptionListIcon}
                     data-aos="fade-up"
                   />
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1"
-                      >
-                        <CardJobMinimal
-                          title="Etherscan"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://coinmarketcap.com/currencies/signata/"
-                      >
-                        <CardJobMinimal
-                          title="CoinMarketCap"
-                        />
-                      </a>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://www.coingecko.com/en/coins/signata"
-                      >
-                        <CardJobMinimal
-                          title="CoinGecko"
-                        />
-                      </a>
+                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="outlined">
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1"
+                        >
+                          Etherscan
+                        </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://coinmarketcap.com/currencies/signata/"
+                        >
+                          CoinMarketCap
+                        </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.coingecko.com/en/coins/signata"
+                        >
+                          CoinGecko
+                        </Button>
+                      </ButtonGroup>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -524,172 +514,15 @@ const Token = ({ className, ...rest }) => {
                     <Typography color="primary" variant="h4" gutterBottom>
                       Uniswap V2 Liquidity Pooling Rewards
                     </Typography>
-                    <Alert severity="error">
-                      No more airdrops will be made for SATA tokens. The following information has been left here as a reference for current
-                      liquidity providers. Adding liquidity now will not make you eligible for any future airdrops.  
-                    </Alert>
-                    <Typography color="primary" variant="h6" gutterBottom>
-                      Disclaimer
-                    </Typography>
-                    <Typography color="textPrimary" variant="body2" gutterBottom>
-                      Providing liquidity on Uniswap V2 is subject to rules defined by Uniswap, not Congruent Labs. All pooled liquidity is
-                      managed within Uniswap, not Congruent Labs. Congruent Labs recommend you do your own research in to how liquidity pools
-                      work and the concept of <b>impermanent loss</b> (for example, a 5x price change will result in 25.5% loss
-                      relative to SATA).
-                    </Typography>
-                    <Typography color="textPrimary" variant="body2" gutterBottom>
-                      Should the entire pool of tokens have a portion unclaimed at the end of the defined period, Congruent Labs reserves the
-                      right to continue the incentives longer or withdraw the remainder to utilise for other purposes. Should evidence of attempts
-                      to manipulate the pooling rewards are identified by Congruent Labs, Congruent Labs reserves the right to exclude the
-                      identified addresses from the program, modify the reward values, or withdraw the program prematurely.
-                    </Typography>
-                    <Typography color="primary" variant="h5" gutterBottom>
-                      Overview
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      To further increase market liquidity, rewards in the form of airdropped tokens will be released for Liquidity
-                      Pool providers on Uniswap V2. The airdropped token pool will be capped at 5,000,000 SATA tokens.
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Tokens will be airdropped to liquidity providers over a total of <b>60</b> days, split into three 20 day stages. Snapshots will be
-                      taken at the start and end of each stage and all accounts tracked through the stage. Claims for the airdrop will be based
-                      on the lowest position (i.e. the lowest amount of tokens in the pool on each snapshot date) of an address during the stage.
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Liquidity providers must stake a minimum of 0.5 ETH into the liquidity pool.
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Liquidity providers that provided liquidity before the first snapshot date and have removed liquidity must still be
-                      holding an equivalent of 1 ETH of liquidity to be included.
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      The <b>maximum</b> number of SATA airdropped to addresses at each stage is 5000 SATA per address. This amount is not
-                      guaranteed as rewards will be distributed on a points system. All liquidity providers will be assigned a weighting
-                      based on the normal distribution of liquidity share:
-                    </Typography>
-                    <ul>
-                      <Typography color="textPrimary" variant="body1" component="li" gutterBottom>
-                        Addresses within 1 standard deviation of the mean will have a weight of 1.
-                      </Typography>
-                      <Typography color="textPrimary" variant="body1" component="li" gutterBottom>
-                        Addresses less than the mean by 1 standard deviation will have a weight of 0.75.
-                      </Typography>
-                      <Typography color="textPrimary" variant="body1" component="li" gutterBottom>
-                        Addresses greater than the mean by 1 standard deviation will have a weight of 1.5.
-                      </Typography>
-                      <Typography color="textPrimary" variant="body1" component="li" gutterBottom>
-                        Addresses greater than the mean by 2 or more standard deviations will have a weight of 2.
-                      </Typography>
-                      <Typography color="textPrimary" variant="body1" component="li" gutterBottom>
-                        Addresses that are less than the mean by 2 or more standard deviations, but meet the minimum 0.5 ETH staking requirement will have a weight of 0.5.
-                      </Typography>
-                    </ul>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      At the end of each stage rewards will be calculated, and the airdrop contract will be deployed for liquidity providers
-                      to claim their reward.
-                    </Typography>
-                    <Typography color="primary" variant="h5" gutterBottom>
-                      Initial Snapshot
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      On the 2021-04-13 13:00:00 UTC a snapshot will be captured of all Liquidity Pool provider addresses.
-                    </Typography>
-                    <Typography color="primary" variant="h5" gutterBottom>
-                      Second Snapshot
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      On the 2021-05-03 13:00:00 UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and
-                      a pool of 500,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial
-                      snapshot date and the second snapshot date, in accordance with the distribution rules above.
-                    </Typography>
-                    <Typography color="primary" variant="h5" gutterBottom>
-                      Third Snapshot
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      On the 2021-05-23 13:00:00 UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and
-                      a pool of 1,500,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial
-                      snapshot date and the third snapshot date, in accordance with the distribution rules above.
-                    </Typography>
-                    <Typography color="primary" variant="h5" gutterBottom>
-                      Fourth Snapshot
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      On the 2021-06-12 13:00:00 UTC a snapshot will be captured again of all Liquidity Pool provider addresses, and
-                      a pool of 3,000,000 SATA tokens will be airdropped to all holders found providing liquidity between the initial
-                      snapshot date and the fourth snapshot date, in accordance with the distribution rules above.
-                    </Typography>
-                    <Typography color="primary" variant="h4" gutterBottom>
-                      Frequently Asked Questions
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      These standard deviation rules are confusing, what do they actually mean?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      In a nutshell - if you're providing an above average amount of liquidity, you will
-                      recieve more airdropped tokens. If you provide a below average amount of liquidity, you
-                      will receive less airdropped tokens.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      Why is there a limit of 5,000 SATA in each snapshot stage?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      We want to give the best opportunity for smaller providers to still
-                      receive tokens, and to discourage large poolers from taking the
-                      majority of the pool rewards. We're also trying to discourage manipulation
-                      of liquidity pooling with addresses attempting to pull out most of their
-                      liquidity just before the first snapshot date.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      What happens if I remove some or all liquidity after the first snapshot date?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      You will be excluded from all liquidity pooling rewards, no exceptions.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      What happens if I add liquidity after the first snapshot date?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Any liquidity added after the first snapshot date will be taken into account in the following airdrop stage.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      I converted my ETH to wETH and now it's slightly less than 0.5 ETH when I added to the liquidity pool, am I still eligible for rewards?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      You are still eligible to be included in the reward pools.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      What happens if there are left over tokens unclaimed?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      We will assess what we will do with the tokens at a later stage, as we can estimate how many unclaimed
-                      tokens there will be by the final stage.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      I added liquidity before the first snapshot date and due to impermanent loss I have less than 0.5 ETH now in the pool, am I still eligible?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Yes we will factor in the initial liquidity values you provided.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      I added liquidity before the first snapshot date and then removed some, am I still eligible?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      You must be still holding at least 1 ETH worth of liquidity at the time of the first snapshot to be included in the liquidity pooling rewards.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      Congruent Labs is providing the largest share of the liquidity pool, will they be included in the airdrop?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      Any liquidity provided by Congruent Labs will be excluded from any airdrops.
-                    </Typography>
-                    <Typography color="primary" variant="body1" gutterBottom>
-                      Why aren't you using a standard liquidity pooling service/contract to let people transfer pool tokens in and claim rewards whenever they withdraw?
-                    </Typography>
-                    <Typography color="textPrimary" variant="body1" gutterBottom>
-                      To follow local laws/regulations we cannot provide any form of "crowd-sourced funding" mechanism. The airdrop for Uniswap pooling
-                      provides us the means to reward liquidity pool providers without actually hosting pool tokens within a contract that
-                      Congruent Labs controls, the pool contract is still controlled by Uniswap.
-                    </Typography>
+                    <ButtonGroup orientation="vertical" fullWidth color="primary" size="large" variant="contained">
+                      <Button
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://docs.google.com/document/d/1UqKJxDtK4JdY3SrLSo-dUSBOxhR9YEUqvkFaTlrJZag/edit?usp=sharing"
+                      >
+                        Information/FAQ for Liquidity Providers
+                      </Button>
+                    </ButtonGroup>
                   </Grid>
                 )}
               </Grid>   

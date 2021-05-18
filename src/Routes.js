@@ -24,7 +24,7 @@ const Routes = () => {
           />
         )}
       />
-      <Redirect to="/not-found-cover" />
+      <Redirect to="/" />
     </Switch>
   );
 };

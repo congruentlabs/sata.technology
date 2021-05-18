@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { SectionHeader } from 'components/molecules';
 import { CardBase } from 'components/organisms';
+import useKonamiCode from './konami-code';
 
 const useStyles = makeStyles(theme => ({
   cardBase: {
@@ -71,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 const Team = props => {
   const { data, className, ...rest } = props;
   const classes = useStyles();
+  const [konamiCode] = useKonamiCode();
 
   const theme = useTheme();
   const { t } = useTranslation();
@@ -90,7 +92,10 @@ const Team = props => {
           <CardBase className={classes.cardBase} liftUp>
             <ListItem disableGutters className={classes.listItem}>
               <ListItemAvatar className={classes.listItemAvatar}>
-                <Avatar src="tim.jpg" className={classes.avatar} />
+                <Avatar
+                  src={konamiCode ? "tim-alt.jpg" : "tim.jpg"}
+                  className={classes.avatar}
+                />
               </ListItemAvatar>
               <ListItemText
                 className={classes.listItemText}
@@ -113,7 +118,10 @@ const Team = props => {
           <CardBase className={classes.cardBase} liftUp>
             <ListItem disableGutters className={classes.listItem}>
               <ListItemAvatar className={classes.listItemAvatar}>
-                <Avatar src="ben.jpg" className={classes.avatar} />
+                <Avatar
+                  src={konamiCode ? "ben-alt.jpg" : "ben.jpg"}
+                  className={classes.avatar}
+                />
               </ListItemAvatar>
               <ListItemText
                 className={classes.listItemText}

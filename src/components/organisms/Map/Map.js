@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -20,7 +21,7 @@ const useStyles = makeStyles(() => ({
  *
  * @param {Object} props
  */
-const Map = props => {
+const LocalMap = props => {
   const { zoom, center, pins, className, ...rest } = props;
 
   const classes = useStyles();
@@ -44,12 +45,12 @@ const Map = props => {
     return null;
   }
 
-  const ReactMap = require('react-leaflet').Map;
-  const TileLayer = require('react-leaflet').TileLayer;
-  const Marker = require('react-leaflet').Marker;
+  // const ReactMap = require('react-leaflet').Map;
+  // const TileLayer = require('react-leaflet').TileLayer;
+  // const Marker = require('react-leaflet').Marker;
 
   return (
-    <ReactMap
+    <MapContainer
       zoom={zoom}
       center={center}
       className={clsx('map', classes.root, className)}
@@ -70,16 +71,16 @@ const Map = props => {
             key={i}
           />
         ))}
-    </ReactMap>
+    </MapContainer>
   );
 };
 
-Map.defaultProps = {
+LocalMap.defaultProps = {
   zoom: 10,
   center: [0, 0],
 };
 
-Map.propTypes = {
+LocalMap.propTypes = {
   /**
    * External classes
    */
@@ -98,4 +99,4 @@ Map.propTypes = {
   pins: PropTypes.array,
 };
 
-export default Map;
+export default LocalMap;

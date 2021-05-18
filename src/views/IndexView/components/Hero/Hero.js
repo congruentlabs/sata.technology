@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Typography, IconButton } from '@material-ui/core';
-import TelegramIcon from '@material-ui/icons/Telegram';
+import {
+  Button,
+  Typography,
+  colors,
+} from '@material-ui/core';
+import { Icon } from 'components/atoms';
 import { SectionHeader, TypedText } from 'components/molecules';
 import { HeroShaped } from 'components/organisms';
 import { useTranslation } from 'react-i18next';
@@ -114,15 +118,27 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
   );
 
   const telegramButton = (
-    <IconButton
-      className={classes.socialIcon}
+    <Button
       href={t('telegram url')}
       target="_blank"
       alt="SATA Telegram"
       color="primary"
-    >
-      <TelegramIcon className={classes.icon} />
-    </IconButton>
+      startIcon={<Icon size="small" fontIconClass="fab fa-telegram" color={colors.blue} />}
+    > 
+      Telegram
+    </Button>
+  );
+
+  const discordButton = (
+    <Button
+      href="https://discord.gg/pEJu4ZjnfX"
+      target="_blank"
+      alt="SATA Discord"
+      color="primary"
+      startIcon={<Icon size="small" fontIconClass="fab fa-discord" color={colors.blue} />}
+    > 
+      Discord
+    </Button>
   );
 
   const leftSideContent = (
@@ -134,7 +150,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
         variant: 'h2',
         color: 'textPrimary',
       }}
-      ctaGroup={[docsButton, telegramButton]}
+      ctaGroup={[docsButton, telegramButton, discordButton]}
       data-aos="fade-right"
       disableGutter
       className={classes.leftSideContent}
