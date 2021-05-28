@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Toolbar,
+  Button,
   Hidden,
   List,
   ListItem,
-  Select,
+  ListItemIcon,
+  Typography,
+  Popover,
   MenuItem,
 } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Image, DarkModeToggler } from 'components/atoms'
 import { useTranslation } from 'react-i18next';
 
@@ -63,10 +67,10 @@ const useStyles = makeStyles(theme => ({
     minWidth: 'auto',
   },
   popover: {
-    padding: theme.spacing(4),
-    border: theme.spacing(2),
+    padding: theme.spacing(1),
+    border: theme.spacing(1),
     boxShadow: '0 0.5rem 2rem 2px rgba(116, 123, 144, 0.09)',
-    minWidth: 350,
+    minWidth: 150,
     marginTop: theme.spacing(2),
   },
   iconButton: {
@@ -113,12 +117,17 @@ const useStyles = makeStyles(theme => ({
 const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...rest }) => {
   const classes = useStyles();
   const { i18n } = useTranslation();
-  const [lang, setLang] = useState(localStorage.getItem('language') || 'en');
+  const [renderLang, setRenderLang] = useState(localStorage.getItem('renderLanguage') || 'English');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openedPopoverId, setOpenedPopoverId] = useState(null);
 
-  const onChangeLang = (e) => {
-    setLang(e.target.value);
-    i18n.changeLanguage(e.target.value);
-    localStorage.setItem('language', e.target.value);
+  const onChangeLang = (e, clickedLang, clickedRenderLang) => {
+    setRenderLang(clickedRenderLang);
+    i18n.changeLanguage(clickedLang);
+    localStorage.setItem('language', clickedLang);
+    localStorage.setItem('renderLanguage', clickedRenderLang);
+    setAnchorEl(null);
+    setOpenedPopoverId(null);
   }
 
   useEffect(() => {
@@ -127,6 +136,16 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       i18n.changeLanguage(l);
     }
   }, [i18n]);
+
+  const handleClick = (event, popoverId) => {
+    setAnchorEl(event.target);
+    setOpenedPopoverId(popoverId);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpenedPopoverId(null);
+  };
 
   return (
     <Toolbar disableGutters className={classes.toolbar} {...rest}>
@@ -144,29 +163,121 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       <Hidden smDown>
         <List disablePadding className={classes.navigationContainer}>
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
-            <Select
-              value={lang}
-              onChange={onChangeLang}
-              variant="outlined"
+            <Button
+              className={classes.listItemText}
+              component="a"
+              href="/demo"
+              variant="contained"
+              color="primary"
             >
-              <MenuItem value='en'>English</MenuItem>
-              <MenuItem value='es'>español</MenuItem>
-            </Select>
+              DEMO
+            </Button>
           </ListItem>
+
+          <ListItem
+            aria-describedby="lang"
+            onClick={e => handleClick(e, "lang")}
+            className={clsx(
+              classes.listItem,
+              openedPopoverId === "lang" ? classes.listItemActive : '',
+            )}
+          >
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              className={clsx(classes.listItemText, 'menu-item')}
+            >
+              {renderLang}
+            </Typography>
+            <ListItemIcon className={classes.listItemIcon}>
+              <ExpandMoreIcon
+                className={
+                  openedPopoverId === "lang" ? classes.expandOpen : ''
+                }
+                fontSize="small"
+              />
+            </ListItemIcon>
+          </ListItem>
+          <Popover
+            elevation={1}
+            id="lang"
+            open={openedPopoverId === "lang"}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            classes={{ paper: classes.popover }}
+          >
+            <div className={classes.menuItem}>
+              <MenuItem value='en' onClick={e => onChangeLang(e, "en", "English")}>English</MenuItem>
+              <MenuItem value='es' onClick={e => onChangeLang(e, "es", "español")}>español</MenuItem>
+            </div>
+          </Popover>
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
           </ListItem>
         </List>
       </Hidden>
       <Hidden mdUp>
-        <Select
-          value={lang}
-          onChange={onChangeLang}
+        {/* <Button
+          className={classes.listItemText}
+          component="a"
+          href="/demo"
           variant="outlined"
         >
-          <MenuItem id="english" value='en'>English</MenuItem>
-          <MenuItem id="español" value='es'>español</MenuItem>
-        </Select>
+          DEMO
+        </Button> */}
+        <ListItem
+          aria-describedby="lang"
+          onClick={e => handleClick(e, "lang")}
+          className={clsx(
+            classes.listItem,
+            openedPopoverId === "lang" ? classes.listItemActive : '',
+          )}
+        >
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            className={clsx(classes.listItemText, 'menu-item')}
+          >
+            {renderLang}
+          </Typography>
+          <ListItemIcon className={classes.listItemIcon}>
+            <ExpandMoreIcon
+              className={
+                openedPopoverId === "lang" ? classes.expandOpen : ''
+              }
+              fontSize="small"
+            />
+          </ListItemIcon>
+        </ListItem>
+        <Popover
+          elevation={1}
+          id="lang"
+          open={openedPopoverId === "lang"}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          classes={{ paper: classes.popover }}
+        >
+          <div className={classes.menuItem}>
+            <MenuItem value='en' onClick={e => onChangeLang(e, "en", "English")}>English</MenuItem>
+            <MenuItem value='es' onClick={e => onChangeLang(e, "es", "español")}>español</MenuItem>
+          </div>
+        </Popover>
         <DarkModeToggler themeMode={themeMode} onClick={() => themeToggler()} />
       </Hidden>
     </Toolbar>
