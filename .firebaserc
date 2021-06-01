@@ -1,5 +1,18 @@
 {
   "projects": {
-    "default": "signata-production"
+    "default": "signata-production",
+    "dev": "signata-production"
+  },
+  "targets": {
+    "signata-production": {
+      "hosting": {
+        "dev": [
+          "sata-dev"
+        ],
+        "prod": [
+          "sata-ico"
+        ]
+      }
+    }
   }
 }

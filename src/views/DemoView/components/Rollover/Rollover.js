@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Authenticate = ({ className, ...rest }) => {
+const Rollover = ({ className, ...rest }) => {
   const classes = useStyles();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -54,15 +54,15 @@ const Authenticate = ({ className, ...rest }) => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography color="textPrimary" variant="body1">
-                  {t('To authenticate, first you need an identity. Click the "Create Identity" button to get started.')}
+                  {t('Our personal information is collected by')}
                   </Typography>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={12} md={6} data-aos={'fade-left'}>
               <SectionHeader
-                title={t('Authenticate')}
-                subtitle={t('Creating and using your identity.')}
+                title={t('Rollover')}
+                subtitle={t('Rollover to a new identity.')}
                 align="left"
                 disableGutter
                 titleVariant="h3"
@@ -76,11 +76,11 @@ const Authenticate = ({ className, ...rest }) => {
   );
 };
 
-Authenticate.propTypes = {
+Rollover.propTypes = {
   /**
    * External classes
    */
   className: PropTypes.string,
 };
 
-export default Authenticate;
+export default Rollover;

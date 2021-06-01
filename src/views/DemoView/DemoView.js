@@ -4,6 +4,10 @@ import { Section, SectionAlternate } from 'components/organisms';
 import {
   Authorize,
   Authenticate,
+  Destroy,
+  Lock,
+  Unlock,
+  Rollover,
 } from './components';
 
 // const useStyles = makeStyles(() => ({
@@ -23,10 +27,21 @@ const DemoView = ({ themeMode }) => (
       <Section>
         <Authenticate />
       </Section>
-      <Divider />
-      <SectionAlternate>
+      <Section>
         <Authorize />
-      </SectionAlternate>
+      </Section>
+      <Section>
+        <Rollover />
+      </Section>
+      <Section>
+        <Lock />
+      </Section>
+      <Section>
+        <Unlock />
+      </Section>
+      <Section>
+        <Destroy />
+      </Section>
       <Divider />
     </div>
 );

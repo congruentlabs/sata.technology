@@ -1,5 +1,5 @@
 {
-  "hosting": {
+  "hosting": [{
     "site": "sata-ico",
     "public": "build",
     "ignore": [
@@ -13,5 +13,20 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  {
+    "site": "sata-dev",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }]
 }
