@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   listItem: {
+    width: 'auto',
     cursor: 'pointer',
     '&:hover > .menu-item, &:hover svg': {
       color: theme.palette.primary.dark,
@@ -169,8 +170,9 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
               href="/demo"
               variant="contained"
               color="primary"
+              disabled
             >
-              DEMO
+              DEMO (Coming Soon!)
             </Button>
           </ListItem>
 

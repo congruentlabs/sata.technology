@@ -11,6 +11,7 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import { SectionHeader } from 'components/molecules';
+import { LearnMoreLink } from 'components/atoms';
 import { CardBase } from 'components/organisms';
 import useKonamiCode from './konami-code';
 
@@ -111,6 +112,12 @@ const Team = props => {
                   align: isMd ? 'left' : 'center',
                 }}
               />
+              <LearnMoreLink
+                title="LinkedIn"
+                href="https://www.linkedin.com/in/timothy-quinn/"
+                variant="h6"
+                color="primary"
+              />
             </ListItem>
           </CardBase>
         </Grid>
@@ -136,6 +143,12 @@ const Team = props => {
                   color: 'textPrimary',
                   align: isMd ? 'left' : 'center',
                 }}
+              />
+              <LearnMoreLink
+                title="LinkedIn"
+                href="https://www.linkedin.com/in/benjamin-burrough-86642120b/"
+                variant="h6"
+                color="primary"
               />
             </ListItem>
           </CardBase>

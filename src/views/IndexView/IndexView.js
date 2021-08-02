@@ -9,6 +9,7 @@ import {
   Features,
   Roadmap,
   Team,
+  Governance,
   Partners,
 } from './components';
 
@@ -41,6 +42,11 @@ const IndexView = ({ themeMode }) => (
       <Section narrow>
         <Token />
       </Section>
+      <Divider />
+      <SectionAlternate>
+        <Governance />
+      </SectionAlternate>
+      <Divider />
       <Section>
         <Roadmap />
       </Section>
@@ -48,9 +54,10 @@ const IndexView = ({ themeMode }) => (
       <SectionAlternate>
         <Team />
       </SectionAlternate>
-      <SectionAlternate>
+      <Divider />
+      <Section>
         <Partners />
-      </SectionAlternate>
+      </Section>
       <Divider />
     </div>
 );

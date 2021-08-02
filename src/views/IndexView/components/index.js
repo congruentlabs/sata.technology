@@ -7,3 +7,4 @@ export { default as Token } from './Token';
 export { default as Roadmap } from './Roadmap';
 export { default as Team } from './Team';
 export { default as Partners } from './Partners';
+export { default as Governance } from './Governance';

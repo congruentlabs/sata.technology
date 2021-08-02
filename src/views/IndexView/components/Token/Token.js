@@ -1,78 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-// import clsx from 'clsx';
 import {
-  // Button,
+  Button,
+  ButtonGroup,
+  colors,
   Grid,
-  Typography,
   List,
   ListItem,
   ListItemAvatar,
-  colors,
   ListItemText,
+  Typography,
   useMediaQuery,
   useTheme,
-  Button,
-  ButtonGroup,
-  // NoSsr,
 } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import { SectionHeader, IconAlternate } from 'components/molecules';
 import { DescriptionListIcon } from 'components/organisms';
 import { Image } from 'components/atoms';
 import { useTranslation } from 'react-i18next';
-// import { ethers, Contract } from 'ethers';
-
-if (window.ethereum) {
-  window.ethereum.on('chainChanged', () => {
-    window.location.reload();
-  });
-}
-
-// const tokenAbi = [
-//   {
-//     "constant": true,
-//     "inputs": [
-//       {
-//         "name": "_owner",
-//         "type": "address"
-//       }
-//     ],
-//     "name": "balanceOf",
-//     "outputs": [
-//       {
-//         "name": "balance",
-//         "type": "uint256"
-//       }
-//     ],
-//     "payable": false,
-//     "type": "function"
-//   }
-// ];
-
-// const claimAbi = [
-//   {
-//     "inputs": [],
-//     "name": "availableTokens",
-//     "outputs": [
-//       {
-//         "internalType": "uint256",
-//         "name": "",
-//         "type": "uint256"
-//       }
-//     ],
-//     "stateMutability": "view",
-//     "type": "function",
-//     "constant": true
-//   },
-//   {
-//     "inputs": [],
-//     "name": "claim",
-//     "outputs": [],
-//     "stateMutability": "nonpayable",
-//     "type": "function"
-//   }
-// ];
 
 const contractAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
 
@@ -112,121 +58,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Token = ({ className, ...rest }) => {
-  // const [provider, setProvider] = useState(undefined);
-  // const [address, setAddress] = useState('');
-  // const [balance, setBalance] = useState('');
-  // const [airdropAddress, setAirdropAddress] = useState('0x0BaFDe3aDAd83b679FAE5E9793Cd44ab247c6096');
-  // const [tokenContract, setTokenContract] = useState(undefined);
-  // const [avaliableTokens, setAvailableTokens] = useState('');
-  // const [airdropContract, setAirdropContract] = useState(undefined);
-  // const [chainId, setChainId] = useState('Unknown');
-  // const [sataBalance, setSataBalance] = useState('');
-  // const [errorMessage, setErrorMessage] = useState('');
-  // const [showSuccess, setShowSuccess] = useState(false);
-  // const [showMainnetWarning, setShowMainnetWarning] = useState(false);
-
   const classes = useStyles();
   const theme = useTheme();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
   const title = t('SATA Token');
   const subtitle = t('Blockchains have laid the foundations. Be a part of the true decentralized future.');
-
-  // React.useEffect(() => {
-  //   async function setup() {
-  //     const cid = await window.ethereum.request({ method: 'eth_chainId' });
-  //     if (cid === '0x1') {
-  //       setChainId("Mainnet");
-  //     } else {
-  //       setChainId("Unknown");
-  //     }
-  //   }
-
-  //   if (window.ethereum) {
-  //     setProvider(new ethers.providers.Web3Provider(window.ethereum));
-  //     setup();
-  //   }
-  // }, []);
-  
-  // React.useEffect(() => {
-  //   if (provider && contractAddress && chainId !== "Unknown") {
-  //     setTokenContract(new Contract(contractAddress, tokenAbi, provider));
-  //     // setAirdropContract(new Contract(airdropAddress, claimAbi, provider.getSigner()));
-  //   }
-  // }, [provider, contractAddress, chainId]);
-
-  // React.useEffect(() => {
-  //   async function getBal() {
-  //     const b = await tokenContract.balanceOf(address);
-  //     // const a = await airdropContract.availableTokens();
-  //     setSataBalance(ethers.utils.formatEther(b));
-  //     // setAvailableTokens(ethers.utils.formatEther(a));
-  //   }
-  //   if (tokenContract && chainId !== "Unknown") {
-  //     getBal();
-  //   }
-  // }, [tokenContract, chainId]);
-
-  // React.useEffect(() => {
-  //   async function getBal() {
-  //     const rawBalance = await provider.getBalance(address);
-  //     setBalance(ethers.utils.formatEther(rawBalance));
-  //   }
-  //   if (address && chainId !== "Unknown") {
-  //     getBal();
-  //   }
-  // }, [address, provider, chainId]);
-
-  // const handleClickConnectMetaMask = async (e) => {
-  //   e.preventDefault();
-  //   setErrorMessage('');
-  //   if (window.ethereum) {
-  //     try { 
-  //       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-  //       if (accounts && accounts.length > 0) {
-  //         setAddress(accounts[0])
-  //       }
-  //     } catch (e) {
-  //       console.error(e);
-  //       setErrorMessage(e.message);
-  //     }
-  //   } else {
-  //     setErrorMessage("No Ethereum provider found! Please install an Ethereum provider (like MetaMask) and reload this website.");
-  //   }
-  // };
-
-  // const handleClickClaimAirdrop = async (e) => {
-  //   e.preventDefault();
-  //   setErrorMessage('');
-  //   setShowSuccess(false);
-
-  //   try {
-  //     await airdropContract.claim();
-
-  //     setShowSuccess(true);
-  //   } catch (e) {
-  //     console.error(e);
-  //     if (e.message && e.message.includes("Airdrop already claimed")) {
-  //       setErrorMessage("Airdrop already claimed!");
-  //     } else {
-  //       setErrorMessage(e.message);
-  //     }
-  //   }
-  // };
-
-  // const connectButton = (
-  //   <Button
-  //     size="large"
-  //     variant="contained"
-  //     color="secondary"
-  //     disabled={address ? true : false}
-  //     onClick={handleClickConnectMetaMask}
-  //   >
-  //     Connect to MetaMask
-  //   </Button>
-  // );
 
   return (
     <div className={className} {...rest}>
@@ -239,7 +78,6 @@ const Token = ({ className, ...rest }) => {
           color: 'textPrimary',
           className: classes.fontWeight900,
         }}
-        // ctaGroup={[connectButton]}
       />
       <Grid container justify="space-between" spacing={4}>
         <Grid item xs={12}>
@@ -250,6 +88,11 @@ const Token = ({ className, ...rest }) => {
                   <Typography color="primary" variant="h4" gutterBottom>
                     Token Information
                   </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Alert severity="warning">
+                    The Signata token has migrated from Uniswap v2 to v3. Please be aware that until all liquidity providers make the switch to v3 some tracking websites may show incorrect token information. For example, Dextools only shows v2 information at the moment and alternative tools should be used.
+                  </Alert>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <DescriptionListIcon
@@ -268,13 +111,13 @@ const Token = ({ className, ...rest }) => {
                   />
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
-                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="outlined">
+                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="contained">
                         <Button
                           target="_blank"
                           rel="noopener noreferrer"
                           href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
                         >
-                          Uniswap v2
+                          Uniswap
                         </Button>
                         <Button
                           target="_blank"
@@ -289,6 +132,13 @@ const Token = ({ className, ...rest }) => {
                           href="https://p2pb2b.io?referral=d8b84618"
                         >
                           P2PB2B
+                        </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://tokpie.com/regis/?ref=9o58pSvrTHyIh87o"
+                        >
+                          Tokpie
                         </Button>
                       </ButtonGroup>
                     </Grid>
@@ -311,7 +161,7 @@ const Token = ({ className, ...rest }) => {
                   />
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
-                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="outlined">
+                      <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="contained">
                         <Button
                           target="_blank"
                           rel="noopener noreferrer"
@@ -333,6 +183,13 @@ const Token = ({ className, ...rest }) => {
                         >
                           CoinGecko
                         </Button>
+                        <Button
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://kek.tools/t/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1?pair=0xe72d262158f402faf553179b2b4aff23dfad6d4c"
+                        >
+                          Kektics
+                        </Button>
                       </ButtonGroup>
                     </Grid>
                   </Grid>
@@ -344,125 +201,16 @@ const Token = ({ className, ...rest }) => {
                         <IconAlternate
                           size="small"
                           fontIconClass="fab fa-ethereum"
-                          // color={chainId !== "Unknown" && contractAddress ? colors.green : colors.red}
                           color={colors.green}
                         />
                       </ListItemAvatar>
                       <ListItemText
                         primary={contractAddress ? (<code>{contractAddress}</code>) : "No Contract On This Network"}
-                        secondary="SATA Token Contract Address"
+                        secondary="ERC-20 Token Contract Address"
                       />
                     </ListItem>
-                    {/* <ListItem disableGutters data-aos="fade-up">
-                      <ListItemAvatar className={classes.listItemAvatar}>
-                        <IconAlternate
-                          size="small"
-                          fontIconClass="fas fa-network-wired"
-                          color={chainId !== "Unknown" ? colors.green : colors.red}
-                        />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary={chainId}
-                        secondary="Network"
-                      />
-                    </ListItem> */}
                   </List>
                 </Grid>
-                
-                {/* {address && contractAddress && (
-                  <>
-                    <Grid item xs={12}>
-                      <Typography color="primary" variant="h4" gutterBottom>
-                        Connected Account Details
-                      </Typography>
-                      <List disablePadding>
-                        <ListItem disableGutters data-aos="fade-up">
-                          <ListItemAvatar className={classes.listItemAvatar}>
-                            <IconAlternate
-                              size="small"
-                              fontIconClass="fas fa-at"
-                              color={colors.green}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={(<code>{address}</code>)}
-                            secondary="Connected Account"
-                          />
-                        </ListItem>
-                        <ListItem disableGutters data-aos="fade-up">
-                          <ListItemAvatar className={classes.listItemAvatar}>
-                            <IconAlternate
-                              size="small"
-                              fontIconClass="fab fa-ethereum"
-                              color={colors.green}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={(<code>{balance} ETH</code>)}
-                            secondary="ETH Balance"
-                          />
-                        </ListItem>
-                        <ListItem disableGutters data-aos="fade-up">
-                          <ListItemAvatar className={classes.listItemAvatar}>
-                            <IconAlternate
-                              size="small"
-                              fontIconClass="fas fa-coins"
-                              color={colors.green}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={(<code>{sataBalance} SATA</code>)}
-                            secondary="SATA Balance"
-                          />
-                        </ListItem>
-                        <ListItem disableGutters data-aos="fade-up">
-                          <ListItemAvatar className={classes.listItemAvatar}>
-                            <IconAlternate
-                              size="small"
-                              fontIconClass="fas fa-donate"
-                              color={colors.green}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={(<code>{avaliableTokens} SATA</code>)}
-                            secondary="Remaining Airdop Tokens Available"
-                          />
-                        </ListItem>
-                      </List>
-                    </Grid>
-                    <Grid item xs={12} style={{ textAlign: 'center' }}>
-                      <Grid item xs={12}>
-                        <Alert severity="success">
-                          Airdrop depleted - follow us on Telegram for future project updates.
-                        </Alert>
-                      </Grid>
-                      <Button
-                        type="submit"
-                        color="secondary"
-                        size="large"
-                        variant="contained"
-                        disabled={chainId === "Unknown"}
-                        onClick={handleClickClaimAirdrop}
-                      >
-                        Claim Airdrop
-                      </Button>
-                    </Grid>
-                    {showSuccess && (
-                      <Grid item xs={12}>
-                        <Alert severity="info">
-                          Airdrop claim submitted - check your wallet to view the transaction
-                          status.
-                        </Alert>
-                      </Grid>
-                    )}
-                  </>
-                )} */}
-                
-                {/* {errorMessage && (
-                  <Grid item xs={12}>
-                    <Alert severity="error">{errorMessage}</Alert>
-                  </Grid>
-                )} */}
                 <Grid item xs={12}>
                   <Typography color="primary" variant="h4" gutterBottom>
                     {t('Tokenomics')}
@@ -474,7 +222,10 @@ const Token = ({ className, ...rest }) => {
                     {t('40,000,000 SATA tokens are reserved by Congruent Labs for development & distribution to the market as needed to support project milestones.')}
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
-                    {t('10,000,000 tokens are reserved by Congruent Labs for enabling integration with partners, and for allocation to beta service users.')}
+                    The SATA Token is a service token used for the payment of access and authorization between individuals and service providers, and between back-end service providers. Service providers can define prices in SATA for the issuance of rights, and those rights can be purchased by users, getting rid of complex payment services and the associated fees.
+                  </Typography>
+                  <Typography color="textPrimary" variant="body1" gutterBottom>
+                    The Signata framework revolves around the issuance of NFTs (Non-Fungible Tokens) to issue unique and manageable rights on the blockchain. Service providers can do away with complex identity management for their users, and instead simply interrogate the blockchain to allow users to access their systems.
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -494,12 +245,6 @@ const Token = ({ className, ...rest }) => {
                     {t('If Congruent Labs determines that the unlocked tokens are not yet required they will re-locked again for reassessment')}
                   </Typography>
                   <Typography color="primary" variant="h5" gutterBottom>
-                    {t('Integration Tokens')}
-                  </Typography>
-                  <Typography color="textPrimary" variant="body1" gutterBottom>
-                    {t('10,000,000 tokens will be locked. In Q3 2021 5,000,000 tokens will be released in conjunction with the release of the')}
-                  </Typography>
-                  <Typography color="primary" variant="h5" gutterBottom>
                     {t('Undistributed Tokens')}
                   </Typography>
                   <Typography color="textPrimary" variant="body1" gutterBottom>
@@ -509,22 +254,6 @@ const Token = ({ className, ...rest }) => {
                 <Grid item xs={12}>
                   <Image src="token-sched.png" />
                 </Grid>
-                {i18n.language === "en" && (
-                  <Grid item xs={12}>
-                    <Typography color="primary" variant="h4" gutterBottom>
-                      Uniswap V2 Liquidity Pooling Rewards
-                    </Typography>
-                    <ButtonGroup orientation="vertical" fullWidth color="primary" size="large" variant="contained">
-                      <Button
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://docs.google.com/document/d/1UqKJxDtK4JdY3SrLSo-dUSBOxhR9YEUqvkFaTlrJZag/edit?usp=sharing"
-                      >
-                        Information/FAQ for Liquidity Providers
-                      </Button>
-                    </ButtonGroup>
-                  </Grid>
-                )}
               </Grid>   
             </Grid>
           </Grid>

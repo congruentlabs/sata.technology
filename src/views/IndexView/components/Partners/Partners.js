@@ -73,7 +73,7 @@ const Partners = props => {
         subtitleColor="textPrimary"
         data-aos="fade-up"
       />
-      <Grid container spacing={4}>
+      <Grid container spacing={4} justify="center">
         <Grid item xs={12} md={6} className={classes.gridItem}>
           <CardBase className={classes.cardBase}>
             <Grid container spacing={1}>
@@ -86,7 +86,7 @@ const Partners = props => {
               </Grid>
               <Grid item xs={12}>
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   color="textSecondary"
                   align="left"
                 >
@@ -97,7 +97,7 @@ const Partners = props => {
                 <LearnMoreLink
                   title="Learn more"
                   href="https://blog.congruentlabs.co/signata-will-leverage-chainlink-oracles-to-power-its-on-chain-identity-management-system/"
-                  variant="body1"
+                  variant="h5"
                   color="primary"
                 />
               </Grid>
