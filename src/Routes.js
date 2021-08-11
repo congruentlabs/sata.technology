@@ -8,7 +8,11 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import WithLayout from './WithLayout';
 import { Main as MainLayout } from './layouts';
 
-import { IndexView, DemoView } from './views';
+import {
+  IndexView,
+  DemoView,
+  StakingView,
+} from './views';
 
 const Routes = () => {
   return (
@@ -20,6 +24,17 @@ const Routes = () => {
           <WithLayout
             {...matchProps}
             component={IndexView}
+            layout={MainLayout}
+          />
+        )}
+      />
+      <Route
+        exact
+        path="/staking"
+        render={matchProps => (
+          <WithLayout
+            {...matchProps}
+            component={StakingView}
             layout={MainLayout}
           />
         )}

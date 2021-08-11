@@ -104,6 +104,36 @@ const Partners = props => {
             </Grid>
           </CardBase>
         </Grid>
+        <Grid item xs={12} md={6} className={classes.gridItem}>
+          <CardBase className={classes.cardBase}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <Image
+                  src="TODO.png"
+                  alt="TODO Logo"
+                  className={classes.image}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                  align="left"
+                >
+                  Partner
+                </Typography>
+              </Grid>
+              <Grid item xs={12} style={{ textAlign: 'left' }}>
+                <LearnMoreLink
+                  title="Learn more"
+                  href="https://blog.congruentlabs.co/ TODO"
+                  variant="h5"
+                  color="primary"
+                />
+              </Grid>
+            </Grid>
+          </CardBase>
+        </Grid>
       </Grid>
     </div>
   );
