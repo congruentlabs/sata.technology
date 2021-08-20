@@ -163,7 +163,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
       <div className={classes.flexGrow} />
       <Hidden smDown>
         <List disablePadding className={classes.navigationContainer}>
-          <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
+          {/* <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <Button
               className={classes.listItemText}
               component="a"
@@ -174,7 +174,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
             >
               DEMO (Coming Soon!)
             </Button>
-          </ListItem>
+          </ListItem> */}
           <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
             <Button
               className={classes.listItemText}

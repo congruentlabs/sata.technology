@@ -121,6 +121,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
     <Button
       href={t('telegram url')}
       target="_blank"
+      variant="text"
       alt="SATA Telegram"
       color="primary"
       startIcon={<Icon size="small" fontIconClass="fab fa-telegram" color={colors.blue} />}
@@ -133,6 +134,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
     <Button
       href="https://discord.gg/pEJu4ZjnfX"
       target="_blank"
+      variant="text"
       alt="SATA Discord"
       color="primary"
       startIcon={<Icon size="small" fontIconClass="fab fa-discord" color={colors.blue} />}

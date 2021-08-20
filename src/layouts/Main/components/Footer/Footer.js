@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(12, 0),
     },
-    background: theme.palette.background.footer,
+    background: theme.palette.common.black,
   },
   footerContainer: {
     maxWidth: theme.layout.contentWidth,
@@ -105,61 +105,56 @@ const Footer = props => {
                 &copy; {new Date().getFullYear()} Congruent Labs Pty Ltd
               </ListItem>
               <ListItem disableGutters>
-                <IconButton
-                  href={t('telegram url')}
-                  target="_blank"
-                  alt="SATA Telegram"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fab fa-telegram" color={colors.blue} />
-                </IconButton>
-                <IconButton
-                  href="https://discord.gg/pEJu4ZjnfX"
-                  target="_blank"
-                  alt="SATA Discord"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fab fa-discord" color={colors.blue} />
-                </IconButton>
-                <IconButton
-                  href="https://twitter.com/satatoken"
-                  target="_blank"
-                  alt="SATA Twitter"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fab fa-twitter" color={colors.blue} />
-                </IconButton>
-                <IconButton
-                  href="https://github.com/congruentlabs"
-                  target="_blank"
-                  alt="Congruent Labs Github"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fab fa-github" color={colors.blue} />
-                </IconButton>
-                <IconButton
-                  href="https://blog.congruentlabs.co/"
-                  target="_blank"
-                  alt="Company Blog"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fas fa-rss" color={colors.blue} />
-                </IconButton>
-                <IconButton
-                  href="https://www.linkedin.com/company/congruent-labs-pty-ltd/"
-                  target="_blank"
-                  alt="Company LinkedIn"
-                  color="primary"
-                > 
-                  <Icon size="small" fontIconClass="fab fa-linkedin" color={colors.blue} />
-                </IconButton>
+                {[
+                  {
+                    href: t('telegram url'),
+                    alt: "SATA Telegram",
+                    fontIconClass: "fab fa-telegram",
+                  },
+                  {
+                    href: "https://discord.gg/pEJu4ZjnfX",
+                    alt: "SATA Discord",
+                    fontIconClass: "fab fa-discord",
+                  },
+                  {
+                    href: "https://twitter.com/satatoken",
+                    alt: "SATA Twitter",
+                    fontIconClass: "fab fa-twitter",
+                  },
+                  {
+                    href: "https://github.com/congruentlabs",
+                    alt: "Congruent Labs Github",
+                    fontIconClass: "fab fa-github",
+                  },
+                  {
+                    href: "https://blog.congruentlabs.co/",
+                    alt: "Congruence Blog",
+                    fontIconClass: "fas fa-rss",
+                  },
+                  {
+                    href: "https://www.linkedin.com/company/congruent-labs-pty-ltd/",
+                    alt: "Congruent Labs LinkedIn",
+                    fontIconClass: "fab fa-linkedin",
+                  },
+                  {
+                    href: "https://congruentlabs.co/",
+                    alt: "Congruent Labs Website",
+                    fontIconClass: "fas fa-building",
+                  },
+                ].map((listItem) => (
+                  <IconButton
+                    key={listItem.href}
+                    href={listItem.href}
+                    target="_blank"
+                    alt={listItem.alt}
+                    color="primary"
+                  > 
+                    <Icon size="small" fontIconClass={listItem.fontIconClass} color={colors.blue} />
+                  </IconButton>
+                ))}
               </ListItem>
             </List>
           </Grid>
-          {/* <Grid item xs={12} md={10} className={classes.menuListContainer}>
-            <Grid container spacing={0}>
-            </Grid>
-          </Grid> */}
         </Grid>
       </div>
     </div>

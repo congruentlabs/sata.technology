@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Typography,
-  colors,
+  // colors,
 } from '@material-ui/core';
-import { Icon } from 'components/atoms';
-import { SectionHeader, TypedText } from 'components/molecules';
-import { HeroShaped } from 'components/organisms';
+// import { Icon } from 'components/atoms';
+import { SectionHeader } from 'components/molecules';
+// import { HeroShaped } from 'components/organisms';
 import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles(theme => ({

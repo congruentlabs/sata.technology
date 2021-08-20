@@ -8,7 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@material-ui/core';
-import { Image, LearnMoreLink } from 'components/atoms';
+import { LearnMoreLink } from 'components/atoms';
 import { SectionHeader } from 'components/molecules';
 import { CardBase } from 'components/organisms';
 
@@ -97,7 +97,7 @@ const Governance = props => {
                 <LearnMoreLink
                   title="Learn More"
                   href="https://blog.congruentlabs.co/non-fungible-governance"
-                  variant="h5"
+                  variant="h6"
                   color="primary"
                 />
               </Grid>
@@ -105,7 +105,7 @@ const Governance = props => {
                 <LearnMoreLink
                   title="Register Partnership Interest"
                   href="mailto:sales@congruentlabs.co"
-                  variant="h5"
+                  variant="h6"
                   color="primary"
                 />
               </Grid>

@@ -49,11 +49,6 @@ const ICO = ({ className, ...rest }) => {
       <SectionHeader
         title={t('Product Roadmap')}
         align="center"
-        titleProps={{
-          variant: 'h2',
-          color: 'textPrimary',
-          className: classes.fontWeight900,
-        }}
       />
       <Grid container style={{ textAlign: 'center' }} spacing={4}>
         <Grid item xs={12} className={classes.gridItem}>
