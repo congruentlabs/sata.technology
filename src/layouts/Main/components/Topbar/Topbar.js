@@ -175,17 +175,6 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
               DEMO (Coming Soon!)
             </Button>
           </ListItem> */}
-          <ListItem className={clsx(classes.listItem, 'menu-item--no-dropdown')}>
-            <Button
-              className={classes.listItemText}
-              component="a"
-              href="/staking"
-              variant="contained"
-              color="primary"
-            >
-              Staking
-            </Button>
-          </ListItem>
 
           <ListItem
             aria-describedby="lang"

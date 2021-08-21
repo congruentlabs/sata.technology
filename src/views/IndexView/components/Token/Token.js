@@ -20,12 +20,11 @@ import { DescriptionListIcon } from 'components/organisms';
 import { Image } from 'components/atoms';
 import { useTranslation } from 'react-i18next';
 
-const contractAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
+const erc20ContractAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
+const bep20ContractAddress = 'Coming Soon!';
 
 const useStyles = makeStyles((theme) => ({
-  fontWeight900: {
-    fontWeight: 900,
-  },
+  fontWeight900: { fontWeight: 900 },
   cardBase: {
     '&:hover': {
       background: theme.palette.primary.main,
@@ -91,7 +90,7 @@ const Token = ({ className, ...rest }) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Alert severity="warning">
-                    The Signata token has migrated from Uniswap v2 to v3. Please be aware that until all liquidity providers make the switch to v3 some tracking websites may show incorrect token information. For example, Dextools only shows v2 information at the moment and alternative tools should be used.
+                    The Signata token has migrated from Uniswap v2 to v3. Please be aware that until all liquidity providers make the switch to v3 some tracking websites may show incorrect token information.
                   </Alert>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -112,34 +111,22 @@ const Token = ({ className, ...rest }) => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
                       <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="contained">
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1"
-                        >
-                          Uniswap
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://coinsbit.io/referral/1be5f6ca-f462-4e0f-ac5d-a4a7ab00c80e"
-                        >
-                          Coinsbit
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://p2pb2b.io?referral=d8b84618"
-                        >
-                          P2PB2B
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://tokpie.com/regis/?ref=9o58pSvrTHyIh87o"
-                        >
-                          Tokpie
-                        </Button>
+                        {[
+                          { title: "TimeX", href: "https://timex.io/?refcode=Adyz2tRxBuMyvuh0" },
+                          { title: "Uniswap", href: "https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1" },
+                          { title: "Coinsbit", href: "https://coinsbit.io/referral/1be5f6ca-f462-4e0f-ac5d-a4a7ab00c80e" },
+                          { title: "P2PB2B", href: "https://p2pb2b.io?referral=d8b84618" },
+                          { title: "Tokpie", href: "https://tokpie.com/regis/?ref=9o58pSvrTHyIh87o" },
+                        ].map((i) => (
+                          <Button
+                            key={i.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={i.href}
+                          >
+                            {i.title}
+                          </Button>
+                        ))}
                       </ButtonGroup>
                     </Grid>
                   </Grid>
@@ -162,34 +149,22 @@ const Token = ({ className, ...rest }) => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} data-aos="fade-up">
                       <ButtonGroup orientation="vertical" fullWidth color="secondary" size="large" variant="contained">
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1"
-                        >
-                          Etherscan
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://coinmarketcap.com/currencies/signata/"
-                        >
-                          CoinMarketCap
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://www.coingecko.com/en/coins/signata"
-                        >
-                          CoinGecko
-                        </Button>
-                        <Button
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://kek.tools/t/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1?pair=0xe72d262158f402faf553179b2b4aff23dfad6d4c"
-                        >
-                          Kektics
-                        </Button>
+                        {[
+                          { title: "Etherscan", href: "https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1" },
+                          { title: "CoinMarketCap", href: "https://coinmarketcap.com/currencies/signata/" },
+                          { title: "CoinGecko", href: "https://www.coingecko.com/en/coins/signata" },
+                          { title: "DEXtools", href: "https://www.dextools.io/app/uniswap/pair-explorer/0xe72d262158f402faf553179b2b4aff23dfad6d4c" },
+                          { title: "Kektics", href: "https://kek.tools/t/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1?pair=0xe72d262158f402faf553179b2b4aff23dfad6d4c" },
+                        ].map((i) => (
+                          <Button
+                            key={i.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={i.href}
+                          >
+                            {i.title}
+                          </Button>
+                        ))}
                       </ButtonGroup>
                     </Grid>
                   </Grid>
@@ -205,8 +180,25 @@ const Token = ({ className, ...rest }) => {
                         />
                       </ListItemAvatar>
                       <ListItemText
-                        primary={contractAddress ? (<code>{contractAddress}</code>) : "No Contract On This Network"}
+                        primary={(<code>{erc20ContractAddress}</code>)}
                         secondary="ERC-20 Token Contract Address"
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid item xs={12}>
+                  <List disablePadding>
+                    <ListItem disableGutters data-aos="fade-up">
+                      <ListItemAvatar className={classes.listItemAvatar}>
+                        <IconAlternate
+                          size="small"
+                          fontIconClass="fab fa-ethereum"
+                          color={colors.yellow}
+                        />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={bep20ContractAddress}
+                        secondary="BEP-20 Token Contract Address"
                       />
                     </ListItem>
                   </List>
@@ -250,6 +242,11 @@ const Token = ({ className, ...rest }) => {
                   <Typography color="textPrimary" variant="body1" gutterBottom>
                     {t('35,000,000 tokens will remain unlocked and are intented to be moved')}
                   </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Alert severity="warning">
+                    As the token is bridged to alternative chains, some changes to the token supply may be required. These changes will be proposed to the community for vote once governance services have been completed and audited.
+                  </Alert>
                 </Grid>
                 <Grid item xs={12}>
                   <Image src="token-sched.png" />

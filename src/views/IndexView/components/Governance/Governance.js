@@ -61,8 +61,8 @@ const Governance = props => {
           variant: 'h2',
           color: 'textPrimary',
         }}
-        ctaGroup={[(
-          <Button
+        ctaGroup={[
+          (<Button
             size="large"
             variant="contained"
             color="primary"
@@ -72,8 +72,20 @@ const Governance = props => {
             rel="noopener noreferrer"
           >
             Read the Governance Whitepaper
-          </Button>
-        )]}
+          </Button>),
+          (<Button
+            size="large"
+            variant="contained"
+            color="primary"
+            component="a"
+            href="/staking"
+            target="_blank"
+            rel="noopener noreferrer"
+            disabled
+          >
+            Governance Staking (Coming Soon!)
+          </Button>),
+        ]}
       />
       <Grid container spacing={4} justify="center">
         <Grid item xs={12}>
@@ -95,7 +107,7 @@ const Governance = props => {
             <Grid container spacing={1}>
               <Grid item xs={6} style={{ textAlign: 'center' }}>
                 <LearnMoreLink
-                  title="Learn More"
+                  title="Read the Blog Post"
                   href="https://blog.congruentlabs.co/non-fungible-governance"
                   variant="h6"
                   color="primary"
@@ -104,7 +116,7 @@ const Governance = props => {
               <Grid item xs={6} style={{ textAlign: 'center' }}>
                 <LearnMoreLink
                   title="Register Partnership Interest"
-                  href="mailto:sales@congruentlabs.co"
+                  href="https://forms.gle/ppLft9dvvziNJevn7"
                   variant="h6"
                   color="primary"
                 />

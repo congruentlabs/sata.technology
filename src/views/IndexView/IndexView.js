@@ -43,7 +43,7 @@ const IndexView = ({ themeMode }) => (
         <Token />
       </Section>
       <Divider />
-      <SectionAlternate>
+      <SectionAlternate innerNarrowed>
         <Governance />
       </SectionAlternate>
       <Divider />
