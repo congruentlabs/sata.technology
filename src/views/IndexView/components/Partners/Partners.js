@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Partners = props => {
-  const { data, className, ...rest } = props;
+  const { themeMode, className, ...rest } = props;
   const classes = useStyles();
 
   return (
@@ -31,6 +31,13 @@ const Partners = props => {
             text: "Chainlink",
             type: "Integration",
             learnMoreLink: "https://blog.congruentlabs.co/signata-will-leverage-chainlink-oracles-to-power-its-on-chain-identity-management-system/",
+          },
+          {
+            logo: themeMode === "light" ? "upsurge.png" : "upsurge-dark.png",
+            logoAlt: "Upsurge Studios Logo",
+            text: "Upsurge Studios",
+            type: "Partnership",
+            learnMoreLink: "https://blog.congruentlabs.co/announcing-partnership-with-upsurge-studios/",
           },
         ].map((partner) => (
           <Grid

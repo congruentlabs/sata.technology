@@ -56,7 +56,9 @@ const IndexView = ({ themeMode }) => (
       </SectionAlternate>
       <Divider />
       <Section>
-        <Partners />
+        <Partners
+          themeMode={themeMode}
+        />
       </Section>
       <Divider />
     </div>
