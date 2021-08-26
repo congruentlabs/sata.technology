@@ -39,6 +39,14 @@ const Partners = props => {
             type: "Partnership",
             learnMoreLink: "https://blog.congruentlabs.co/announcing-partnership-with-upsurge-studios/",
           },
+          {
+            logo: "ferrum.png",
+            logoAlt: "Ferrum Network Logo",
+            text: "Ferrum Network",
+            type: "Partnership",
+            // learnMoreLink: "https://blog.congruentlabs.co/announcing-partnership-with-ferrum-network/",
+            learnMoreLink: "https://medium.com/ferrumnetwork/announcing-the-next-staking-project-signata-frm-buyback-c702e5b01725",
+          }
         ].map((partner) => (
           <Grid
             className={classes.partnerItem}
