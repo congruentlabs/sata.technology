@@ -79,36 +79,32 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const title = (
-    <Typography variant="h2" component="span" className={classes.fontWeight900}>
-      {t('Signata Governance Staking')}
-    </Typography>
-  );
-
-  const docsButton = (
-    <Button
-      size="large"
-      variant="contained"
-      color="primary"
-      component="a"
-      href={t('staking whitepaper url')}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {t('read the governance whitepaper')}
-    </Button>
-  );
-
   return (
     <SectionHeader
-      title={title}
+      title={(
+        <Typography variant="h2" component="span" className={classes.fontWeight900}>
+          {t('Signata Governance Staking')}
+        </Typography>
+      )}
       subtitle={t('Get ready for NFT-based decentralized governance')}
       align="left"
       titleProps={{
         variant: 'h2',
         color: 'textPrimary',
       }}
-      ctaGroup={[docsButton]}
+      ctaGroup={[(
+        <Button
+          size="large"
+          variant="contained"
+          color="primary"
+          component="a"
+          href={t('staking whitepaper url')}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('read the governance whitepaper')}
+        </Button>
+      )]}
       data-aos="fade-right"
       disableGutter
       className={classes.leftSideContent}
