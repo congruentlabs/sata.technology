@@ -46,7 +46,14 @@ const Partners = props => {
             type: "Partnership",
             // learnMoreLink: "https://blog.congruentlabs.co/announcing-partnership-with-ferrum-network/",
             learnMoreLink: "https://medium.com/ferrumnetwork/announcing-the-next-staking-project-signata-frm-buyback-c702e5b01725",
-          }
+          },
+          {
+            logo: themeMode === "light" ? "biologica.png" : "biologica.png",
+            logoAlt: "Biologica Logo",
+            text: "Biológica Soluciones",
+            type: "Partnership",
+            learnMoreLink: "https://www.biologicasoluciones.com/",
+          },
         ].map((partner) => (
           <Grid
             className={classes.partnerItem}
