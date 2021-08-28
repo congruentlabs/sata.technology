@@ -86,7 +86,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
           {t('Signata Governance Staking')}
         </Typography>
       )}
-      subtitle={t('Get ready for NFT-based decentralized governance')}
+      subtitle={t('Join the NFT-based decentralized governance revolution.')}
       align="left"
       titleProps={{
         variant: 'h2',
@@ -102,7 +102,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t('read the governance whitepaper')}
+          {t('NFT governance whitepaper')}
         </Button>
       ),(
         <Button
@@ -114,7 +114,7 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Our Governance Model          
+          Governance Model          
         </Button>
       )]}
       data-aos="fade-right"

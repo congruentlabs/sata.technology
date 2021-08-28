@@ -6,7 +6,6 @@ import {
   IconButton,
   Grid,
   List,
-  colors,
   ListItem,
 } from '@material-ui/core';
 import { Icon } from 'components/atoms';
@@ -18,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(12, 0),
     },
-    background: theme.palette.common.black,
+    background: "#002A44",
   },
   footerContainer: {
     maxWidth: theme.layout.contentWidth,
@@ -147,9 +146,9 @@ const Footer = props => {
                     href={listItem.href}
                     target="_blank"
                     alt={listItem.alt}
-                    color="primary"
+                    color="secondary"
                   > 
-                    <Icon size="small" fontIconClass={listItem.fontIconClass} color={colors.blue} />
+                    <Icon size="small" fontIconClass={listItem.fontIconClass} />
                   </IconButton>
                 ))}
               </ListItem>

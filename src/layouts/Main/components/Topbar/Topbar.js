@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Toolbar,
-  Button,
   Hidden,
   List,
   ListItem,
@@ -154,7 +153,7 @@ const Topbar = ({ themeMode, themeToggler, onSidebarOpen, pages, className, ...r
         <a href="/" title="SATA Logo">
           <Image
             className={classes.logoImage}
-            src="logo.png"
+            src="logo-round.png"
             alt="SATA Logo"
             lazy={false}
           />

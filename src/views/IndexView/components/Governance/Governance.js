@@ -71,7 +71,7 @@ const Governance = props => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read the Governance Whitepaper
+            Governance Whitepaper
           </Button>),
           (<Button
             size="large"
@@ -79,11 +79,8 @@ const Governance = props => {
             color="primary"
             component="a"
             href="/staking"
-            target="_blank"
-            rel="noopener noreferrer"
-            disabled
           >
-            Governance Staking (Coming Soon!)
+            Governance Staking
           </Button>),
         ]}
       />

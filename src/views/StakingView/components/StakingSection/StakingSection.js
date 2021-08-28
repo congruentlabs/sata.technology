@@ -13,6 +13,7 @@ import {
 import { Image } from 'components/atoms';
 // import { SectionHeader } from 'components/molecules';
 import { CardProduct } from 'components/organisms';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   cardProduct: {
@@ -112,7 +113,13 @@ const StakingSection = props => {
   return (
     <div className={className} {...rest}>
       <Grid container spacing={isMd ? 4 : 2}>
-        <Grid item xs={12} data-aos="fade-up">
+        <Grid item xs={12}>
+          <Alert severity="warning">
+            <AlertTitle>This feature is not yet available</AlertTitle>
+            Staking is currently still under construction. Please follow us on social media for the announcement of the start of the staking pools. The information you see on this page may change at any time.
+          </Alert>
+        </Grid>
+        <Grid item xs={12}>
           <CardProduct
             withShadow
             liftUp
@@ -149,10 +156,18 @@ const StakingSection = props => {
                       size="large"
                       color="secondary"
                     >
-                      <Button variant="contained">
+                      <Button
+                        variant="contained"
+                        disabled
+                      >
                         Join the Pool
                       </Button>
-                      <Button variant="outlined">
+                      <Button
+                        variant="outlined"
+                        href="https://forms.gle/ppLft9dvvziNJevn7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Request Entry
                       </Button>
                     </ButtonGroup>
@@ -162,7 +177,7 @@ const StakingSection = props => {
             )}
           />
         </Grid>
-        <Grid item xs={12} data-aos="fade-up">
+        <Grid item xs={12}>
           <CardProduct
             withShadow
             liftUp
@@ -199,6 +214,7 @@ const StakingSection = props => {
                       size="large"
                       variant="contained"
                       color="secondary"
+                      disabled
                     >
                       Join the Pool
                     </Button>
