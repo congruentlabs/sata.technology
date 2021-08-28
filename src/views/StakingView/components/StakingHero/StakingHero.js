@@ -98,11 +98,23 @@ const Hero = ({ themeMode = 'light', className, ...rest }) => {
           variant="contained"
           color="primary"
           component="a"
-          href={t('staking whitepaper url')}
+          href={t('nfg-whitepaper-2021-07-31.pdf')}
           target="_blank"
           rel="noopener noreferrer"
         >
           {t('read the governance whitepaper')}
+        </Button>
+      ),(
+        <Button
+          size="large"
+          variant="outlined"
+          color="primary"
+          component="a"
+          href='https://blog.congruentlabs.co/non-fungible-governance/'
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Our Governance Model          
         </Button>
       )]}
       data-aos="fade-right"

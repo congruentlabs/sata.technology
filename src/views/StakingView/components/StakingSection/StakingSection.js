@@ -8,6 +8,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  ButtonGroup,
 } from '@material-ui/core';
 import { Image } from 'components/atoms';
 // import { SectionHeader } from 'components/molecules';
@@ -118,30 +119,43 @@ const StakingSection = props => {
             className={classes.cardProduct}
             mediaContent={(
               <Image
-                {...props}
+                src="governance-partner.png"
                 className={classes.image}
                 lazyProps={{ width: '100%', height: '100%' }}
               />
             )}
             cardContent={(
               <div className={classes.poolContent}>
-                <Typography variant="h5" color="textPrimary" gutterBottom>
+                <Typography variant="h3" color="textPrimary" className={classes.fontWeight700}>
+                  1,000,000 SATA
+                </Typography>
+                <Typography variant="h4" color="textSecondary">
+                  120% APY
+                </Typography>
+                <Typography variant="h4" color="textSecondary" gutterBottom>
+                  180 Days Maturity Period
+                </Typography>
+                <Typography variant="h5" color="textPrimary">
                   Partner Pool
                 </Typography>
-                <Typography variant="subtitle1" color="textPrimary" gutterBottom>
+                <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                   Exclusive for Project Partners & Affiliates
                 </Typography>
                 <div style={{ flexGrow: 1 }} />
                 <Divider className={classes.divider} />
                 <div className={classes.list}>
                   <div className={classes.avatarContainer}>
-                    <Button
+                    <ButtonGroup
                       size="large"
-                      variant="contained"
                       color="secondary"
                     >
-                      Join the Pool
-                    </Button>
+                      <Button variant="contained">
+                        Join the Pool
+                      </Button>
+                      <Button variant="outlined">
+                        Request Entry
+                      </Button>
+                    </ButtonGroup>
                   </div>
                 </div>
               </div>
@@ -155,17 +169,26 @@ const StakingSection = props => {
             className={classes.cardProduct}
             mediaContent={(
               <Image
-                {...props}
+                src="governance-standard.png"
                 className={classes.image}
                 lazyProps={{ width: '100%', height: '100%' }}
               />
             )}
             cardContent={(
               <div className={classes.poolContent}>
-                <Typography variant="h5" color="textPrimary" gutterBottom>
+                <Typography variant="h3" color="textPrimary" className={classes.fontWeight700}>
+                  2,000,000 SATA
+                </Typography>
+                <Typography variant="h4" color="textSecondary">
+                  60% APY
+                </Typography>
+                <Typography variant="h4" color="textSecondary" gutterBottom>
+                  180 Days Maturity Period
+                </Typography>
+                <Typography variant="h5" color="textPrimary">
                   Standard Pool
                 </Typography>
-                <Typography variant="subtitle1" color="textPrimary" gutterBottom>
+                <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                   For Enhanced Governance Rights
                 </Typography>
                 <div style={{ flexGrow: 1 }} />
@@ -185,14 +208,12 @@ const StakingSection = props => {
             )}
           />
         </Grid>
-        <Divider className={classes.divider} />
         <Grid item xs={12} style={{ textAlign: 'center' }}>
           <Typography
-            component="p"
-            variant="subtitle2"
-            gutterBottom
+            variant="h6"
+            color="textSecondary"
           >
-            In Partnership With
+            Powered By
           </Typography>
           <Image
             alt="Ferrum Network Logo"
