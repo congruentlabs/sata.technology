@@ -10,6 +10,9 @@ const useStyles = makeStyles(() => ({
   sectionNoPaddingTop: {
     paddingTop: 0,
   },
+  sectionPaddingBottom: {
+    paddingBottom: 30,
+  },
 }));
 
 const StakingView = () => {  
@@ -17,7 +20,7 @@ const StakingView = () => {
 
   return (
     <div>
-      <Section>
+      <Section className={classes.sectionPaddingBottom}>
         <StakingHero />
       </Section>
       <Section className={classes.sectionNoPaddingTop}>

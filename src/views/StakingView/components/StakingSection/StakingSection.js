@@ -8,7 +8,9 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  LinearProgress,
   ButtonGroup,
+  Box,
 } from '@material-ui/core';
 import { Image } from 'components/atoms';
 // import { SectionHeader } from 'components/molecules';
@@ -114,12 +116,6 @@ const StakingSection = props => {
     <div className={className} {...rest}>
       <Grid container spacing={isMd ? 4 : 2}>
         <Grid item xs={12}>
-          <Alert severity="warning">
-            <AlertTitle>This feature is not yet available</AlertTitle>
-            Staking is currently still under construction. Please follow us on social media for the announcement of the start of the staking pools. The information you see on this page may change at any time.
-          </Alert>
-        </Grid>
-        <Grid item xs={12}>
           <CardProduct
             withShadow
             liftUp
@@ -137,7 +133,7 @@ const StakingSection = props => {
                   1,000,000 SATA
                 </Typography>
                 <Typography variant="h4" color="textSecondary">
-                  120% APY
+                  120% APR
                 </Typography>
                 <Typography variant="h4" color="textSecondary" gutterBottom>
                   180 Days Maturity Period
@@ -148,6 +144,18 @@ const StakingSection = props => {
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                   Exclusive for Project Partners & Affiliates
                 </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ width: '100%', mr: 1 }}>
+                    <LinearProgress
+                      variant="determinate"
+                      value={10}
+                      style={{ height: 10, borderRadius: 5 }}
+                    />
+                  </Box>
+                  <Box sx={{ minWidth: 35 }}>
+                    <Typography variant="body2" color="text.secondary">10%</Typography>
+                  </Box>
+                </Box>
                 <div style={{ flexGrow: 1 }} />
                 <Divider className={classes.divider} />
                 <div className={classes.list}>
@@ -158,7 +166,9 @@ const StakingSection = props => {
                     >
                       <Button
                         variant="contained"
-                        disabled
+                        href="https://stake.unifyre.io/signata/info/0x635315aa539d49b426784af9616e2ef9262ff7ba"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Join the Pool
                       </Button>
@@ -195,7 +205,7 @@ const StakingSection = props => {
                   2,000,000 SATA
                 </Typography>
                 <Typography variant="h4" color="textSecondary">
-                  60% APY
+                  60% APR
                 </Typography>
                 <Typography variant="h4" color="textSecondary" gutterBottom>
                   180 Days Maturity Period
@@ -206,6 +216,19 @@ const StakingSection = props => {
                 <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                   For Enhanced Governance Rights
                 </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Box sx={{ width: '100%', mr: 1 }}>
+                    <LinearProgress
+                      variant="determinate"
+                      value={100}
+                      color="secondary"
+                      style={{ height: 10, borderRadius: 5 }}
+                    />
+                  </Box>
+                  <Box sx={{ minWidth: 35 }}>
+                    <Typography variant="body2" color="text.secondary">100%</Typography>
+                  </Box>
+                </Box>
                 <div style={{ flexGrow: 1 }} />
                 <Divider className={classes.divider} />
                 <div className={classes.list}>
@@ -214,7 +237,9 @@ const StakingSection = props => {
                       size="large"
                       variant="contained"
                       color="secondary"
-                      disabled
+                      href="https://stake.unifyre.io/signata/info/0x5dbaa82b59262e585ee7a53121bfad92b60ea0b7"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Join the Pool
                     </Button>
