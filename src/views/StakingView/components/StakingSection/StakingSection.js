@@ -13,9 +13,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { Image } from 'components/atoms';
-// import { SectionHeader } from 'components/molecules';
 import { CardProduct } from 'components/organisms';
-import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   cardProduct: {
@@ -148,12 +146,12 @@ const StakingSection = props => {
                   <Box sx={{ width: '100%', mr: 1 }}>
                     <LinearProgress
                       variant="determinate"
-                      value={10}
+                      value={20}
                       style={{ height: 10, borderRadius: 5 }}
                     />
                   </Box>
                   <Box sx={{ minWidth: 35 }}>
-                    <Typography variant="body2" color="text.secondary">10%</Typography>
+                    <Typography variant="body2" color="text.secondary">20%</Typography>
                   </Box>
                 </Box>
                 <div style={{ flexGrow: 1 }} />
@@ -226,7 +224,7 @@ const StakingSection = props => {
                     />
                   </Box>
                   <Box sx={{ minWidth: 35 }}>
-                    <Typography variant="body2" color="text.secondary">100%</Typography>
+                    <Typography variant="body2" color="text.secondary">Filled!</Typography>
                   </Box>
                 </Box>
                 <div style={{ flexGrow: 1 }} />
@@ -241,7 +239,7 @@ const StakingSection = props => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Join the Pool
+                      View the Pool
                     </Button>
                   </div>
                 </div>
