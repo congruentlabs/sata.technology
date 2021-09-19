@@ -146,12 +146,13 @@ const StakingSection = props => {
                   <Box sx={{ width: '100%', mr: 1 }}>
                     <LinearProgress
                       variant="determinate"
-                      value={20}
+                      value={100}
+                      color="secondary"
                       style={{ height: 10, borderRadius: 5 }}
                     />
                   </Box>
                   <Box sx={{ minWidth: 35 }}>
-                    <Typography variant="body2" color="text.secondary">20%</Typography>
+                    <Typography variant="body2" color="text.secondary">Closed!</Typography>
                   </Box>
                 </Box>
                 <div style={{ flexGrow: 1 }} />
@@ -160,7 +161,7 @@ const StakingSection = props => {
                   <div className={classes.avatarContainer}>
                     <ButtonGroup
                       size="large"
-                      color="secondary"
+                      color="primary"
                     >
                       <Button
                         variant="contained"
@@ -168,16 +169,16 @@ const StakingSection = props => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Join the Pool
+                        View the Pool
                       </Button>
-                      <Button
+                      {/* <Button
                         variant="outlined"
                         href="https://forms.gle/ppLft9dvvziNJevn7"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         Request Entry
-                      </Button>
+                      </Button> */}
                     </ButtonGroup>
                   </div>
                 </div>
@@ -224,7 +225,7 @@ const StakingSection = props => {
                     />
                   </Box>
                   <Box sx={{ minWidth: 35 }}>
-                    <Typography variant="body2" color="text.secondary">Filled!</Typography>
+                    <Typography variant="body2" color="text.secondary">Closed!</Typography>
                   </Box>
                 </Box>
                 <div style={{ flexGrow: 1 }} />
@@ -234,7 +235,7 @@ const StakingSection = props => {
                     <Button
                       size="large"
                       variant="contained"
-                      color="secondary"
+                      color="primary"
                       href="https://stake.unifyre.io/signata/info/0x5dbaa82b59262e585ee7a53121bfad92b60ea0b7"
                       target="_blank"
                       rel="noopener noreferrer"

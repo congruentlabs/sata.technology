@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  Avatar,
   Button,
   ButtonGroup,
   colors,
@@ -116,7 +117,6 @@ const Token = ({ className, ...rest }) => {
                           { title: "Uniswap", href: "https://app.uniswap.org/#/swap?outputCurrency=0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1" },
                           { title: "Coinsbit", href: "https://coinsbit.io/referral/1be5f6ca-f462-4e0f-ac5d-a4a7ab00c80e" },
                           { title: "P2PB2B", href: "https://p2pb2b.io?referral=d8b84618" },
-                          { title: "Tokpie", href: "https://tokpie.com/regis/?ref=9o58pSvrTHyIh87o" },
                         ].map((i) => (
                           <Button
                             key={i.href}
@@ -141,7 +141,7 @@ const Token = ({ className, ...rest }) => {
                         shape="circle"
                       />
                     }
-                    title="Token Information"
+                    title="Token Trackers"
                     align="center"
                     className={classes.descriptionListIcon}
                     data-aos="fade-up"
@@ -153,8 +153,7 @@ const Token = ({ className, ...rest }) => {
                           { title: "Etherscan", href: "https://etherscan.io/token/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1" },
                           { title: "CoinMarketCap", href: "https://coinmarketcap.com/currencies/signata/" },
                           { title: "CoinGecko", href: "https://www.coingecko.com/en/coins/signata" },
-                          { title: "DEXtools", href: "https://www.dextools.io/app/uniswap/pair-explorer/0xe72d262158f402faf553179b2b4aff23dfad6d4c" },
-                          { title: "Kektics", href: "https://kek.tools/t/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1?pair=0xe72d262158f402faf553179b2b4aff23dfad6d4c" },
+                          { title: "Kektics", href: "https://kek.tools/t/0x3ebb4a4e91ad83be51f8d596533818b246f4bee1?pair=0xbc00e708c407d7633f7504434e74c13e171de7f1" },
                         ].map((i) => (
                           <Button
                             key={i.href}
@@ -172,12 +171,8 @@ const Token = ({ className, ...rest }) => {
                 <Grid item xs={12}>
                   <List disablePadding>
                     <ListItem disableGutters data-aos="fade-up">
-                      <ListItemAvatar className={classes.listItemAvatar}>
-                        <IconAlternate
-                          size="small"
-                          fontIconClass="fab fa-ethereum"
-                          color={colors.green}
-                        />
+                      <ListItemAvatar>
+                        <Avatar src="/logo-eth.png" alt="Ethereum Logo" />
                       </ListItemAvatar>
                       <ListItemText
                         primary={(<code>{erc20ContractAddress}</code>)}
@@ -189,12 +184,8 @@ const Token = ({ className, ...rest }) => {
                 <Grid item xs={12}>
                   <List disablePadding>
                     <ListItem disableGutters data-aos="fade-up">
-                      <ListItemAvatar className={classes.listItemAvatar}>
-                        <IconAlternate
-                          size="small"
-                          fontIconClass="fab fa-ethereum"
-                          color={colors.yellow}
-                        />
+                      <ListItemAvatar>
+                        <Avatar src="/logo-bsc.png" alt="Ethereum Logo" />
                       </ListItemAvatar>
                       <ListItemText
                         primary={bep20ContractAddress}
