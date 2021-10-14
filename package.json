@@ -10,7 +10,9 @@
     "prettier:fix": "prettier './src/**/*.js' --write",
     "eslint:fix": "eslint ./src --fix",
     "codeStyle:fix": "npm run prettier:fix && npm run eslint:fix",
-    "clear-all": "rimraf ./build ./node_modules"
+    "clear-all": "rimraf ./build ./node_modules",
+    "deploy": "react-scripts build && firebase deploy --only hosting:sata-ico",
+    "deploy-dev": "react-scripts build && firebase deploy --only hosting:sata-dev"
   },
   "eslintConfig": {
     "extends": [
