@@ -1,190 +1,253 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Button,
-  Typography,
-  colors,
-} from '@material-ui/core';
-import { Icon } from 'components/atoms';
-import { SectionHeader, TypedText } from 'components/molecules';
-import { HeroShaped } from 'components/organisms';
-import { useTranslation } from 'react-i18next';
+import Typed from 'react-typed';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+// import { useTranslation } from 'react-i18next';
+import { alpha, useTheme } from '@mui/material/styles';
 
-const useStyles = makeStyles(theme => ({
-  fontWeight900: {
-    fontWeight: 900,
-  },
-  leftSideContent: {
-    '& .section-header__cta-container': {
-      [theme.breakpoints.down('xs')]: {
-        flexDirection: 'column',
-        '& .section-header__cta-item-wrapper': {
-          width: '100%',
-          '&:last-child': {
-            marginLeft: 0,
-            marginTop: theme.spacing(1),
-          },
-          '& .MuiButtonBase-root': {
-            width: '100%',
-          },
-        },
+import Container from 'components/Container';
+
+const images = [
+  {
+    group: [
+      {
+        cover:
+          '1.jpg',
+        coverDark:
+          '1.jpg',
       },
-    }
-  },
-  heroShaped: {
-    '& .hero-shaped__image': {
-      backgroundColor: theme.palette.alternate.main,
-    },
-    [theme.breakpoints.down('sm')]: {
-      '& .hero-shaped__image': {
-        position: 'relative',
+      {
+        cover:
+          '9.jpg',
+        coverDark:
+          '9.jpg',
       },
-      '& .hero-shaped__wrapper': {
-        flexDirection: 'column',
+    ],
+  },
+  {
+    group: [
+      {
+        cover:
+          '3.jpg',
+        coverDark:
+          '3.jpg',
       },
-    },
+      {
+        cover:
+          '4.jpg',
+        coverDark:
+          '4.jpg',
+      },
+      {
+        cover:
+          '6.jpg',
+        coverDark:
+          '6.jpg',
+      },
+    ],
   },
-  imageAnimation: {
-    background: `url("backdrop.png")`,
-    backgroundRepeat: 'repeat',
-    backgroundAttachment: 'scroll',
-    backgroundSize: '400px auto',
-    animation: `$slideshow 50s linear infinite`,
-    width: '600%',
-    height: '600%',
-    backgroundColor: theme.palette.alternate.dark,
-    top: '-25%',
-    left: '-100%',
-    position: 'absolute',
-    [theme.breakpoints.up('sm')]: {
-      backgroundSize: '800px auto',
-    }
+  {
+    group: [
+      {
+        cover:
+          '5.jpg',
+        coverDark:
+          '5.jpg',
+      },
+      {
+        cover:
+          '7.jpg',
+        coverDark:
+          '7.jpg',
+      },
+      {
+        cover:
+          '8.jpg',
+        coverDark:
+          '8.jpg',
+      },
+      {
+        cover:
+          '2.jpg',
+        coverDark:
+          '2.jpg',
+      },
+    ],
   },
-  imageAnimationDark: {
-    background: `url("backdrop.png")`,
-  },
-  '@keyframes slideshow': {
-    '0%': {
-      transform: 'rotate(-13deg) translateY(-25%)',
-    },
-    '100%': {
-      transform: 'rotate(-13deg) translateY(-80%)',
-    },
-  },
-}));
+];
 
-const Hero = ({ themeMode = 'light', className, ...rest }) => {
-  const classes = useStyles();
-  const { t } = useTranslation();
+const Hero = () => {
+  const theme = useTheme();
+  // const { t } = useTranslation();
+  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+    defaultMatches: true,
+  });
 
-  const title = (
-    <Typography variant="h2" component="span" className={classes.fontWeight900}>
-      {t('The future of')}
-      <br />
-      <TypedText
-        component="span"
-        variant="h2"
-        color="secondary"
-        className={classes.fontWeight900}
-        typedProps={{
-          strings: [
-            t('Authentication'),
-            t('Authorization'),
-            t('Payments'),
-            t('Privacy'),
-            t('Identity'),
-          ],
-          typeSpeed: 80,
-          loop: true,
-        }}
-      />
-    </Typography>
-  );
-
-  const docsButton = (
-    <Button
-      size="large"
-      variant="contained"
-      color="primary"
-      component="a"
-      href={t('whitepaper url')}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {t('read the whitepaper')}
-    </Button>
-  );
-
-  const telegramButton = (
-    <Button
-      href={t('telegram url')}
-      target="_blank"
-      variant="text"
-      alt="SATA Telegram"
-      color="primary"
-      startIcon={<Icon size="small" fontIconClass="fab fa-telegram" color={colors.blue} />}
-    > 
-      Telegram
-    </Button>
-  );
-
-  const discordButton = (
-    <Button
-      href="https://discord.gg/pEJu4ZjnfX"
-      target="_blank"
-      variant="text"
-      alt="SATA Discord"
-      color="primary"
-      startIcon={<Icon size="small" fontIconClass="fab fa-discord" color={colors.blue} />}
-    > 
-      Discord
-    </Button>
-  );
-
-  const leftSideContent = (
-    <SectionHeader
-      title={title}
-      subtitle={t('subtitle')}
-      align="left"
-      titleProps={{
-        variant: 'h2',
-        color: 'textPrimary',
-      }}
-      ctaGroup={[docsButton, telegramButton, discordButton]}
-      data-aos="fade-right"
-      disableGutter
-      className={classes.leftSideContent}
-    />
-  );
   return (
-    <div className={className} {...rest}>
-      <HeroShaped
-        className={classes.heroShaped}
-        leftSide={leftSideContent}
-        rightSide={(
-          <div
-            className={clsx(
-              classes.imageAnimation,
-              themeMode === 'dark' ? classes.imageAnimationDark: '',
-            )}
-          />
-        )}
-      />
-    </div>
+    <Box
+      sx={{
+        backgroundImage: `linear-gradient(to bottom, ${alpha(
+          theme.palette.background.paper,
+          0,
+        )}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
+        backgroundRepeat: 'repeat-x',
+        position: 'relative',
+      }}
+    >
+      <Box paddingY={{ xs: 0, sm: '4rem', md: '8rem' }}>
+        <Container>
+          <Box maxWidth={{ xs: 1, sm: '50%' }}>
+            <Typography
+              variant="h3"
+              color="text.primary"
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+              }}
+            >
+              The future of
+              <br />
+              <Typography
+                color={'primary'}
+                component={'span'}
+                variant={'inherit'}
+              >
+                <Typed
+                  strings={['Identity.', 'Authentication.', 'Payments.', 'Privacy.']}
+                  typeSpeed={100}
+                  loop={true}
+                />
+              </Typography>
+            </Typography>
+            <Typography
+              variant="h6"
+              component="p"
+              color="text.secondary"
+              sx={{ fontWeight: 400 }}
+            >
+              Welcome to Signata, your private identity for the web3 future.
+            </Typography>
+            <Box
+              display="flex"
+              flexDirection={{ xs: 'column', sm: 'row' }}
+              alignItems={{ xs: 'stretched', sm: 'flex-start' }}
+              marginTop={4}
+            >
+              <Button
+                component={'a'}
+                variant="contained"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="primary"
+                size="large"
+                fullWidth={isMd ? false : true}
+                href="sata-whitepaper-2021-03-24.pdf"
+              >
+                Read the Whitepaper
+              </Button>
+              <Box
+                marginTop={{ xs: 2, sm: 0 }}
+                marginLeft={{ sm: 2 }}
+                width={{ xs: '100%', md: 'auto' }}
+              >
+                <Button
+                  component={'a'}
+                  href="https://t.me/satatoken"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  fullWidth={isMd ? false : true}
+                >
+                  Telegram
+                </Button>
+              </Box>
+              <Box
+                marginTop={{ xs: 2, sm: 0 }}
+                marginLeft={{ sm: 2 }}
+                width={{ xs: '100%', md: 'auto' }}
+              >
+                <Button
+                  component={'a'}
+                  href="https://discord.gg/pEJu4ZjnfX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  fullWidth={isMd ? false : true}
+                >
+                  Discord
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Container>
+        <Box
+          sx={{
+            transform: 'rotate(-20deg)',
+            display: { xs: 'none', sm: 'block' },
+          }}
+        >
+          <Box
+            display={'flex'}
+            width={'50rem'}
+            left={'50%'}
+            top={0}
+            position={'absolute'}
+            sx={{ transform: 'translate3d(20%, -50%, 0)' }}
+          >
+            {images.map((item, i) => (
+              <Box key={i} marginTop={{ sm: -(i * 16) }} marginX={1}>
+                {item.group.map((g, j) => (
+                  <Box
+                    key={j}
+                    padding={1}
+                    bgcolor={'background.paper'}
+                    borderRadius={3}
+                    boxShadow={3}
+                    marginTop={2}
+                  >
+                    <Box
+                      component={LazyLoadImage}
+                      effect="blur"
+                      src={
+                        theme.palette.mode === 'dark' ? g.coverDark : g.cover
+                      }
+                      height={1}
+                      width={1}
+                      maxWidth={320}
+                    />
+                  </Box>
+                ))}
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        component={'svg'}
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        viewBox="0 0 1920 100.1"
+        sx={{
+          width: '100%',
+          marginBottom: theme.spacing(-1),
+        }}
+      >
+        <path
+          fill={theme.palette.background.paper}
+          d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
+        ></path>
+      </Box>
+    </Box>
   );
-};
-
-Hero.propTypes = {
-  /**
-   * External classes
-   */
-  className: PropTypes.string,
-  /**
-   * Theme mode
-   */
-  themeMode: PropTypes.string,
 };
 
 export default Hero;

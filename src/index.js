@@ -1,14 +1,11 @@
-/**
- * Caution: Consider this file when using react-scripts
- * 
- * You may delete this file and its occurrences from the project filesystem if you are using GatsbyJS or NextJS version
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import * as serviceWorker from './serviceWorker';
+import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-serviceWorker.unregister();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

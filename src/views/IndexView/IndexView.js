@@ -1,55 +1,105 @@
 import React from 'react';
-import { Divider } from '@material-ui/core';
-import { Section, SectionAlternate } from 'components/organisms';
+import { alpha, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Main from 'layouts/Main';
+import Container from 'components/Container';
 import {
-  Vision,
-  Services,
   Hero,
-  Token,
-  Features,
-  Roadmap,
-  Team,
-  Governance,
   Partners,
+  Features,
+  Video,
+  Token,
+  Team,
+  Functions,
+  Links,
 } from './components';
 
-const IndexView = ({ themeMode }) => (
-    <div>
-      <Hero
-        themeMode={themeMode}
-      />
-      <Services />
-      <Divider />
-      <SectionAlternate>
-        <Vision />
-      </SectionAlternate>
-      <SectionAlternate>
-        <Features />
-      </SectionAlternate>
-      <Divider />
-      <Section narrow>
-        <Token />
-      </Section>
-      <Divider />
-      <SectionAlternate innerNarrowed>
-        <Governance />
-      </SectionAlternate>
-      <Divider />
-      <Section>
-        <Roadmap />
-      </Section>
-      <Divider />
-      <SectionAlternate>
-        <Team />
-      </SectionAlternate>
-      <Divider />
-      <Section>
-        <Partners
-          themeMode={themeMode}
-        />
-      </Section>
-      <Divider />
-    </div>
-);
+const IndexView = () => {
+  const theme = useTheme();
+  return (
+    <Box sx={{ overflowX: 'hidden' }}>
+      <Main>
+        <Hero />
+        <Container maxWidth="md">
+          <Video />
+        </Container>
+        <Box
+          sx={{
+            backgroundImage: `linear-gradient(to bottom, ${alpha(
+              theme.palette.background.paper,
+              0,
+            )}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
+            backgroundRepeat: 'repeat-x',
+            position: 'relative',
+          }}
+        >
+          <Container>
+            <Features />
+          </Container>
+          <Container>
+            <Token />
+          </Container>
+          <Container>
+            <Links />
+          </Container>
+          <Container>
+            <Partners />
+          </Container>
+          <Container>
+            <Team />
+          </Container>
+          <Container>
+            <Functions />
+          </Container>
+          <Box
+            component={'svg'}
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1920 100.1"
+            sx={{
+              width: '100%',
+              marginBottom: theme.spacing(-1),
+            }}
+          >
+            <path
+              fill={theme.palette.background.paper}
+              d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
+            ></path>
+          </Box>
+        </Box>
+        {/* <Box
+          component={'svg'}
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          viewBox="0 0 1920 100.1"
+          sx={{
+            width: '100%',
+            marginBottom: theme.spacing(-1),
+          }}
+        >
+          <path
+            fill={theme.palette.background.paper}
+            d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
+          ></path>
+        </Box> */}
+        {/* <Container>
+        <OpenSource />
+      </Container>
+      <Box bgcolor={'alternate.main'}>
+        <Container>
+          <Pricings />
+        </Container>
+      </Box>
+      <Container>
+        <Download />
+      </Container> */}
+      </Main>
+    </Box>
+  );
+};
 
 export default IndexView;

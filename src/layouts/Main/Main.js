@@ -1,39 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
-import { Topbar, Footer } from './components';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import AppBar from '@mui/material/AppBar';
+import Slide from '@mui/material/Slide';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    height: '100%',
-  },
-}));
+import Container from 'components/Container';
+import { Topbar, Sidebar, Footer } from './components';
+import pages from '../navigation';
 
-const Main = ({ children, themeToggler, themeMode }) => {
-  const classes = useStyles();
+const HideOnScroll = ({ children }) => {
+  const trigger = useScrollTrigger();
 
   return (
-    <div
-      className={clsx({
-        [classes.root]: true,
-      })}
-    >
-      <Topbar themeMode={themeMode} themeToggler={themeToggler} />
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+};
+
+HideOnScroll.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const Main = ({ children }) => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+    defaultMatches: true,
+  });
+
+  const [openSidebar, setOpenSidebar] = useState(false);
+
+  const handleSidebarOpen = () => {
+    setOpenSidebar(true);
+  };
+
+  const handleSidebarClose = () => {
+    setOpenSidebar(false);
+  };
+
+  const open = isMd ? false : openSidebar;
+
+  return (
+    <Box>
+      <HideOnScroll>
+        <AppBar
+          position={'fixed'}
+          sx={{
+            backgroundColor: theme.palette.background.paper,
+          }}
+          elevation={1}
+        >
+          <Container paddingY={{ xs: 1, sm: 1.5 }}>
+            <Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
+          </Container>
+        </AppBar>
+      </HideOnScroll>
+      <Sidebar
+        onClose={handleSidebarClose}
+        open={open}
+        variant="temporary"
+        pages={pages}
+      />
       <main>
-        <Divider />
+        <Box height={{ xs: 58, sm: 66 }} />
         {children}
+        <Divider />
       </main>
-      <Footer />
-    </div>
+      <Container paddingY={4}>
+        <Footer />
+      </Container>
+    </Box>
   );
 };
 
 Main.propTypes = {
   children: PropTypes.node,
-  themeToggler: PropTypes.func.isRequired,
-  themeMode: PropTypes.string.isRequired,
 };
 
 export default Main;

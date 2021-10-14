@@ -1,104 +1,96 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid, colors, makeStyles } from '@material-ui/core';
-import { SectionHeader, IconAlternate } from 'components/molecules';
-import { CardBase, DescriptionListIcon } from 'components/organisms';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import PasswordIcon from '@mui/icons-material/Password';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import WarningIcon from '@mui/icons-material/Warning';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 
-const useStyles = makeStyles(() => ({
-  fontWeight900: {
-    fontWeight: 900,
+const feats = [
+  {
+    title: 'Goodbye Passwords',
+    subtitle:
+      'Replace weak passwords with powerful cryptography.',
+    icon: <PasswordIcon />,
   },
-}));
+  {
+    title: 'NFT Rights',
+    subtitle:
+      'Prove your identity and access services using Non-Fungible Tokens.',
+    icon: <ReceiptIcon />,
+  },
+  {
+    title: 'Manage Risk',
+    subtitle:
+      'Protect valuable transactions on-chain from identity theft.',
+    icon: <WarningIcon />,
+  },
+  {
+    title: 'Preserve your Privacy',
+    subtitle:
+      'Protect your identity from mass surveillance and advertisers.',
+    icon: <PrivacyTipIcon />,
+  },
+  {
+    title: 'Open and Decentralized',
+    subtitle: 'Open source contracts and off-chain services.',
+    icon: <GitHubIcon />,
+  },
+  {
+    title: 'Multi-Network Support',
+    subtitle:
+      'Identity is needed everywhere, not just a single network.',
+    icon: <SwapHorizIcon />,
+  },
+];
 
-const Features = ({ className, ...rest }) => {
-  const classes = useStyles();
-  const { t } = useTranslation();
-
+const Features = () => {
+  const theme = useTheme();
   return (
-    <div className={className} {...rest}>
-      <SectionHeader
-        title={t('The Future Identity and Access Marketplace')}
-        fadeUp
-        titleProps={{
-          variant: 'h3',
-          color: 'textPrimary',
-          className: classes.fontWeight900,
-        }}
-      />
-      <Grid container spacing={2}>
-        {[{
-          icon: 'fas fa-sign-in-alt',
-          color: colors.green,
-          title: t('Simplified Access Control'),
-          subtitle: t('No more usernames, and no more passwords.'),
-        }, {
-          icon: 'fas fa-exchange-alt',
-          color: colors.green,
-          title: t('DeREx'),
-          subtitle: t('Use our Decentralized Rights Exchange for trusted identity brokerage.'),
-        }, {
-          icon: 'fas fa-certificate',
-          color: colors.green,
-          title: t('DeX509'),
-          subtitle: t('Get the power of Public Key Infrastructure without the expense.'),
-        }, {
-          icon: 'fas fa-code-branch',
-          color: colors.green,
-          title: t('Trusted Validation Oracles'),
-          subtitle: t('Prove your identity and still maintain your privacy.'),
-        }, {
-          icon: 'fas fa-rocket',
-          color: colors.green,
-          title: t('Free and Open'),
-          subtitle: t('Open source smart contracts and off-chain services.'),
-        }, {
-          icon: 'fas fa-code',
-          color: colors.green,
-          title: t('Anonymous First'),
-          subtitle: t('All systems will be default Anonymous. Only share what you want.'),
-        }].map((adv, index) => (
-          <Grid
-            key={index}
-            item
-            container
-            alignItems="center"
-            direction="column"
-            xs={6}
-            md={4}
-            data-aos="fade-up"
+    <Grid container spacing={4}>
+      {feats.map((item, i) => (
+        <Grid item xs={12} sm={6} md={4} key={i}>
+          <Box
+            component={Card}
+            padding={4}
+            borderRadius={4}
+            width={1}
+            height={1}
+            data-aos={'fade-up'}
+            data-aos-delay={i * 100}
           >
-            <CardBase
-              liftUp
-              variant="outlined"
-              style={{ borderTop: `5px solid ${adv.color[500]}` }}
-            >
-              <DescriptionListIcon
-                icon={
-                  <IconAlternate
-                    fontIconClass={adv.icon}
-                    color={adv.color}
-                    shape="circle"
-                    size="small"
-                  />
-                }
-                title={adv.title}
-                subtitle={adv.subtitle}
-                align="left"
-              />
-            </CardBase>
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+            <Box display={'flex'} flexDirection={'column'}>
+              <Box
+                component={Avatar}
+                width={50}
+                height={50}
+                marginBottom={2}
+                bgcolor={theme.palette.primary.main}
+                color={theme.palette.background.paper}
+              >
+                {item.icon}
+              </Box>
+              <Typography
+                variant={'h6'}
+                gutterBottom
+                sx={{ fontWeight: 500 }}
+              >
+                {item.title}
+              </Typography>
+              <Typography color="text.secondary">{item.subtitle}</Typography>
+            </Box>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
   );
-};
-
-Features.propTypes = {
-  /**
-   * External classes
-   */
-  className: PropTypes.string,
 };
 
 export default Features;

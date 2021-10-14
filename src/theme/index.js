@@ -1,21 +1,36 @@
-import { responsiveFontSizes } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
+import { responsiveFontSizes } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import shadows from './shadows';
 import { light, dark } from './palette';
 
-const getTheme = mode => responsiveFontSizes(
-  createTheme({
-    palette: mode === 'light' ? light : dark,
-    layout: {
-      contentWidth: 1236,
-    },
-    typography: {
-      fontFamily: 'Lato',
-    },
-    zIndex: {
-      appBar: 1200,
-      drawer: 1100,
-    },
-  }),
-);
+const getTheme = (mode, themeToggler) =>
+  responsiveFontSizes(
+    createTheme({
+      palette: mode === 'light' ? light : dark,
+      shadows: shadows(mode),
+      typography: {
+        fontFamily: '"Lato", sans-serif',
+        button: {
+          textTransform: 'none',
+          fontWeight: 'medium',
+        },
+      },
+      zIndex: {
+        appBar: 1200,
+        drawer: 1300,
+      },
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            label: {
+              fontWeight: 600,
+            },
+            containedSecondary: mode === 'light' ? { color: 'white' } : {},
+          },
+        },
+      },
+      themeToggler,
+    }),
+  );
 
 export default getTheme;
