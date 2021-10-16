@@ -12,7 +12,7 @@ const Routes = () => {
     <Switch>
       <Route exact path="/" render={() => <IndexView />} />
       <Route exact path="/staking" render={() => <Staking />} />
-      <Redirect to="/not-found-cover" />
+      <Redirect to="/not-found" />
     </Switch>
   );
 };

@@ -90,12 +90,11 @@ const Hero = () => {
           <Button
             component={'a'}
             variant="contained"
-            target="_blank"
-            rel="noopener noreferrer"
             color="primary"
             size="large"
             fullWidth={isMd ? false : true}
-            href="https://sata.technology/nfg-whitepaper-2021-07-31.pdf"
+            href="/nfg-whitepaper-2021-07-31.pdf"
+            download
           >
             NFT Governance Whitepaper
           </Button>

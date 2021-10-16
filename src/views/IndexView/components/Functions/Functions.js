@@ -29,7 +29,7 @@ const mock = [
     image: 'kanban.png',
     description: 'Follow the project development cycle.',
     title: 'Project Roadmap',
-    button: 'View the Development Roadmap',
+    button: 'View the Roadmap',
     href: 'https://trello.com/b/IJVDJZ39/sata-roadmap',
     disabled: false,
   },

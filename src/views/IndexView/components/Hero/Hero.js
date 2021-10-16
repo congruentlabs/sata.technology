@@ -139,12 +139,11 @@ const Hero = () => {
               <Button
                 component={'a'}
                 variant="contained"
-                target="_blank"
-                rel="noopener noreferrer"
                 color="primary"
                 size="large"
                 fullWidth={isMd ? false : true}
-                href="sata-whitepaper-2021-03-24.pdf"
+                href="/sata-whitepaper-2021-03-24.pdf"
+                download
               >
                 Read the Whitepaper
               </Button>
