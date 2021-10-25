@@ -16,6 +16,8 @@ const mock = [
     subtitle2: '180 Days Maturity Period',
     color: '#000000',
     url: 'https://stake.unifyre.io/signata/info/0x635315aa539d49b426784af9616e2ef9262ff7ba',
+    buttonText: 'View the Pool',
+    buttonColor: 'secondary',
   },
   {
     image: 'governance-standard.png',
@@ -26,6 +28,32 @@ const mock = [
     subtitle2: '180 Days Maturity Period',
     color: '#000000',
     url: 'https://stake.unifyre.io/signata/info/0x5dbaa82b59262e585ee7a53121bfad92b60ea0b7',
+    buttonText: 'View the Pool',
+    buttonColor: 'secondary',
+  },
+  {
+    image: 'governance-liquidity.png',
+    desc1: 'Liquidity Provider Pool',
+    desc2: 'For Enhanced Governance Rights',
+    title: '30,000 UNI V2 SATA/ETH',
+    subtitle1: '90% APR',
+    subtitle2: '180 Days Maturity Period',
+    color: '#000000',
+    url: 'https://stake.unifyre.io/signataliq/info/0x55661573219a8ee6d5b87b36a07639c2c00e7df2',
+    buttonText: 'Opens 2021-10-31 12:00 UTC',
+    buttonColor: 'primary',
+  },
+  {
+    image: 'governance-standard-2.png',
+    desc1: 'Standard Pool Phase 2',
+    desc2: 'For Enhanced Governance Rights',
+    title: '5,000,000 SATA',
+    subtitle1: '60% APR',
+    subtitle2: '180 Days Maturity Period',
+    color: '#000000',
+    url: 'https://stake.unifyre.io/signata/info/0x6333f546510a365da98f969b3c9603dd253336a9',
+    buttonText: 'Opens 2021-10-31 12:00 UTC',
+    buttonColor: 'primary',
   },
 ];
 
@@ -114,11 +142,11 @@ const StakingSection = () => {
                 <Button
                   size={'large'}
                   variant={'contained'}
-                  color={'secondary'}
+                  color={item.buttonColor}
                   href={item.url}
                   target="_blank"
                 >
-                  View the Pool
+                  {item.buttonText}
                 </Button>
               </Box>
             </Box>
