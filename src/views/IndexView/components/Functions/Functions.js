@@ -23,7 +23,7 @@ const mock = [
     title: 'Token Bridge',
     button: 'Open the Bridge',
     href: 'https://bridge.sata.technology/',
-    disabled: true,
+    disabled: false,
   },
   {
     image: 'kanban.png',
@@ -65,7 +65,7 @@ const Functions = () => {
                 display={'flex'}
                 justifyContent={{
                   xs: 'center',
-                  md: i % 2 === 1 ? 'flex-end' : 'flex-start',
+                  md: 'flex-start',
                 }}
                 sx={{
                   minHeight: 300,
