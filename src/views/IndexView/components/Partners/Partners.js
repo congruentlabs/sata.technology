@@ -7,7 +7,7 @@ const Partners = () => {
   const theme = useTheme();
   return (
     <Box>
-      <Box marginBottom={4}>
+      <Box>
         <Typography
           variant="h4"
           align={'center'}
@@ -23,6 +23,7 @@ const Partners = () => {
       </Box>
       <Box display="flex" flexWrap="wrap" justifyContent={'center'}>
         {[
+          { img: 'apeswap.png', alt: 'ApeSwap', url: 'https://apeswap.finance/' },
           { img: 'chainlink.png', alt: 'Chainlink', url: 'https://blog.congruentlabs.co/signata-will-leverage-chainlink-oracles-to-power-its-on-chain-identity-management-system/' },
           { img: 'upsurge.png', alt: 'Upsurge Studios', url: 'https://blog.congruentlabs.co/announcing-partnership-with-upsurge-studios/' },
           { img: 'ferrum.png', alt: 'Ferrum Network', url: 'https://medium.com/ferrumnetwork/announcing-the-next-staking-project-signata-frm-buyback-c702e5b01725' },
