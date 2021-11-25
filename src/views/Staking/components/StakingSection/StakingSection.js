@@ -40,8 +40,8 @@ const mock = [
     subtitle2: '180 Days Maturity Period',
     color: '#000000',
     url: 'https://stake.unifyre.io/signataliq/info/0x55661573219a8ee6d5b87b36a07639c2c00e7df2',
-    buttonText: 'Opens 2021-10-31 12:00 UTC',
-    buttonColor: 'primary',
+    buttonText: 'View the Pool',
+    buttonColor: 'secondary',
   },
   {
     image: 'governance-standard-2.png',
@@ -52,8 +52,8 @@ const mock = [
     subtitle2: '180 Days Maturity Period',
     color: '#000000',
     url: 'https://stake.unifyre.io/signata/info/0x6333f546510a365da98f969b3c9603dd253336a9',
-    buttonText: 'Opens 2021-10-31 12:00 UTC',
-    buttonColor: 'primary',
+    buttonText: 'View the Pool',
+    buttonColor: 'secondary',
   },
 ];
 
