@@ -28,6 +28,8 @@ const Partners = () => {
           { img: 'upsurge.png', alt: 'Upsurge Studios', url: 'https://blog.congruentlabs.co/announcing-partnership-with-upsurge-studios/' },
           { img: 'ferrum.png', alt: 'Ferrum Network', url: 'https://medium.com/ferrumnetwork/announcing-the-next-staking-project-signata-frm-buyback-c702e5b01725' },
           { img: 'biologica.png', alt: 'Biológica Soluciones', url: 'https://www.biologicasoluciones.com/' },
+          { img: 'lgcy.png', alt: 'LGCY Network', url: 'https://blog.congruentlabs.co/announcing-signata-partnership-with-lgcy-network/' },
+          { img: 'agfi.png', alt: 'Aggregated Finance', url: 'https://blog.congruentlabs.co/announcing-signata-partnership-with-aggregated-finance/' },
         ].map((item, i) => (
           <Box
             maxWidth={180}
