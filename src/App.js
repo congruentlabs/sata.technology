@@ -23,8 +23,8 @@ const App = () => {
   return (
     <Page>
       <Router history={browserHistory}>
-        <Route path="/" component={IndexView} />
-        <Route path="/staking" component={Staking} />
+        <Route exact path="/" component={IndexView} />
+        <Route exact path="/staking" component={Staking} />
         <Route to="/not-found" />
         {/* <Routes /> */}
       </Router>
