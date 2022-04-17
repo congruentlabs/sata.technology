@@ -154,24 +154,6 @@ const Hero = () => {
               >
                 <Button
                   component={'a'}
-                  href="https://t.me/satatoken"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  fullWidth={isMd ? false : true}
-                >
-                  Telegram
-                </Button>
-              </Box>
-              <Box
-                marginTop={{ xs: 2, sm: 0 }}
-                marginLeft={{ sm: 2 }}
-                width={{ xs: '100%', md: 'auto' }}
-              >
-                <Button
-                  component={'a'}
                   href="https://discord.gg/pEJu4ZjnfX"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -180,7 +162,7 @@ const Hero = () => {
                   size="large"
                   fullWidth={isMd ? false : true}
                 >
-                  Discord
+                  Read the Docs
                 </Button>
               </Box>
             </Box>

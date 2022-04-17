@@ -9,9 +9,9 @@ import {
   Features,
   Video,
   Token,
-  Team,
+  // Team,
   Functions,
-  Links,
+  // Links,
 } from './components';
 
 const IndexView = () => {
@@ -39,15 +39,15 @@ const IndexView = () => {
           <Container>
             <Token />
           </Container>
-          <Container>
+          {/* <Container>
             <Links />
-          </Container>
+          </Container> */}
           <Container>
             <Partners />
           </Container>
-          <Container>
+          {/* <Container>
             <Team />
-          </Container>
+          </Container> */}
           <Container>
             <Functions />
           </Container>

@@ -1,16 +1,14 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const mock = [
   {
-    image: 'vote.png',
+    image: 'governance-partner.png',
     description: 'Stake SATA to earn voting rights.',
     title: 'Governance Staking',
     button: 'Open Staking Pools',
@@ -18,19 +16,20 @@ const mock = [
     disabled: false,
   },
   {
+    image: 'vote.png',
+    description: 'Vote to grow the ecosystem.',
+    title: 'Voting',
+    // button: 'Vote on Proposals',
+    button: 'Coming Soon!',
+    href: '/vote',
+    disabled: true,
+  },
+  {
     image: 'bridge.png',
     description: 'Move SATA between supported blockchains.',
     title: 'Token Bridge',
     button: 'Open the Bridge',
     href: 'https://bridge.sata.technology/',
-    disabled: false,
-  },
-  {
-    image: 'kanban.png',
-    description: 'Follow the project development cycle.',
-    title: 'Project Roadmap',
-    button: 'View the Roadmap',
-    href: 'https://trello.com/b/IJVDJZ39/sata-roadmap',
     disabled: false,
   },
 ];
@@ -43,7 +42,7 @@ const Functions = () => {
         {mock.map((item, i) => (
           <Grid item xs={12} key={i}>
             <Box
-              component={'a'}
+              component={item.disabled ? '' : 'a'}
               href={''}
               display={'block'}
               width={1}
@@ -119,19 +118,16 @@ const Functions = () => {
                     </Typography>
                   </Box>
                   <Box display="flex">
-                    <Box
-                      component={Button}
+                    <Typography
                       variant="contained"
-                      color="primary"
+                      color={item.disabled ? 'secondary' : 'primary'}
                       size="large"
                       target="_blank"
                       href={item.href}
-                      marginLeft={2}
                       disabled={item.disabled}
-                      startIcon={<OpenInNewIcon />}
                     >
                       {item.button}
-                    </Box>
+                    </Typography>
                   </Box>
                 </CardContent>
               </Box>

@@ -1,26 +1,12 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 
 const Partners = () => {
   const theme = useTheme();
   return (
     <Box>
-      <Box>
-        <Typography
-          variant="h4"
-          align={'center'}
-          data-aos={'fade-up'}
-          gutterBottom
-          sx={{
-            fontWeight: 700,
-            marginTop: theme.spacing(1),
-          }}
-        >
-          Partnerships & Integrations
-        </Typography>
-      </Box>
       <Box display="flex" flexWrap="wrap" justifyContent={'center'}>
         {[
           { img: 'apeswap.png', alt: 'ApeSwap', url: 'https://apeswap.finance/' },

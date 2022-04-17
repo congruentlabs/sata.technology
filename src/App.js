@@ -1,8 +1,13 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+// import { Router } from 'react-router-dom';
+import { Router, Route } from 'react-router';
 import { createBrowserHistory } from 'history';
-import Routes from './Routes';
+// import Routes from './Routes';
 import Page from './components/Page';
+import {
+  IndexView,
+  Staking,
+} from './views';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'slick-carousel/slick/slick.css';
@@ -18,7 +23,10 @@ const App = () => {
   return (
     <Page>
       <Router history={browserHistory}>
-        <Routes />
+        <Route path="/" component={IndexView} />
+        <Route path="/staking" component={Staking} />
+        <Route to="/not-found" />
+        {/* <Routes /> */}
       </Router>
     </Page>
   );

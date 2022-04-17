@@ -34,14 +34,9 @@ const Footer = () => {
           <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
             {[
               {
-                href: 'https://t.me/satatoken',
-                alt: 'Telegram',
+                href: 'https://docs.signata.net/',
+                alt: 'Documentation',
                 fontIconClass: 'fab fa-telegram',
-              },
-              {
-                href: 'https://discord.gg/pEJu4ZjnfX',
-                alt: 'Discord',
-                fontIconClass: 'fab fa-discord',
               },
               {
                 href: 'https://twitter.com/satatoken',
@@ -57,11 +52,6 @@ const Footer = () => {
                 href: 'https://blog.congruentlabs.co/',
                 alt: 'Blog',
                 fontIconClass: 'fas fa-rss',
-              },
-              {
-                href: 'https://www.linkedin.com/company/congruent-labs-pty-ltd/',
-                alt: 'LinkedIn',
-                fontIconClass: 'fab fa-linkedin',
               },
             ].map((listItem) => (
               <Box marginTop={1} marginRight={2} key={listItem.href}>
