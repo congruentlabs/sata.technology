@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 
 const mock = [
   {
-    image: 'governance-partner.png',
+    image: 'vote.png',
     description: 'Stake SATA to earn voting rights.',
     title: 'Governance Staking',
     button: 'Open Staking Pools',
@@ -16,13 +16,12 @@ const mock = [
     disabled: false,
   },
   {
-    image: 'vote.png',
+    image: 'governance-partner.png',
     description: 'Vote to grow the ecosystem.',
     title: 'Voting',
-    // button: 'Vote on Proposals',
-    button: 'Coming Soon!',
+    button: 'Open the DAO Dashbooard',
     href: '/vote',
-    disabled: true,
+    disabled: false,
   },
   {
     image: 'bridge.png',
