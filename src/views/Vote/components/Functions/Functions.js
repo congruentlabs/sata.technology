@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import TextField from '@mui/material/TextField';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
+// import Slider from '@mui/material/Slider';
 import { formatUnits } from '@ethersproject/units';
 import { useEthers, shortenAddress, useTokenBalance } from '@usedapp/core';
 import Web3Modal from 'web3modal';
@@ -19,7 +21,7 @@ import WalletLink from 'walletlink';
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 
 const sataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
-// const dSataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
+const dSataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
 
 const infuraId = 'dab56da72e89492da5a8e77fbc45c7fa';
 
@@ -67,10 +69,8 @@ const Functions = () => {
   const theme = useTheme();
   const { account, activate, chainId } = useEthers();
   const sataBalance = useTokenBalance(sataAddress, account);
-
-  useEffect(() => {
-    console.log(account);
-  }, [account]);
+  const dSataBalance = useTokenBalance(dSataAddress, account);
+  const [amount, setAmount] = useState(0);
 
   const handleConnect = async () => {
     try {
@@ -84,7 +84,6 @@ const Functions = () => {
   };
 
   useEffect(() => {
-    console.log(chainId);
     if (chainId && chainId !== 1) {
       window.ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -92,6 +91,11 @@ const Functions = () => {
       });
     }
   }, [chainId]);
+
+  const handleClickPercentage = (e, val) => {
+    e.preventDefault();
+    setAmount(sataBalance.div(100).mul(val));
+  };
 
   return (
     <Box>
@@ -106,7 +110,9 @@ const Functions = () => {
             variant="body1"
             gutterBottom
           >
-            SATA cannot be used for voting in the Signata DAO. To vote in proposals you must hold dSATA instead. If you wish to convert your SATA to dSATA, you can perform a one-way migration of your tokens while the migration period is open.
+            SATA cannot be used for voting in the Signata DAO. To vote in proposals you must hold dSATA
+            instead. If you wish to convert your SATA to dSATA, you can perform a one-way migration of
+            your SATA tokens while the migration period is open.
           </Typography>
           <Typography
             variant="body1"
@@ -115,10 +121,20 @@ const Functions = () => {
             The migration period ends at 2022-04-12 00:00 UTC.
           </Typography>
           <Typography
-            variant="body2"
+            variant="body1"
             gutterBottom
           >
-            SATA remains as a utility token that powers the identity ecosystem. dSATA provides the power to vote with confidence on the SATA treasury.
+            SATA remains as a utility token that powers the identity ecosystem. dSATA provides the power
+            to vote on the SATA treasury, the project, and the dSATA treasury.
+          </Typography>
+          <Typography
+            variant="body1"
+            color="red"
+            gutterBottom
+          >
+            The price of dSATA is not the same as SATA, they are independent tokens with different liquidity
+            pools. No bridge will be made to allow swapping between the tokens after the migration ends. Review the
+            published information here to decide if you wish to migrate your SATA or not.
           </Typography>
         </Grid>
         {!account && (
@@ -134,45 +150,68 @@ const Functions = () => {
           </Grid>
         )}
         {account && (
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <Stack spacing={1}>
-              <Typography variant="text1">
+              <Typography variant="h5" textAlign="center">
                 Connected Wallet: {account && shortenAddress(account)}
               </Typography>
-              <Typography variant="text2">
-                Connected To: {chainId === 1 ? 'Ethereum' : 'Wrong Network - Please switch to Ethereum!'}
-              </Typography>
-              
-              <Typography variant="text2">
-                SATA Balance: {fNumber(formatUnits(sataBalance || 0, 18))} SATA
+              <Typography variant="h6" textAlign="center">
+                Connected To: {chainId === 1 ? 'Ethereum Mainnet' : 'Wrong Network - Please switch to Ethereum!'}
               </Typography>
               <Typography variant="text2">
-                Choose how much of your SATA balance to migrate. To migrate, the amount you choose will swap your SATA balance for dSATA. If you choose 100%, you will swap all of your SATA for dSATA. If you choose 50%, half of your SATA will be swapped for dSATA.
+                Choose how much of your SATA balance to migrate. To migrate, the amount you choose will swap your SATA
+                balance for dSATA. If you choose 100%, you will swap all of your SATA for dSATA. If you choose 50%, half
+                of your SATA will be swapped for dSATA.
+              </Typography>
+              <Typography variant="text2" color="red">
+                Migration of SATA to dSATA is a one-way transaction, you cannot migrate dSATA back to SATA. The price of
+                dSATA and SATA are both set by secondary markets and not guaranteed when migrating tokens. You will
+                receive a 1-to-1 amount of dSATA for every SATA you migrate.
               </Typography>
               <Typography variant="text2">
-                Migration of SATA to dSATA is a one-way transaction, you cannot migrate dSATA back to SATA. The price of dSATA and SATA are both set by secondary markets and not guaranteed when migrating tokens. You will receive a 1-to-1 amount of dSATA for every SATA you migrate.
+                dSATA will not be able to be used for utility services within the SATA ecosystem. SATA will not be
+                able to be used to vote in Signata governance proposals. Each token serves a specific purpose, and
+                you must choose what you wish to use your SATA holdings for. dSATA will only be available on the Ethereum, and SATA
+                will continue to be available on multiple chains.
               </Typography>
-              <Typography variant="text2">
-                You can only migrate the amount of SATA you held at 2022-04-28 00:00 UTC. You can only call this migration function once, so choose carefully the exact amount you wish to migrate if you wish to move to dSATA.
+              <Typography variant="h6" textAlign="center" gutterBottom>
+                SATA Balance
               </Typography>
-              <Typography variant="text2">
-                dSATA will not be able to be used for utility services within the SATA ecosystem. SATA will not be able to be used to vote in Signata governance proposals. Each token serves a specific purpose, and you must choose what you wish to use your SATA holdings for.
+              <Typography variant="text2" textAlign="center" sx={{ fontFamily: 'monospace' }} gutterBottom>
+                {fNumber(formatUnits(sataBalance || 0, 18))} SATA
               </Typography>
-              <Slider
-                defaultValue={100}
-                aria-label="Percentage To Migrate"
-                valueLabelDisplay="auto"
-                step={1}
-                min={1}
-                max={100}
+              <ButtonGroup variant="outlined" color="secondary" fullWidth size="small">
+                <Button onClick={(e) => handleClickPercentage(e, 25)}>
+                  25%
+                </Button>
+                <Button onClick={(e) => handleClickPercentage(e, 50)}>
+                  50%
+                </Button>
+                <Button onClick={(e) => handleClickPercentage(e, 75)}>
+                  75%
+                </Button>
+                <Button onClick={(e) => handleClickPercentage(e, 100)}                >
+                  100%
+                </Button>
+              </ButtonGroup>
+              <TextField
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                variant="outlined"
               />
               <Button
                 variant="contained"
                 size="large"
                 onClick={handleConnect}
               >
-                Migrate to dSATA
+                MIGRATE TO dSATA
               </Button>
+              <Typography variant="h6" textAlign="center" gutterBottom>
+                dSATA Balance
+              </Typography>
+              <Typography variant="text2" textAlign="center" sx={{ fontFamily: 'monospace' }} gutterBottom>
+                {fNumber(formatUnits(dSataBalance || 0, 18))} dSATA
+              </Typography>
             </Stack>
           </Grid>
         )}
@@ -195,10 +234,11 @@ const Functions = () => {
             disabled: false,
           }
         ].map((item, i) => (
-          <Grid item xs={12} key={i}>
+          <Grid item xs={12} sm={6} key={i}>
             <Box
               component={item.disabled ? '' : 'a'}
               href={item.href}
+              target="_blank"
               display={'block'}
               width={1}
               height={1}
@@ -246,7 +286,7 @@ const Functions = () => {
                 <CardContent
                   sx={{
                     position: 'relative',
-                    width: { xs: 1, md: '50%' },
+                    width: { xs: 1 },
                     height: 1,
                     padding: 4,
                     display: 'flex',

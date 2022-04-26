@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-linux": "react-scripts --openssl-legacy-provider start",
     "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
     "prettier:fix": "prettier './src/**/*.js' --write",
     "eslint:fix": "eslint ./src --fix",
