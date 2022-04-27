@@ -5,13 +5,15 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import TextField from '@mui/material/TextField';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 // import Slider from '@mui/material/Slider';
 import { formatUnits } from '@ethersproject/units';
-import { useEthers, shortenAddress, useTokenBalance } from '@usedapp/core';
+import { useEthers, useTokenBalance } from '@usedapp/core';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Torus from '@toruslabs/torus-embed';
@@ -152,12 +154,14 @@ const Functions = () => {
         {account && (
           <Grid item xs={12}>
             <Stack spacing={1}>
-              <Typography variant="h5" textAlign="center">
-                Connected Wallet: {account && shortenAddress(account)}
-              </Typography>
-              <Typography variant="h6" textAlign="center">
-                Connected To: {chainId === 1 ? 'Ethereum Mainnet' : 'Wrong Network - Please switch to Ethereum!'}
-              </Typography>
+              <Alert severity="success" variant="outlined">
+                <AlertTitle>Connected Wallet</AlertTitle>
+                {account}
+              </Alert>
+              <Alert severity={chainId === 1 ? 'success' : 'error'} variant="outlined">
+                <AlertTitle>Connected Network</AlertTitle>
+                {chainId === 1 ? 'Ethereum Mainnet' : 'Wrong Network - Please switch to Ethereum!'}
+              </Alert>
               <Typography variant="text2">
                 Choose how much of your SATA balance to migrate. To migrate, the amount you choose will swap your SATA
                 balance for dSATA. If you choose 100%, you will swap all of your SATA for dSATA. If you choose 50%, half
@@ -174,12 +178,10 @@ const Functions = () => {
                 you must choose what you wish to use your SATA holdings for. dSATA will only be available on the Ethereum, and SATA
                 will continue to be available on multiple chains.
               </Typography>
-              <Typography variant="h6" textAlign="center" gutterBottom>
-                SATA Balance
-              </Typography>
-              <Typography variant="text2" textAlign="center" sx={{ fontFamily: 'monospace' }} gutterBottom>
+              <Alert severity="info" sx={{ fontFamily: 'monospace' }}>
+                <AlertTitle>Your SATA Balance</AlertTitle>
                 {fNumber(formatUnits(sataBalance || 0, 18))} SATA
-              </Typography>
+              </Alert>
               <ButtonGroup variant="outlined" color="secondary" fullWidth size="small">
                 <Button onClick={(e) => handleClickPercentage(e, 25)}>
                   25%
@@ -206,12 +208,10 @@ const Functions = () => {
               >
                 MIGRATE TO dSATA
               </Button>
-              <Typography variant="h6" textAlign="center" gutterBottom>
-                dSATA Balance
-              </Typography>
-              <Typography variant="text2" textAlign="center" sx={{ fontFamily: 'monospace' }} gutterBottom>
+              <Alert severity="info" sx={{ fontFamily: 'monospace' }}>
+                <AlertTitle>Your dSATA Balance</AlertTitle>
                 {fNumber(formatUnits(dSataBalance || 0, 18))} dSATA
-              </Typography>
+              </Alert>
             </Stack>
           </Grid>
         )}
