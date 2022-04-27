@@ -154,7 +154,7 @@ const Hero = () => {
               >
                 <Button
                   component={'a'}
-                  href="https://discord.gg/pEJu4ZjnfX"
+                  href="https://docs.signata.net"
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="outlined"
