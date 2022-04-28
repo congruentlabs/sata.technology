@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Button from '@mui/material/Button';
 
 import Container from 'components/Container';
 
@@ -23,9 +21,6 @@ const Hero = () => {
   });
 
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
 
   return (
     <Box
@@ -54,7 +49,7 @@ const Hero = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundImage:
-            'url(vote.png)',
+            'url(govern-large.png)',
           filter: theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
         }}
       />
@@ -78,10 +73,10 @@ const Hero = () => {
               color: 'common.white',
             }}
           >
-            Join the next generation of project governance using NFTs.
+            Vote to control the future of Signata
           </Typography>
         </Box>
-        <Box
+        {/* <Box
           display="flex"
           flexDirection={{ xs: 'column', sm: 'row' }}
           alignItems={{ xs: 'stretched', sm: 'flex-start' }}
@@ -116,7 +111,7 @@ const Hero = () => {
               Governance Model
             </Button>
           </Box>
-        </Box>
+        </Box> */}
       </Container>
     </Box>
   );

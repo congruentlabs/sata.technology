@@ -8,26 +8,33 @@ import Grid from '@mui/material/Grid';
 
 const mock = [
   {
-    image: 'governance-partner.png',
-    description: 'Stake SATA to earn voting rights.',
+    image: 'signata-app.png',
+    title: 'Use Signata',
+    description: 'Manage your Identities.',
+    button: 'Open The App',
+    href: 'https://signata.net',
+    disabled: false,
+  },
+  {
+    image: 'vote.png',
     title: 'Governance Staking',
+    description: 'Stake SATA to earn voting rights.',
     button: 'Open Staking Pools',
     href: '/staking',
     disabled: false,
   },
   {
-    image: 'vote.png',
-    description: 'Vote to grow the ecosystem.',
+    image: 'governance-partner.png',
     title: 'Voting',
-    // button: 'Vote on Proposals',
-    button: 'Coming Soon!',
+    description: 'Vote to grow the ecosystem.',
+    button: 'Open the DAO Dashbooard',
     href: '/vote',
-    disabled: true,
+    disabled: false,
   },
   {
     image: 'bridge.png',
-    description: 'Move SATA between supported blockchains.',
     title: 'Token Bridge',
+    description: 'Move SATA between supported blockchains.',
     button: 'Open the Bridge',
     href: 'https://bridge.sata.technology/',
     disabled: false,
@@ -44,6 +51,7 @@ const Functions = () => {
             <Box
               component={item.disabled ? '' : 'a'}
               href={item.href}
+              target="_blank"
               display={'block'}
               width={1}
               height={1}

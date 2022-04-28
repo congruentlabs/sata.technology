@@ -6,6 +6,7 @@ import { createBrowserHistory } from 'history';
 import Page from './components/Page';
 import {
   IndexView,
+  Vote,
   Staking,
 } from './views';
 
@@ -19,17 +20,16 @@ import 'scss/slick-slider.scss';
 
 const browserHistory = createBrowserHistory();
 
-const App = () => {
-  return (
-    <Page>
-      <Router history={browserHistory}>
-        <Route exact path="/" component={IndexView} />
-        <Route exact path="/staking" component={Staking} />
-        <Route to="/not-found" />
-        {/* <Routes /> */}
-      </Router>
-    </Page>
-  );
-};
+const App = () => (
+  <Page>
+    <Router history={browserHistory}>
+      <Route exact path="/" component={IndexView} />
+      <Route exact path="/staking" component={Staking} />
+      <Route exact path="/vote" component={Vote} />
+      <Route to="/not-found" />
+      {/* <Routes /> */}
+    </Router>
+  </Page>
+);
 
 export default App;

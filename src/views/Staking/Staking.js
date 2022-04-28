@@ -8,7 +8,7 @@ import {
   StakingSection,
 } from './components';
 
-const IndexView = () => {
+const Staking = () => {
   const theme = useTheme();
   return (
     <Box sx={{ overflowX: 'hidden' }}>
@@ -50,4 +50,4 @@ const IndexView = () => {
   );
 };
 
-export default IndexView;
+export default Staking;

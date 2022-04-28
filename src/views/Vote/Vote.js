@@ -4,16 +4,14 @@ import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import {
-  Hero,
-  Proposals,
+  Functions,
 } from './components';
 
-const VoteView = () => {
+const Vote = () => {
   const theme = useTheme();
   return (
     <Box sx={{ overflowX: 'hidden' }}>
       <Main>
-        <Hero />
         <Box
           sx={{
             backgroundImage: `linear-gradient(to bottom, ${alpha(
@@ -25,7 +23,7 @@ const VoteView = () => {
           }}
         >
           <Container>
-            <Proposals />
+            <Functions />
           </Container>
           <Box
             component={'svg'}
@@ -50,4 +48,4 @@ const VoteView = () => {
   );
 };
 
-export default VoteView;
+export default Vote;
