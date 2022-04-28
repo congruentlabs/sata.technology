@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { BigNumber } from 'ethers';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -9,11 +10,12 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import TextField from '@mui/material/TextField';
 import CardContent from '@mui/material/CardContent';
+import LinearProgress from '@mui/material/LinearProgress';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 // import Slider from '@mui/material/Slider';
-import { formatUnits } from '@ethersproject/units';
-import { useEthers, useTokenBalance } from '@usedapp/core';
+import { formatUnits, parseUnits } from '@ethersproject/units';
+import { useEthers, useTokenBalance, useTokenAllowance } from '@usedapp/core';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Torus from '@toruslabs/torus-embed';
@@ -22,8 +24,11 @@ import WalletLink from 'walletlink';
 // import Fortmatic from 'fortmatic';
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 
+import { useExchange, useApprove } from './hooks';
+
 const sataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
-const dSataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
+const dSataAddress = '0x49428f057dd9d20a8e4c6873e98afd8cd7146e3b';
+const exchangerAddress = '0x72dc15c9353EA3d5bc040B67d5Dd94A9E469154A';
 
 const infuraId = 'dab56da72e89492da5a8e77fbc45c7fa';
 
@@ -72,7 +77,55 @@ const Functions = () => {
   const { account, activate, chainId } = useEthers();
   const sataBalance = useTokenBalance(sataAddress, account);
   const dSataBalance = useTokenBalance(dSataAddress, account);
+  const allowance = useTokenAllowance(sataAddress, account, exchangerAddress);
+  const { state: exchState, send: exchSend, resetState: exchResetState } = useExchange();
+  const { state: approveState, send: approveSend, resetState: approveResetState } = useApprove();
+  const [actualAmount, setActualAmount] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (approveState) {
+      console.log(approveState);
+      if (approveState.status === 'PendingSignature') {
+        setLoading(true);
+      }
+      if (approveState.status === 'Exception') {
+        setLoading(false);
+      }
+      if (approveState.status === 'None') {
+        setLoading(false);
+      }
+      if (approveState.status === 'Mining') {
+        setLoading(true);
+      }
+      if (approveState.status === 'Success') {
+        setLoading(false);
+      }
+    }
+  }, [approveState]);
+
+  useEffect(() => {
+    if (exchState) {
+      console.log(exchState);
+      if (exchState.status === 'PendingSignature') {
+        setLoading(true);
+      }
+      if (exchState.status === 'Exception') {
+        setLoading(false);
+      }
+      if (exchState.status === 'None') {
+        setLoading(false);
+      }
+      if (exchState.status === 'Mining') {
+        setLoading(true);
+      }
+      if (exchState.status === 'Success') {
+        setLoading(false);
+      }
+    }
+  }, [exchState]);
+
 
   const handleConnect = async () => {
     try {
@@ -96,7 +149,36 @@ const Functions = () => {
 
   const handleClickPercentage = (e, val) => {
     e.preventDefault();
-    setAmount(sataBalance.div(100).mul(val));
+    const newAmount = sataBalance.div(100).mul(val);
+    setActualAmount(newAmount);
+    setAmount(formatUnits(newAmount || 0, 18));
+  };
+
+  const handleChangeAmount = (e) => {
+    e.preventDefault();
+    try {
+      const newAmount = e.target.value;
+      const parsedAmount = parseUnits(newAmount);
+      if (parsedAmount.gt(sataBalance) || parsedAmount.isNegative()) {
+        setActualAmount(sataBalance);
+        setAmount(formatUnits(sataBalance || 0, 18));
+      } else {
+        setActualAmount(parsedAmount);
+        setAmount(newAmount);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleClickApprove = () => {
+    approveResetState();
+    approveSend(exchangerAddress, BigNumber.from(actualAmount));
+  };
+
+  const handleClickExchange = () => {
+    exchResetState();
+    exchSend(actualAmount);
   };
 
   return (
@@ -120,7 +202,7 @@ const Functions = () => {
             variant="body1"
             gutterBottom
           >
-            The migration period ends at 2022-04-12 00:00 UTC.
+            The migration period ends at <b>2022-04-12 13:00 UTC</b>.
           </Typography>
           <Typography
             variant="body1"
@@ -198,16 +280,67 @@ const Functions = () => {
               </ButtonGroup>
               <TextField
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                label="Amount of SATA to exchange for dSATA"
+                onChange={handleChangeAmount}
                 variant="outlined"
               />
-              <Button
-                variant="contained"
-                size="large"
-                onClick={handleConnect}
-              >
-                MIGRATE TO dSATA
-              </Button>
+              {allowance < actualAmount ? (
+                <Button
+                  variant="contained"
+                  size="large"
+                  disabled={isLoading}
+                  onClick={handleClickApprove}
+                >
+                  APPROVE
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  size="large"
+                  disabled={isLoading}
+                  onClick={handleClickExchange}
+                >
+                  MIGRATE TO dSATA
+                </Button>
+              )}
+              {isLoading && <LinearProgress />}
+              {exchState && exchState.status === 'Success' && (
+                <Alert severity="success">
+                  <AlertTitle>Transaction Complete!</AlertTitle>
+                </Alert>
+              )}
+              {exchState && exchState.status === 'Mining' && (
+                <Alert severity="info">
+                  <AlertTitle>Transaction Pending...</AlertTitle>
+                </Alert>
+              )}
+              {exchState && exchState.status === 'PendingSignature' && (
+                <Alert severity="info">
+                  <AlertTitle>Waiting for Wallet Signature</AlertTitle>
+                </Alert>
+              )}
+              {exchState && exchState.status === 'Exception' && (
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  {exchState.errorMessage}
+                </Alert>
+              )}
+              {approveState && approveState.status === 'PendingSignature' && (
+                <Alert severity="info">
+                  <AlertTitle>Waiting for Wallet Signature</AlertTitle>
+                </Alert>
+              )}
+              {approveState && approveState.status === 'Exception' && (
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  {approveState.errorMessage}
+                </Alert>
+              )}
+              {approveState && approveState.status === 'Mining' && (
+                <Alert severity="info">
+                  <AlertTitle>Transaction Pending...</AlertTitle>
+                </Alert>
+              )}
               <Alert severity="info" sx={{ fontFamily: 'monospace' }}>
                 <AlertTitle>Your dSATA Balance</AlertTitle>
                 {fNumber(formatUnits(dSataBalance || 0, 18))} dSATA
@@ -230,7 +363,7 @@ const Functions = () => {
             description2: 'dSATA was launched with 50 million total supply. 25 million tokens have been provided as liquidity on Uniswap. 25 million tokens will be made available for migrating SATA holders. Any tokens that do not migrate before the migration expires will be held by the Signata DAO.',
             title: 'dSATA Token',
             button: 'Buy dSATA on Uniswap',
-            href: 'https://app.uniswap.org/#/swap?outputCurrency=<TODO>',
+            href: 'https://app.uniswap.org/#/swap?outputCurrency=0x49428f057dd9d20a8e4c6873e98afd8cd7146e3b',
             disabled: false,
           }
         ].map((item, i) => (
