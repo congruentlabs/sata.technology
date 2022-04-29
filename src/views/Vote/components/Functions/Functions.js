@@ -202,7 +202,7 @@ const Functions = () => {
             variant="body1"
             gutterBottom
           >
-            The migration period ends at <b>2022-04-12 13:00 UTC</b>.
+            The migration period ends at <b>2022-05-12 13:00 UTC</b>.
           </Typography>
           <Typography
             variant="body1"
