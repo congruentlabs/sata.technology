@@ -13,7 +13,14 @@ import CardContent from '@mui/material/CardContent';
 import LinearProgress from '@mui/material/LinearProgress';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-// import Slider from '@mui/material/Slider';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Octokit } from 'octokit';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { useEthers, useTokenBalance, useTokenAllowance } from '@usedapp/core';
 import Web3Modal from 'web3modal';
@@ -25,6 +32,8 @@ import WalletLink from 'walletlink';
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 
 import { useExchange, useApprove } from './hooks';
+
+const octokit = new Octokit();
 
 const sataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
 const dSataAddress = '0x49428f057dd9d20a8e4c6873e98afd8cd7146e3b';
@@ -83,6 +92,17 @@ const Functions = () => {
   const [actualAmount, setActualAmount] = useState(0);
   const [amount, setAmount] = useState(0);
   const [isLoading, setLoading] = useState(false);
+
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const ghIssues = await octokit.request('GET /repos/congruentlabs/signata-dao/issues');
+      setIssues(ghIssues.data);
+    };
+
+    getData();
+  }, []);
 
   useEffect(() => {
     if (approveState) {
@@ -184,12 +204,68 @@ const Functions = () => {
   return (
     <Box>
       <Grid container spacing={4}>
-        <Grid item xs={12} textAlign="center">
-          <Typography variant="h3">
-            dSATA Migration
+        <Grid item xs={12}>
+          <Typography variant="h3" gutterBottom>
+            DAO Proposals
+          </Typography>
+          <Typography variant="body1">
+          The Signata DAO is managed on GitHub. Use the links below to view the current proposals and discuss them before they move to voting.
           </Typography>
         </Grid>
         <Grid item xs={12}>
+          <TableContainer component={Paper}>
+            <Table aria-label="issues table" size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">#</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell align="center">State</TableCell>
+                  <TableCell align="center">Comments</TableCell>
+                  <TableCell align="center">Link</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {issues.map((issue) => (
+                  <TableRow key={issue.id}>
+                    <TableCell align="left">{issue.number}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {issue.title}
+                    </TableCell>
+                    <TableCell align="center">{issue.state}</TableCell>
+                    <TableCell align="center">{issue.comments}</TableCell>
+                    <TableCell align="center">
+                      <Button target="_blank" href={issue.url} size="small" variant="outlined">
+                        View on GitHub
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h3" gutterBottom>
+            DAO Voting
+          </Typography>
+          <Typography variant="body1">
+            The Signata DAO uses Tally.xyz for on-chain proposals and voting. Use Tally to vote, delegate your voting power, and more.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            target="_blank"
+            href="https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B"
+            size="large"
+            variant="outlined"
+          >
+            Open Tally.xyz
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h3" gutterBottom>
+            SATA to dSATA Exchange
+          </Typography>
           <Typography
             variant="body1"
             gutterBottom
@@ -202,7 +278,7 @@ const Functions = () => {
             variant="body1"
             gutterBottom
           >
-            The migration period ends at <b>2022-05-12 13:00 UTC</b>.
+            The migration period ends at <b>2022-05-20 13:00 UTC</b>.
           </Typography>
           <Typography
             variant="body1"

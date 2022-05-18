@@ -4,6 +4,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // import { useTranslation } from 'react-i18next';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -136,22 +137,18 @@ const Hero = () => {
               alignItems={{ xs: 'stretched', sm: 'flex-start' }}
               marginTop={4}
             >
-              <Button
-                component={'a'}
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth={isMd ? false : true}
-                href="/sata-whitepaper-2021-03-24.pdf"
-                download
-              >
-                Read the Whitepaper
-              </Button>
-              <Box
-                marginTop={{ xs: 2, sm: 0 }}
-                marginLeft={{ sm: 2 }}
-                width={{ xs: '100%', md: 'auto' }}
-              >
+              <ButtonGroup orientation={isMd ? 'horizontal' : 'vertical' } fullWidth>
+                <Button
+                  component={'a'}
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  fullWidth={isMd ? false : true}
+                  href="/sata-whitepaper-2021-03-24.pdf"
+                  download
+                >
+                  Whitepaper
+                </Button>
                 <Button
                   component={'a'}
                   href="https://docs.signata.net"
@@ -162,9 +159,21 @@ const Hero = () => {
                   size="large"
                   fullWidth={isMd ? false : true}
                 >
-                  Read the Docs
+                  Documentation
                 </Button>
-              </Box>
+                <Button
+                  component={'a'}
+                  href="https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  fullWidth={isMd ? false : true}
+                >
+                  DAO
+                </Button>
+              </ButtonGroup>
             </Box>
           </Box>
         </Container>
