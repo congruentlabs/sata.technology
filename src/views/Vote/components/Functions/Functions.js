@@ -37,7 +37,7 @@ const octokit = new Octokit();
 
 const sataAddress = '0x3ebb4A4e91Ad83BE51F8d596533818b246F4bEe1';
 const dSataAddress = '0x49428f057dd9d20a8e4c6873e98afd8cd7146e3b';
-const exchangerAddress = '0x72dc15c9353EA3d5bc040B67d5Dd94A9E469154A';
+const exchangerAddress = '0xB321feAa9018C20e94a5c4F3bf44EADEbfCF7E6C';
 
 const infuraId = 'dab56da72e89492da5a8e77fbc45c7fa';
 
@@ -98,6 +98,7 @@ const Functions = () => {
   useEffect(() => {
     const getData = async () => {
       const ghIssues = await octokit.request('GET /repos/congruentlabs/signata-dao/issues');
+      console.log(ghIssues.data);
       setIssues(ghIssues.data);
     };
 
@@ -209,7 +210,7 @@ const Functions = () => {
             DAO Proposals
           </Typography>
           <Typography variant="body1">
-          The Signata DAO is managed on GitHub. Use the links below to view the current proposals and discuss them before they move to voting.
+          The Signata Decentralized Autonomous Organization (DAO) is managed on GitHub. Use the links below to view the current proposals and discuss them before they move to voting.
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -219,7 +220,7 @@ const Functions = () => {
                 <TableRow>
                   <TableCell align="left">#</TableCell>
                   <TableCell>Title</TableCell>
-                  <TableCell align="center">State</TableCell>
+                  <TableCell align="center">Status</TableCell>
                   <TableCell align="center">Comments</TableCell>
                   <TableCell align="center">Link</TableCell>
                 </TableRow>
@@ -234,7 +235,7 @@ const Functions = () => {
                     <TableCell align="center">{issue.state}</TableCell>
                     <TableCell align="center">{issue.comments}</TableCell>
                     <TableCell align="center">
-                      <Button target="_blank" href={issue.url} size="small" variant="outlined">
+                      <Button target="_blank" href={issue.html_url} size="small" variant="outlined">
                         View on GitHub
                       </Button>
                     </TableCell>
