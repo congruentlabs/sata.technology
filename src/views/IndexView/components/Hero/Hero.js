@@ -117,7 +117,7 @@ const Hero = () => {
                 variant={'inherit'}
               >
                 <Typed
-                  strings={['Identity.', 'Authentication.', 'Payments.', 'Privacy.']}
+                  strings={['Identity.', 'Authentication.', 'Access.', 'Privacy.']}
                   typeSpeed={100}
                   loop={true}
                 />
@@ -144,22 +144,12 @@ const Hero = () => {
                   color="primary"
                   size="large"
                   fullWidth={isMd ? false : true}
-                  href="/sata-whitepaper-2021-03-24.pdf"
-                  download
-                >
-                  Whitepaper
-                </Button>
-                <Button
-                  component={'a'}
                   href="https://docs.signata.net"
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  fullWidth={isMd ? false : true}
+                  download
                 >
-                  Documentation
+                  DOCUMENTATION
                 </Button>
                 <Button
                   component={'a'}

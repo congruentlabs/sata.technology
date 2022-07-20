@@ -6,29 +6,37 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 
-const mock = [
+const items = [
   {
     image: 'signata-app.png',
-    title: 'Use Signata',
+    title: 'My Signata ID',
     description: 'Manage your Identities.',
-    button: 'Open The App',
+    button: 'Open The dApp',
+    href: 'https://signata.net',
+    disabled: false,
+  },
+  {
+    image: 'signata-app.png',
+    title: 'Veriswap',
+    description: 'See Signata in action.',
+    button: 'Open Veriswap',
     href: 'https://signata.net',
     disabled: false,
   },
   {
     image: 'vote.png',
-    title: 'Governance Staking',
-    description: 'Stake SATA to earn voting rights.',
-    button: 'Open Staking Pools',
-    href: '/staking',
+    title: 'Voting',
+    description: 'Vote on open proposals.',
+    button: 'Open the DAO Dashbooard',
+    href: 'https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B',
     disabled: false,
   },
   {
     image: 'governance-partner.png',
-    title: 'Voting',
-    description: 'Vote to grow the ecosystem.',
-    button: 'Open the DAO Dashbooard',
-    href: '/vote',
+    title: 'Proposal Management',
+    description: 'Discuss protocol changes.',
+    button: 'View Proposals',
+    href: 'https://github.com/congruentlabs/signata-dao/issues',
     disabled: false,
   },
   {
@@ -46,8 +54,8 @@ const Functions = () => {
   return (
     <Box>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
-          <Grid item xs={12} key={i}>
+        {items.map((item, i) => (
+          <Grid item xs={12} sm={6} key={i}>
             <Box
               component={item.disabled ? '' : 'a'}
               href={item.href}
