@@ -39,7 +39,7 @@ const Footer = () => {
                 fontIconClass: 'fab fa-telegram',
               },
               {
-                href: 'https://twitter.com/satatoken',
+                href: 'https://twitter.com/signataofficial',
                 alt: 'Twitter',
                 fontIconClass: 'fab fa-twitter',
               },

@@ -8,7 +8,7 @@ import {
   Partners,
   Features,
   Video,
-  Token,
+  // Token,
   Functions,
 } from './components';
 
@@ -18,9 +18,6 @@ const IndexView = () => {
     <Box sx={{ overflowX: 'hidden' }}>
       <Main>
         <Hero />
-        <Container maxWidth="md">
-          <Video />
-        </Container>
         <Box
           sx={{
             backgroundImage: `linear-gradient(to bottom, ${alpha(
@@ -32,16 +29,19 @@ const IndexView = () => {
           }}
         >
           <Container>
+            <Functions />
+          </Container>
+          <Container maxWidth="md">
+            <Video />
+          </Container>
+          <Container>
             <Features />
           </Container>
-          <Container>
+          {/* <Container>
             <Token />
-          </Container>
+          </Container> */}
           <Container>
             <Partners />
-          </Container>
-          <Container>
-            <Functions />
           </Container>
           <Box
             component={'svg'}

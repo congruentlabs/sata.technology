@@ -129,7 +129,7 @@ const Hero = () => {
               color="text.secondary"
               sx={{ fontWeight: 400 }}
             >
-              Welcome to Signata, your private identity for the web3 future.
+              Welcome to Signata, your identity manager for web3.
             </Typography>
             <Box
               display="flex"

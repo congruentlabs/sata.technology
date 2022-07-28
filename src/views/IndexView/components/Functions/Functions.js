@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -8,35 +7,35 @@ import Grid from '@mui/material/Grid';
 
 const items = [
   {
-    image: 'signata-app.png',
-    title: 'My Signata ID',
-    description: 'Manage your Identities.',
+    image: 'micah-williams-lmFJOx7hPc4-unsplash.jpg',
+    title: 'Identity Manager',
+    description: 'Manage your Decentralized Identities.',
     button: 'Open The dApp',
     href: 'https://signata.net',
     disabled: false,
   },
   {
-    image: 'signata-app.png',
+    image: 'callum-blacoe-KcBhBXlYiDg-unsplash.jpg',
     title: 'Veriswap',
-    description: 'See Signata in action.',
+    description: 'P2P swaps with the security of Signata.',
     button: 'Open Veriswap',
-    href: 'https://signata.net',
-    disabled: false,
-  },
-  {
-    image: 'vote.png',
-    title: 'Voting',
-    description: 'Vote on open proposals.',
-    button: 'Open the DAO Dashbooard',
-    href: 'https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B',
+    href: 'https://veriswap.io',
     disabled: false,
   },
   {
     image: 'governance-partner.png',
-    title: 'Proposal Management',
+    title: 'DAO Proposals',
     description: 'Discuss protocol changes.',
     button: 'View Proposals',
     href: 'https://github.com/congruentlabs/signata-dao/issues',
+    disabled: false,
+  },
+  {
+    image: 'vote.png',
+    title: 'DAO Voting',
+    description: 'Vote on open proposals.',
+    button: 'Open the DAO Dashbooard',
+    href: 'https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B',
     disabled: false,
   },
   {
@@ -47,10 +46,17 @@ const items = [
     href: 'https://bridge.sata.technology/',
     disabled: false,
   },
+  {
+    image: 'sigmund-HsTnjCVQ798-unsplash.jpg',
+    title: 'Documentation',
+    description: 'Learn how to build with Signata.',
+    button: 'Read Docs',
+    href: 'https://docs.signata.net/',
+    disabled: false,
+  },
 ];
 
 const Functions = () => {
-  const theme = useTheme();
   return (
     <Box>
       <Grid container spacing={4}>
@@ -66,9 +72,6 @@ const Functions = () => {
               sx={{
                 textDecoration: 'none',
                 transition: 'all .2s ease-in-out',
-                '&:hover': {
-                  transform: `translateY(-${theme.spacing(1 / 2)})`,
-                },
               }}
             >
               <Box
