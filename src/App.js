@@ -1,8 +1,5 @@
 import React from 'react';
-// import { Router } from 'react-router-dom';
-import { Router, Route } from 'react-router';
-import { createBrowserHistory } from 'history';
-// import Routes from './Routes';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Page from './components/Page';
 import {
   IndexView,
@@ -18,17 +15,15 @@ import 'aos/dist/aos.css';
 import 'scss/react-images.scss';
 import 'scss/slick-slider.scss';
 
-const browserHistory = createBrowserHistory();
-
 const App = () => (
   <Page>
-    <Router history={browserHistory}>
-      <Route exact path="/" component={IndexView} />
-      <Route exact path="/staking" component={Staking} />
-      <Route exact path="/vote" component={Vote} />
-      <Route to="/not-found" />
-      {/* <Routes /> */}
-    </Router>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<IndexView />} />
+        <Route path="staking" element={<Staking />} />
+        <Route path="vote" element={<Vote />} />
+      </Routes>
+    </HashRouter>
   </Page>
 );
 
