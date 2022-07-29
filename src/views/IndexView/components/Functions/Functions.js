@@ -11,7 +11,7 @@ const items = [
     title: 'Identity Manager',
     description: 'Manage your Decentralized Identities.',
     button: 'Open The dApp',
-    href: 'https://signata.net',
+    href: 'https://my.signata.net',
     disabled: false,
   },
   {
