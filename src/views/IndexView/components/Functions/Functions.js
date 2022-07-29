@@ -13,6 +13,7 @@ const items = [
     button: 'Open The dApp',
     href: 'https://my.signata.net',
     disabled: false,
+    sm: 6
   },
   {
     image: 'callum-blacoe-KcBhBXlYiDg-unsplash.jpg',
@@ -21,6 +22,7 @@ const items = [
     button: 'Open Veriswap',
     href: 'https://veriswap.io',
     disabled: false,
+    sm: 6
   },
   {
     image: 'governance-partner.png',
@@ -29,6 +31,7 @@ const items = [
     button: 'View Proposals',
     href: 'https://github.com/congruentlabs/signata-dao/issues',
     disabled: false,
+    sm: 6
   },
   {
     image: 'vote.png',
@@ -37,14 +40,7 @@ const items = [
     button: 'Open the DAO Dashbooard',
     href: 'https://www.tally.xyz/governance/eip155:1:0x3D3255D21654B9a8325DfE6353ac6B37352Eb80B',
     disabled: false,
-  },
-  {
-    image: 'bridge.png',
-    title: 'Token Bridge',
-    description: 'Move SATA between supported blockchains.',
-    button: 'Open the Bridge',
-    href: 'https://bridge.sata.technology/',
-    disabled: false,
+    sm: 6
   },
   {
     image: 'sigmund-HsTnjCVQ798-unsplash.jpg',
@@ -53,6 +49,25 @@ const items = [
     button: 'Read Docs',
     href: 'https://docs.signata.net/',
     disabled: false,
+    sm: 12
+  },
+  {
+    image: 'bridge.png',
+    title: 'Token Bridge (New)',
+    description: 'Move SATA between supported blockchains.',
+    button: 'Open the Bridge',
+    href: 'https://app.multichain.org/#/router',
+    disabled: false,
+    sm: 6
+  },
+  {
+    image: 'bridge.png',
+    title: 'Token Bridge (Old)',
+    description: 'Move SATA between supported blockchains.',
+    button: 'Open the Bridge',
+    href: 'https://bridge.sata.technology/',
+    disabled: false,
+    sm: 6
   },
 ];
 
@@ -61,7 +76,7 @@ const Functions = () => {
     <Box>
       <Grid container spacing={4}>
         {items.map((item, i) => (
-          <Grid item xs={12} sm={6} key={i}>
+          <Grid item xs={12} sm={item.sm} key={i}>
             <Box
               component={item.disabled ? '' : 'a'}
               href={item.href}
