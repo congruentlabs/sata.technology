@@ -7,6 +7,15 @@ import Grid from '@mui/material/Grid';
 
 const items = [
   {
+    image: 'sigmund-HsTnjCVQ798-unsplash.jpg',
+    title: 'Documentation',
+    description: 'Add identity to your dApps.',
+    button: 'Read Docs',
+    href: 'https://docs.signata.net/',
+    disabled: false,
+    sm: 12
+  },
+  {
     image: 'micah-williams-lmFJOx7hPc4-unsplash.jpg',
     title: 'Identity Manager',
     description: 'Manage your Decentralized Identities.',
@@ -18,7 +27,7 @@ const items = [
   {
     image: 'callum-blacoe-KcBhBXlYiDg-unsplash.jpg',
     title: 'Veriswap',
-    description: 'P2P swaps with the security of Signata.',
+    description: 'P2P swaps with Signata identities.',
     button: 'Open Veriswap',
     href: 'https://veriswap.io',
     disabled: false,
@@ -43,29 +52,20 @@ const items = [
     sm: 6
   },
   {
-    image: 'sigmund-HsTnjCVQ798-unsplash.jpg',
-    title: 'Documentation',
-    description: 'Learn how to build with Signata.',
-    button: 'Read Docs',
-    href: 'https://docs.signata.net/',
-    disabled: false,
-    sm: 12
-  },
-  {
-    image: 'bridge.png',
-    title: 'Token Bridge (New)',
-    description: 'Move SATA between supported blockchains.',
+    image: 'multichain.png',
+    title: 'BSC Token Bridge',
+    description: 'Move SATA between Ethereum and BSC.',
     button: 'Open the Bridge',
     href: 'https://app.multichain.org/#/router',
     disabled: false,
     sm: 6
   },
   {
-    image: 'bridge.png',
-    title: 'Token Bridge (Old)',
-    description: 'Move SATA between supported blockchains.',
+    image: 'polygon.png',
+    title: 'Polygon Token Bridge',
+    description: 'Move SATA between Ethereum and Polygon.',
     button: 'Open the Bridge',
-    href: 'https://bridge.sata.technology/',
+    href: 'https://wallet.polygon.technology/login?next=%2Fbridge',
     disabled: false,
     sm: 6
   },
