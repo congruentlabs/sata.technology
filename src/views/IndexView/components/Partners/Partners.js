@@ -16,6 +16,7 @@ const Partners = () => {
           { img: 'biologica.png', alt: 'Biológica Soluciones', url: 'https://www.biologicasoluciones.com/' },
           { img: 'lgcy.png', alt: 'LGCY Network', url: 'https://blog.congruentlabs.co/announcing-signata-partnership-with-lgcy-network/' },
           { img: 'agfi.png', alt: 'Aggregated Finance', url: 'https://blog.congruentlabs.co/announcing-signata-partnership-with-aggregated-finance/' },
+          { img: 'bigcap.png', alt: 'BIGCAP', url: 'https://blog.congruentlabs.co/announcing-signata-integration-with-bigcap/' },
         ].map((item, i) => (
           <Box
             maxWidth={180}
