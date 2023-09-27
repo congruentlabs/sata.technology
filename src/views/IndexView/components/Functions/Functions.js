@@ -52,15 +52,6 @@ const items = [
     sm: 6
   },
   {
-    image: 'multichain.png',
-    title: 'BSC Token Bridge',
-    description: 'Move SATA between Ethereum and BSC.',
-    button: 'Open the Bridge',
-    href: 'https://app.multichain.org/#/router',
-    disabled: false,
-    sm: 6
-  },
-  {
     image: 'polygon.png',
     title: 'Polygon Token Bridge',
     description: 'Move SATA between Ethereum and Polygon.',
