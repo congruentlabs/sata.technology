@@ -1,95 +1,70 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
 import { ThemeModeToggler } from './components';
 
+const navItems = [
+  { label: 'Identities', to: '/' },
+  { label: 'Vote', to: '/vote' },
+  { label: 'Staking', to: '/staking' },
+  { label: 'About', to: '/about' },
+];
+
 const Topbar = () => {
-  // const {
-  //   landings: landingPages,
-  // } = pages;
+  const location = useLocation();
+  const currentPath = location.pathname || '/';
 
   return (
-    <Box
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      width={1}
-    >
+    <Box display="flex" justifyContent="space-between" alignItems="center" width={1}>
       <Box
-        display={'flex'}
-        component="a"
-        href="/"
+        display="flex"
+        component={RouterLink}
+        to="/"
         title="Signata"
         width={{ xs: 100, md: 120 }}
       >
-        <Box
-          component={'img'}
-          src="logo.png"
-          height={0.4}
-          width={0.4}
-        />
+        <Box component="img" src="logo.png" height={0.4} width={0.4} alt="Signata" />
       </Box>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        {/* <Box>
-          <NavItem
-            title={'Landings'}
-            id={'landing-pages'}
-            items={landingPages}
-          />
-        </Box> */}
-        {/* <Box marginLeft={3}>
-          <NavItem
-            title={'Pages'}
-            id={'secondary-pages'}
-            items={secondaryPages}
-          />
-        </Box>
-        <Box marginLeft={3}>
-          <NavItem
-            title={'Account'}
-            id={'account-pages'}
-            items={accountPages}
-          />
-        </Box> */}
-        {/* <Box marginLeft={3}>
+
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
+        {navItems.map((item) => {
+          const active = item.to === '/' ? currentPath === '/' : currentPath.startsWith(item.to);
+          return (
+            <Link
+              key={item.to}
+              component={RouterLink}
+              to={item.to}
+              underline={active ? 'always' : 'none'}
+              color={active ? 'primary' : 'text.primary'}
+              sx={{ fontWeight: active ? 600 : 400 }}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+        <ThemeModeToggler />
+      </Box>
+
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1, alignItems: 'center' }}>
+        {navItems.map((item) => (
           <Link
+            key={item.to}
+            component={RouterLink}
+            to={item.to}
             underline="none"
-            component="a"
-            href="/docs/introduction"
             color="text.primary"
+            variant="caption"
+            sx={{ fontSize: 11 }}
           >
-            Documentation
+            {item.label}
           </Link>
-        </Box> */}
-        <Box marginLeft={3}>
-          <ThemeModeToggler />
-        </Box>
-        {/* <Box marginLeft={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-            target="blank"
-            href="https://material-ui.com/store/items/the-front-landing-page/"
-            size="large"
-          >
-            Purchase 
-          </Button>
-        </Box> */}
-      </Box>
-      <Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-        <Box marginRight={2}>
-          <ThemeModeToggler />
-        </Box>
+        ))}
+        <ThemeModeToggler />
       </Box>
     </Box>
   );
-};
-
-Topbar.propTypes = {
-  onSidebarOpen: PropTypes.func,
-  pages: PropTypes.object,
 };
 
 export default Topbar;
