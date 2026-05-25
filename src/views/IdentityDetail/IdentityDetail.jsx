@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import {
   Alert,
@@ -18,7 +18,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import {
   erc20Abi,
   formatUnits,
@@ -44,7 +44,7 @@ import {
   useIdentityState,
 } from '../../hooks/contracts';
 
-const shorten = (a) => (a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '');
+const shorten = (a) => (a ? `${a.slice(0, 6)}â€¦${a.slice(-4)}` : '');
 
 export default function IdentityDetail() {
   const { id: routeAddress } = useParams();
@@ -243,7 +243,7 @@ export default function IdentityDetail() {
 
           {!state.exists && (
             <Alert severity="info">
-              This identity hasn’t been registered on-chain yet. Go back to the dashboard and click
+              This identity hasnâ€™t been registered on-chain yet. Go back to the dashboard and click
               <strong> Register</strong> on its card to mint it.
             </Alert>
           )}
@@ -307,7 +307,7 @@ export default function IdentityDetail() {
                 <Typography variant="h6">KYC Right</Typography>
                 <Typography variant="body2" color="text.secondary" gutterBottom>
                   KYC attestations are minted by Signata after off-chain identity verification. The
-                  claim signature must be issued by the KYC provider — start the process at the link
+                  claim signature must be issued by the KYC provider â€” start the process at the link
                   below and the claim button will appear here once a salt is available for your
                   delegate address.
                 </Typography>
@@ -326,7 +326,7 @@ export default function IdentityDetail() {
                     <a href="https://id.signata.net" target="_blank" rel="noopener noreferrer">
                       id.signata.net
                     </a>{' '}
-                    to start verification — once approved you’ll be issued the credentials needed to
+                    to start verification â€” once approved youâ€™ll be issued the credentials needed to
                     call <code>claimRight</code> here.
                   </Alert>
                 )}
