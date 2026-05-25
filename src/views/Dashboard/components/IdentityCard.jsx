@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Alert,
@@ -21,7 +21,7 @@ import {
   Typography,
 } from '@mui/material';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -97,7 +97,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
   const signWithDelegate = async (hashToSign) => {
     // For wallet-type identities the delegate is the connected wallet. The
     // Signata registry verifies these with ecrecover against a raw hash, which
-    // requires `eth_sign` — disabled by default in modern MetaMask. We don't
+    // requires `eth_sign` â€” disabled by default in modern MetaMask. We don't
     // pretend it works; the caller surfaces a warning before reaching here.
     if (isWalletType) throw new Error('Wallet-type signing not supported');
     return accountFromSeed(identity.delegateSeed).sign({ hash: hashToSign });
@@ -124,7 +124,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'create',
         args: [Number(v), r, s, identity.identityAddress, identity.delegateAddress, identity.securityAddress],
       });
-      toast.info('Submitting registration…');
+      toast.info('Submitting registrationâ€¦');
     } catch (err) {
       if (isUserRejection(err)) return;
       console.error(err);
@@ -151,7 +151,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'lock',
         args: [identity.identityAddress, Number(v), r, s],
       });
-      toast.info('Submitting lock…');
+      toast.info('Submitting lockâ€¦');
     } catch (err) {
       if (isUserRejection(err)) return;
       console.error(err);
@@ -178,7 +178,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'unlock',
         args: [identity.identityAddress, Number(v), r, s],
       });
-      toast.info('Submitting unlock…');
+      toast.info('Submitting unlockâ€¦');
     } catch (err) {
       if (isUserRejection(err)) return;
       console.error(err);
@@ -206,7 +206,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
           Number(securitySig.v), securitySig.r, securitySig.s,
         ],
       });
-      toast.info('Submitting destroy…');
+      toast.info('Submitting destroyâ€¦');
     } catch (err) {
       if (isUserRejection(err)) return;
       console.error(err);
@@ -214,7 +214,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
     }
   };
 
-  // Wallet identities can't lock/destroy on modern wallets — the contract
+  // Wallet identities can't lock/destroy on modern wallets â€” the contract
   // verifies the delegate signature with ecrecover on a raw hash, which needs
   // `eth_sign`. Modern MetaMask disables that by default. We surface this
   // clearly rather than letting the user discover it via a cryptic error.
@@ -293,7 +293,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
               <code>ecrecover</code> against a raw hash, which requires the legacy{' '}
               <code>eth_sign</code> RPC. Modern wallets (MetaMask 10+, Rabby, etc.) disable that by
               default. To lock or destroy this identity you would need to enable{' '}
-              <em>“eth_sign requests”</em> in your wallet&apos;s advanced settings, or recreate it as an
+              <em>â€œeth_sign requestsâ€</em> in your wallet&apos;s advanced settings, or recreate it as an
               Independent identity (separate delegate key).
             </Alert>
           )}
