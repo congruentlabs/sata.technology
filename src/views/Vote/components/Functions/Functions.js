@@ -24,12 +24,14 @@ import { erc20Abi, formatUnits, parseUnits } from 'viem';
 import {
   useAccount,
   useChainId,
+  useConnect,
+  useDisconnect,
   useSwitchChain,
   useWriteContract,
   useWaitForTransactionReceipt,
 } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
-import { useAppKit } from '@reown/appkit/react';
+import { injected } from 'wagmi/connectors';
 import numeral from 'numeral';
 import {
   SATA_ADDRESS,
@@ -54,7 +56,8 @@ const Functions = () => {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const { switchChain } = useSwitchChain();
-  const { open } = useAppKit();
+  const { connect, isPending: connectPending, error: connectError } = useConnect();
+  const { disconnect } = useDisconnect();
 
   const sataBalance = useTokenBalance(SATA_ADDRESS);
   const dSataBalance = useTokenBalance(DSATA_ADDRESS);
@@ -243,15 +246,39 @@ const Functions = () => {
         </Grid>
         {!isConnected && (
           <Grid item xs={12} textAlign="center">
-            <Button variant="outlined" color="secondary" size="large" onClick={() => open()}>
-              Connect Web3 Wallet
-            </Button>
+            <Stack spacing={1} alignItems="center">
+              <Button
+                variant="outlined"
+                color="secondary"
+                size="large"
+                disabled={connectPending}
+                onClick={() => connect({ connector: injected() })}
+              >
+                {connectPending ? 'Connecting…' : 'Connect Wallet'}
+              </Button>
+              {connectError && (
+                <Alert severity="error" variant="outlined">
+                  {connectError.shortMessage || connectError.message}
+                </Alert>
+              )}
+              <Typography variant="caption" color="text.secondary">
+                Requires a browser wallet extension (MetaMask, Rabby, Brave, Coinbase Wallet, etc.)
+              </Typography>
+            </Stack>
           </Grid>
         )}
         {isConnected && (
           <Grid item xs={12}>
             <Stack spacing={1}>
-              <Alert severity="success" variant="outlined">
+              <Alert
+                severity="success"
+                variant="outlined"
+                action={
+                  <Button size="small" onClick={() => disconnect()}>
+                    Disconnect
+                  </Button>
+                }
+              >
                 <AlertTitle>Connected Wallet</AlertTitle>
                 {address}
               </Alert>
