@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Alert,
+  AlertTitle,
   Box,
   Button,
   ButtonGroup,
@@ -14,6 +15,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Skeleton,
   Stack,
   TextField,
   Typography,
@@ -24,9 +26,10 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useAccount, useSignMessage, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
-import { keccak256, concat, parseSignature } from 'viem';
+import { toast } from 'sonner';
+import AddressDisplay from '../../../components/AddressDisplay';
 import {
   IDENTITY_ABI,
   IDENTITY_ADDRESS,
@@ -36,8 +39,7 @@ import {
   useIdentityState,
 } from '../../../hooks/contracts';
 import { accountFromSeed } from '../../../hooks/useIdentities';
-
-const shorten = (a) => (a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '');
+import { formatError, isUserRejection } from '../../../lib/errors';
 
 function ConfirmDialog({ open, title, body, severity = 'warning', onClose, onConfirm, confirmText, confirmColor = 'warning' }) {
   return (
@@ -47,7 +49,7 @@ function ConfirmDialog({ open, title, body, severity = 'warning', onClose, onCon
         <Alert severity={severity} sx={{ mb: 2 }}>
           {body}
         </Alert>
-        <DialogContentText>This action will require a wallet signature.</DialogContentText>
+        <DialogContentText>This will require a wallet signature.</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
@@ -62,42 +64,43 @@ function ConfirmDialog({ open, title, body, severity = 'warning', onClose, onCon
 export default function IdentityCard({ identity, digests, onRename, onDelete }) {
   const { address: walletAddress } = useAccount();
   const isDelegate = identity.delegateAddress?.toLowerCase() === walletAddress?.toLowerCase();
+  const isWalletType = identity.type === 'wallet';
   const state = useIdentityState(identity.identityAddress);
 
   const { data: hash, isPending, writeContract, error, reset } = useWriteContract();
   const receipt = useWaitForTransactionReceipt({ hash });
-  const { signMessageAsync } = useSignMessage();
 
   const [dialog, setDialog] = useState(null);
   const [renameOpen, setRenameOpen] = useState(false);
   const [newName, setNewName] = useState(identity.name);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const stateLoading = state.isLoading;
   const isWorking = isPending || receipt.isLoading;
+
+  // Toast on tx state transitions
+  React.useEffect(() => {
+    if (receipt.isSuccess) toast.success('Transaction confirmed');
+  }, [receipt.isSuccess]);
+
+  React.useEffect(() => {
+    if (error) {
+      const msg = formatError(error);
+      if (msg) toast.error(msg);
+    }
+  }, [error]);
 
   // ---- Signing helpers ------------------------------------------------------
 
-  // Some operations need a signature from the delegate. If the identity is
-  // wallet-type the delegate is the connected wallet (sign via wagmi);
-  // otherwise the delegate seed is local and we sign in JS.
+  const signWithIdentity = async (hashToSign) => accountFromSeed(identity.identitySeed).sign({ hash: hashToSign });
+  const signWithSecurity = async (hashToSign) => accountFromSeed(identity.securitySeed).sign({ hash: hashToSign });
   const signWithDelegate = async (hashToSign) => {
-    if (identity.type === 'wallet') {
-      // personal_sign — prepends the EIP-191 prefix on the client side
-      const sig = await signMessageAsync({ message: { raw: hashToSign } });
-      return parseSignature(sig);
-    }
-    const delegateAccount = accountFromSeed(identity.delegateSeed);
-    return delegateAccount.sign({ hash: hashToSign });
-  };
-
-  const signWithIdentity = async (hashToSign) => {
-    const identityAccount = accountFromSeed(identity.identitySeed);
-    return identityAccount.sign({ hash: hashToSign });
-  };
-
-  const signWithSecurity = async (hashToSign) => {
-    const securityAccount = accountFromSeed(identity.securitySeed);
-    return securityAccount.sign({ hash: hashToSign });
+    // For wallet-type identities the delegate is the connected wallet. The
+    // Signata registry verifies these with ecrecover against a raw hash, which
+    // requires `eth_sign` — disabled by default in modern MetaMask. We don't
+    // pretend it works; the caller surfaces a warning before reaching here.
+    if (isWalletType) throw new Error('Wallet-type signing not supported');
+    return accountFromSeed(identity.delegateSeed).sign({ hash: hashToSign });
   };
 
   // ---- Actions --------------------------------------------------------------
@@ -113,7 +116,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         digests.TXTYPE_CREATE_DIGEST,
         packCreateArgs(identity.delegateAddress, identity.securityAddress),
       );
-      const { v, r, s } = await signWithIdentity(hashToSign);
+      const { v, r, s } = await accountFromSeed(identity.identitySeed).sign({ hash: hashToSign });
       writeContract({
         chainId: mainnet.id,
         address: IDENTITY_ADDRESS,
@@ -121,9 +124,11 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'create',
         args: [Number(v), r, s, identity.identityAddress, identity.delegateAddress, identity.securityAddress],
       });
+      toast.info('Submitting registration…');
     } catch (err) {
+      if (isUserRejection(err)) return;
       console.error(err);
-      setErrorMsg(err.shortMessage || err.message);
+      setErrorMsg(formatError(err));
     }
   };
 
@@ -146,9 +151,11 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'lock',
         args: [identity.identityAddress, Number(v), r, s],
       });
+      toast.info('Submitting lock…');
     } catch (err) {
+      if (isUserRejection(err)) return;
       console.error(err);
-      setErrorMsg(err.shortMessage || err.message);
+      setErrorMsg(formatError(err));
     }
   };
 
@@ -171,9 +178,11 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
         functionName: 'unlock',
         args: [identity.identityAddress, Number(v), r, s],
       });
+      toast.info('Submitting unlock…');
     } catch (err) {
+      if (isUserRejection(err)) return;
       console.error(err);
-      setErrorMsg(err.shortMessage || err.message);
+      setErrorMsg(formatError(err));
     }
   };
 
@@ -197,65 +206,98 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
           Number(securitySig.v), securitySig.r, securitySig.s,
         ],
       });
+      toast.info('Submitting destroy…');
     } catch (err) {
+      if (isUserRejection(err)) return;
       console.error(err);
-      setErrorMsg(err.shortMessage || err.message);
+      setErrorMsg(formatError(err));
     }
   };
+
+  // Wallet identities can't lock/destroy on modern wallets — the contract
+  // verifies the delegate signature with ecrecover on a raw hash, which needs
+  // `eth_sign`. Modern MetaMask disables that by default. We surface this
+  // clearly rather than letting the user discover it via a cryptic error.
+  const walletSigBlocked = isWalletType;
 
   return (
     <Card variant="outlined">
       <CardContent>
         <Stack spacing={1}>
           <Typography variant="h6">{identity.name || 'Unnamed Identity'}</Typography>
-          <Box sx={{ fontFamily: 'monospace', fontSize: 12, color: 'text.secondary' }}>
-            <div>Identity: {shorten(identity.identityAddress)}</div>
-            <div>Delegate: {shorten(identity.delegateAddress)}</div>
-            <div>Security: {shorten(identity.securityAddress)}</div>
-          </Box>
+
+          <Stack spacing={0.5}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography variant="caption" color="text.secondary" sx={{ width: 70 }}>
+                Identity
+              </Typography>
+              <AddressDisplay address={identity.identityAddress} variant="caption" />
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography variant="caption" color="text.secondary" sx={{ width: 70 }}>
+                Delegate
+              </Typography>
+              <AddressDisplay address={identity.delegateAddress} variant="caption" />
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography variant="caption" color="text.secondary" sx={{ width: 70 }}>
+                Security
+              </Typography>
+              <AddressDisplay address={identity.securityAddress} variant="caption" />
+            </Box>
+          </Stack>
+
           <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
             <Chip
-              label={identity.type === 'wallet' ? 'Wallet identity' : 'Independent'}
+              label={isWalletType ? 'Wallet identity' : 'Independent'}
               size="small"
               variant="outlined"
               icon={<AccountBalanceWalletIcon />}
             />
-            {!state.destroyed && (
-              <Chip
-                label={state.exists ? 'Registered' : 'Unregistered'}
-                color={state.exists ? 'success' : 'warning'}
-                variant={state.exists ? 'outlined' : 'filled'}
-                size="small"
-                icon={state.exists ? <FingerprintIcon /> : <ErrorOutlineIcon />}
-              />
+            {stateLoading ? (
+              <Skeleton variant="rounded" width={100} height={24} />
+            ) : (
+              <>
+                {!state.destroyed && (
+                  <Chip
+                    label={state.exists ? 'Registered' : 'Unregistered'}
+                    color={state.exists ? 'success' : 'warning'}
+                    variant={state.exists ? 'outlined' : 'filled'}
+                    size="small"
+                    icon={state.exists ? <FingerprintIcon /> : <ErrorOutlineIcon />}
+                  />
+                )}
+                {state.exists && !state.destroyed && (
+                  <Chip
+                    label={state.locked ? 'Locked' : 'Unlocked'}
+                    color={state.locked ? 'error' : 'success'}
+                    variant={state.locked ? 'filled' : 'outlined'}
+                    size="small"
+                    icon={state.locked ? <LockIcon /> : <LockOpenIcon />}
+                  />
+                )}
+                {state.destroyed && (
+                  <Chip label="Destroyed" color="error" size="small" icon={<ErrorOutlineIcon />} />
+                )}
+              </>
             )}
-            {state.exists && !state.destroyed && (
-              <Chip
-                label={state.locked ? 'Locked' : 'Unlocked'}
-                color={state.locked ? 'error' : 'success'}
-                variant={state.locked ? 'filled' : 'outlined'}
-                size="small"
-                icon={state.locked ? <LockIcon /> : <LockOpenIcon />}
-              />
-            )}
-            {state.destroyed && (
-              <Chip label="Destroyed" color="error" size="small" icon={<ErrorOutlineIcon />} />
-            )}
-            {identity.type === 'wallet' && !isDelegate && (
+            {isWalletType && !isDelegate && (
               <Chip label="Connect delegate wallet" color="warning" size="small" />
             )}
           </Box>
 
-          {receipt.isSuccess && (
-            <Alert severity="success" onClose={() => reset()}>
-              Transaction confirmed
+          {walletSigBlocked && state.exists && !state.destroyed && (
+            <Alert severity="warning" sx={{ mt: 1 }}>
+              <AlertTitle>Lock / destroy unavailable for wallet identities</AlertTitle>
+              The Signata registry verifies the delegate signature with{' '}
+              <code>ecrecover</code> against a raw hash, which requires the legacy{' '}
+              <code>eth_sign</code> RPC. Modern wallets (MetaMask 10+, Rabby, etc.) disable that by
+              default. To lock or destroy this identity you would need to enable{' '}
+              <em>“eth_sign requests”</em> in your wallet&apos;s advanced settings, or recreate it as an
+              Independent identity (separate delegate key).
             </Alert>
           )}
-          {error && (
-            <Alert severity="error" onClose={() => reset()}>
-              {error.shortMessage || error.message}
-            </Alert>
-          )}
+
           {errorMsg && (
             <Alert severity="error" onClose={() => setErrorMsg('')}>
               {errorMsg}
@@ -263,18 +305,19 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
           )}
         </Stack>
       </CardContent>
+
       <CardActions sx={{ flexWrap: 'wrap', gap: 1 }}>
         <ButtonGroup variant="text" size="small">
           {!state.exists && !state.destroyed && (
-            <Button onClick={onRegister} disabled={isWorking || !digests || (identity.type === 'wallet' && !isDelegate)}>
+            <Button
+              onClick={onRegister}
+              disabled={isWorking || !digests || (isWalletType && !isDelegate)}
+            >
               Register
             </Button>
           )}
-          {state.exists && !state.destroyed && !state.locked && (
-            <Button
-              onClick={() => setDialog('lock')}
-              disabled={isWorking || (identity.type === 'wallet' && !isDelegate)}
-            >
+          {state.exists && !state.destroyed && !state.locked && !walletSigBlocked && (
+            <Button onClick={() => setDialog('lock')} disabled={isWorking}>
               Lock
             </Button>
           )}
@@ -283,18 +326,20 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
               Unlock
             </Button>
           )}
-          {state.exists && !state.destroyed && (
-            <Button
-              color="error"
-              onClick={() => setDialog('destroy')}
-              disabled={isWorking || (identity.type === 'wallet' && !isDelegate)}
-            >
+          {state.exists && !state.destroyed && !walletSigBlocked && (
+            <Button color="error" onClick={() => setDialog('destroy')} disabled={isWorking}>
               Destroy
             </Button>
           )}
           <Button onClick={() => setRenameOpen(true)}>Rename</Button>
           {!state.exists && (
-            <Button color="error" onClick={() => onDelete(identity.identitySeed)}>
+            <Button
+              color="error"
+              onClick={() => {
+                onDelete(identity.identitySeed);
+                toast.success('Identity removed locally');
+              }}
+            >
               Remove
             </Button>
           )}
@@ -322,7 +367,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
       <ConfirmDialog
         open={dialog === 'unlock'}
         title="Unlock this identity?"
-        body="Only unlock if you believe the threat is gone. If the delegate may still be compromised, rotate instead."
+        body="Only unlock if you believe the threat is gone. If the delegate may still be compromised, do not unlock."
         onClose={() => setDialog(null)}
         onConfirm={onUnlock}
         confirmText="Unlock"
@@ -358,6 +403,7 @@ export default function IdentityCard({ identity, digests, onRename, onDelete }) 
             onClick={() => {
               onRename(identity.identitySeed, newName);
               setRenameOpen(false);
+              toast.success('Renamed');
             }}
           >
             Save

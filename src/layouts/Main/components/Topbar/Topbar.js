@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
 import { ThemeModeToggler } from './components';
+import AccountMenu from '../../../../components/AccountMenu';
 
 const navItems = [
   { label: 'Identities', to: '/' },
@@ -44,6 +45,7 @@ const Topbar = () => {
             </Link>
           );
         })}
+        <AccountMenu />
         <ThemeModeToggler />
       </Box>
 
@@ -61,6 +63,7 @@ const Topbar = () => {
             {item.label}
           </Link>
         ))}
+        <AccountMenu />
         <ThemeModeToggler />
       </Box>
     </Box>

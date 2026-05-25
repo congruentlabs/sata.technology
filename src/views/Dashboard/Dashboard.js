@@ -1,23 +1,58 @@
 import React from 'react';
-import { Alert, AlertTitle, Box, Button, Container, Stack, Typography } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Container,
+  LinearProgress,
+  Stack,
+  Typography,
+} from '@mui/material';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useAccount, useChainId, useConnect, useSwitchChain } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
 import { injected } from 'wagmi/connectors';
+import { toast } from 'sonner';
 import Main from 'layouts/Main';
-import { useIdentities } from '../../hooks/useIdentities';
+import { useEncryptedIdentities, STATUS } from '../../hooks/useEncryptedIdentities';
 import { useIdentityDigests } from '../../hooks/contracts';
+import { formatError, isUserRejection } from '../../lib/errors';
 import IdentityCard from './components/IdentityCard';
 import CreateIdentityForm from './components/CreateIdentityForm';
 
 export default function Dashboard() {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
-  const { connect, isPending: connecting, error: connectError } = useConnect();
+  const { connect, isPending: connecting } = useConnect();
   const { switchChain } = useSwitchChain();
   const digests = useIdentityDigests();
-  const { identities, addIdentity, updateIdentity, removeIdentity } = useIdentities(address);
+
+  const {
+    identities,
+    status,
+    error: storeError,
+    unlock,
+    addIdentity,
+    updateIdentity,
+    removeIdentity,
+  } = useEncryptedIdentities();
 
   const wrongChain = isConnected && chainId !== mainnet.id;
+  const isUnlocked = status === STATUS.UNLOCKED;
+  const isUnlocking = status === STATUS.UNLOCKING;
+
+  const handleConnect = () => {
+    connect(
+      { connector: injected() },
+      {
+        onError: (err) => {
+          const msg = formatError(err);
+          if (msg) toast.error(msg);
+        },
+      },
+    );
+  };
 
   return (
     <Main>
@@ -28,8 +63,8 @@ export default function Dashboard() {
               Your Signata Identities
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              Signata lets you create blockchain-native identities you control. Lock, unlock,
-              destroy, and attach rights (like KYC attestations) to identities you create here.
+              Create blockchain-native identities you control. Register, lock, unlock, or destroy
+              them on Ethereum mainnet, and attach rights like SATA-100 attestations.
             </Typography>
           </Box>
 
@@ -37,23 +72,14 @@ export default function Dashboard() {
             <Alert
               severity="info"
               action={
-                <Button
-                  variant="contained"
-                  onClick={() => connect({ connector: injected() })}
-                  disabled={connecting}
-                >
+                <Button variant="contained" onClick={handleConnect} disabled={connecting}>
                   {connecting ? 'Connecting…' : 'Connect Wallet'}
                 </Button>
               }
             >
               <AlertTitle>Connect a wallet to get started</AlertTitle>
-              Identities are scoped to the wallet that creates them. Use any browser extension
-              wallet (MetaMask, Rabby, Brave, Coinbase Wallet).
-              {connectError && (
-                <Box sx={{ mt: 1, color: 'error.main' }}>
-                  {connectError.shortMessage || connectError.message}
-                </Box>
-              )}
+              Identities are scoped to the wallet that creates them. Any browser-extension wallet
+              works (MetaMask, Rabby, Brave, Coinbase Wallet).
             </Alert>
           )}
 
@@ -69,16 +95,41 @@ export default function Dashboard() {
             </Alert>
           )}
 
-          {isConnected && !wrongChain && (
-            <>
-              <Alert severity="success" variant="outlined">
-                <AlertTitle>Connected</AlertTitle>
-                {address}
-              </Alert>
+          {isConnected && !wrongChain && !isUnlocked && (
+            <Alert
+              severity="info"
+              icon={<LockOpenIcon />}
+              action={
+                <Button
+                  variant="contained"
+                  onClick={async () => {
+                    try {
+                      await unlock();
+                    } catch (err) {
+                      if (!isUserRejection(err)) toast.error(formatError(err));
+                    }
+                  }}
+                  disabled={isUnlocking}
+                >
+                  {isUnlocking ? 'Unlocking…' : 'Sign to unlock'}
+                </Button>
+              }
+            >
+              <AlertTitle>Identities are encrypted</AlertTitle>
+              Sign a message with your wallet to decrypt your local identity seeds. The signature
+              never leaves your browser and authorizes no transaction.
+              {storeError && (
+                <Box sx={{ mt: 1, color: 'error.main' }}>{storeError}</Box>
+              )}
+              {isUnlocking && <LinearProgress sx={{ mt: 1 }} />}
+            </Alert>
+          )}
 
+          {isUnlocked && (
+            <>
               {identities.length === 0 && (
                 <Alert severity="info">
-                  You have no identities yet on this wallet. Use the form below to create one.
+                  No identities yet on this wallet. Use the form below to create one.
                 </Alert>
               )}
 
@@ -92,7 +143,13 @@ export default function Dashboard() {
                 />
               ))}
 
-              <CreateIdentityForm walletAddress={address} onCreate={addIdentity} />
+              <CreateIdentityForm
+                walletAddress={address}
+                onCreate={async (id) => {
+                  await addIdentity(id);
+                  toast.success('Identity added locally — click Register to mint on-chain');
+                }}
+              />
             </>
           )}
         </Stack>

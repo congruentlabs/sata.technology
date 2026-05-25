@@ -100,7 +100,15 @@ export function useIdentityState(identityAddress) {
 
   return useMemo(() => {
     if (!enabled || isLoading || !data) {
-      return { exists: false, destroyed: false, locked: false, lockCount: 0n, rolloverCount: 0n, refetch };
+      return {
+        exists: false,
+        destroyed: false,
+        locked: false,
+        lockCount: 0n,
+        rolloverCount: 0n,
+        isLoading: enabled && isLoading,
+        refetch,
+      };
     }
     return {
       exists: Boolean(data[0]?.result),
@@ -108,6 +116,7 @@ export function useIdentityState(identityAddress) {
       locked: Boolean(data[2]?.result),
       lockCount: data[3]?.result ?? 0n,
       rolloverCount: data[4]?.result ?? 0n,
+      isLoading: false,
       refetch,
     };
   }, [data, enabled, isLoading, refetch]);
