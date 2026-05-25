@@ -2,91 +2,53 @@
   "name": "sata.technology",
   "author": "Congruent Labs Pty Ltd",
   "email": "sales@congruentlabs.co",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": false,
+  "type": "module",
   "engines": {
-    "node": "<=16.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-linux": "react-scripts --openssl-legacy-provider start",
-    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-    "prettier:fix": "prettier './src/**/*.js' --write",
-    "eslint:fix": "eslint ./src --fix",
-    "codeStyle:fix": "npm run prettier:fix && npm run eslint:fix",
-    "clear-all": "rimraf ./build ./node_modules"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=sata-technology",
+    "deploy:preview": "npm run build && wrangler pages deploy dist --project-name=sata-technology --branch=preview",
+    "lint": "eslint src",
+    "format": "prettier --write \"src/**/*.{js,jsx,scss}\""
   },
   "dependencies": {
-    "@coinbase/wallet-sdk": "^3.0.8",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@ethersproject/contracts": "^5.6.0",
-    "@ethersproject/units": "^5.6.0",
-    "@mui/icons-material": "^5.6.2",
-    "@mui/material": "^5.6.3",
-    "@toruslabs/torus-embed": "^1.22.2",
-    "@usedapp/core": "^0.11.0",
-    "@walletconnect/web3-provider": "^1.7.7",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.6",
+    "@mui/material": "^6.1.6",
+    "@reown/appkit": "^1.5.0",
+    "@reown/appkit-adapter-wagmi": "^1.5.0",
+    "@tanstack/react-query": "^5.59.20",
     "aos": "^2.3.4",
-    "crypto-js": "^4.1.1",
-    "ethers": "^5.6.4",
-    "fernet": "^0.4.0",
-    "jarallax": "^2.0.3",
-    "node-forge": "^1.3.1",
+    "jarallax": "^2.2.0",
     "numeral": "^2.0.6",
-    "octokit": "^1.7.1",
-    "postcss-normalize": "^10.0.1",
+    "octokit": "^4.0.2",
     "prop-types": "^15.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-i18next": "^11.16.6",
-    "react-lazy-load-image-component": "^1.5.4",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^4.0.3",
-    "react-typed": "^1.2.0",
-    "sass": "^1.50.0",
-    "slick-carousel": "^1.8.1",
-    "url-safe-base64": "^1.2.0",
-    "use-local-storage-state": "^17.0.1",
-    "walletlink": "^2.5.0",
-    "web-vitals": "^2.1.4",
-    "web3modal": "^1.9.7"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-lazy-load-image-component": "^1.6.2",
+    "react-router-dom": "^7.0.1",
+    "react-type-animation": "^3.2.0",
+    "sass": "^1.80.6",
+    "use-local-storage-state": "^19.5.0",
+    "viem": "^2.21.42",
+    "wagmi": "^2.12.31",
+    "web-vitals": "^4.2.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-styled-components": "^2.0.7",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.11.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.4.0",
-    "prettier": "^2.6.2",
-    "prettier-eslint": "^13.0.0",
-    "prettier-eslint-cli": "^5.0.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.3"
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.14.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.10",
+    "wrangler": "^4.0.0"
   }
 }

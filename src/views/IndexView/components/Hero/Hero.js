@@ -1,12 +1,11 @@
 import React from 'react';
-import Typed from 'react-typed';
+import { TypeAnimation } from 'react-type-animation';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import useMediaQuery from '@mui/material/useMediaQuery';
-// import { useTranslation } from 'react-i18next';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
@@ -82,7 +81,6 @@ const images = [
 
 const Hero = () => {
   const theme = useTheme();
-  // const { t } = useTranslation();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
@@ -116,10 +114,15 @@ const Hero = () => {
                 component={'span'}
                 variant={'inherit'}
               >
-                <Typed
-                  strings={['Identity.', 'Authentication.', 'Access.', 'Privacy.']}
-                  typeSpeed={100}
-                  loop={true}
+                <TypeAnimation
+                  sequence={[
+                    'Identity.', 2000,
+                    'Authentication.', 2000,
+                    'Access.', 2000,
+                    'Privacy.', 2000,
+                  ]}
+                  speed={50}
+                  repeat={Infinity}
                 />
               </Typography>
             </Typography>

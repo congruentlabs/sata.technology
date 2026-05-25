@@ -30,12 +30,6 @@ export const useDarkMode = () => {
 
 export default function Page({ children }) {
   React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-
     AOS.init({
       once: true,
       delay: 50,

@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "checkJs": false,
+    "allowJs": true
   },
-  "include": ["src"]
+  "include": ["src", "vite.config.js"]
 }
