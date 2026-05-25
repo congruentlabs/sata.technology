@@ -7,7 +7,6 @@ import {
   Chip,
   Container,
   Divider,
-  Link,
   Paper,
   Stack,
   Table,
@@ -281,25 +280,12 @@ const IndexView = () => (
           </Stack>
         </Section>
 
-        <Section eyebrow="Project status" title="Where this stands">
+        <Section eyebrow="Open source" title="Built in the open">
           <Typography variant="body1" color="text.secondary" paragraph>
-            Signata&apos;s identity registry was deployed in 2022 and has not been redeployed since.
-            The current front-end is a modern rebuild on top of those original contracts — the
-            cryptographic model (EIP-712 digests, three-key separation, <code>ecrecover</code>{' '}
-            verification) is therefore older than the patterns most 2025 dApps would reach for, but
-            it works against the deployed contracts.
-          </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
-            Newer alternatives worth comparing against:{' '}
-            <Link href="https://attest.org" target="_blank" rel="noopener noreferrer">
-              EAS
-            </Link>{' '}
-            for general attestations, and{' '}
-            <Link href="https://erc4337.io" target="_blank" rel="noopener noreferrer">
-              ERC-4337 smart accounts
-            </Link>{' '}
-            for the &quot;identity as a contract&quot; pattern. The repository is open source —
-            contributions and forks welcome.
+            The Signata contracts have been live on Ethereum mainnet since 2022, with this
+            front-end maintained on top of them. Everything &mdash; contracts, ABIs, and the dApp
+            you&apos;re using &mdash; is MIT-licensed and developed publicly on GitHub. Issues, pull
+            requests, and forks are welcome.
           </Typography>
           <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
             <Button
