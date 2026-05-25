@@ -13,8 +13,8 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=sata-technology",
-    "deploy:preview": "npm run build && wrangler pages deploy dist --project-name=sata-technology --branch=preview",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:preview": "npm run build && wrangler versions upload",
     "lint": "eslint src",
     "format": "prettier --write \"src/**/*.{js,jsx,scss}\""
   },
