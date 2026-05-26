@@ -4,7 +4,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import CssBaseline from '@mui/material/CssBaseline';
 import getTheme from 'theme';
-import AOS from 'aos';
 
 export const useDarkMode = () => {
   const [themeMode, setTheme] = useState('light');
@@ -16,12 +15,13 @@ export const useDarkMode = () => {
   };
 
   const themeToggler = () => {
-    themeMode === 'light' ? setMode('dark') : setMode('light');
+    setMode(themeMode === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('themeMode');
-    localTheme ? setTheme(localTheme) : setMode('light');
+    if (localTheme) setTheme(localTheme);
+    else setMode('light');
     setMountedComponent(true);
   }, []);
 
@@ -29,24 +29,10 @@ export const useDarkMode = () => {
 };
 
 export default function Page({ children }) {
-  React.useEffect(() => {
-    AOS.init({
-      once: true,
-      delay: 50,
-      duration: 500,
-      easing: 'ease-in-out',
-    });
-  }, []);
-
-  const [themeMode, themeToggler, mountedComponent] = useDarkMode();
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [mountedComponent, themeMode]);
+  const [themeMode, themeToggler] = useDarkMode();
 
   return (
     <ThemeProvider theme={getTheme(themeMode, themeToggler)}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <Paper elevation={0}>{children}</Paper>
     </ThemeProvider>
