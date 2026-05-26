@@ -1,13 +1,13 @@
 # sata.technology
 
-Marketing site and dApp front-end for [Signata](https://signata.net).
+The landing page for Signata. Active design work for the v2 architecture
+lives in private working documents.
 
 ## Development
 
 ```bash
 nvm use
 npm install
-cp .env.example .env
 npm run dev
 ```
 
